@@ -1,0 +1,9 @@
+{
+  "expert_id": "EXP_001",
+  "expert_role": "Formulation Scientist",
+  "criteria": ["PC1", "PC2"],
+  "pairwise_matrix": [
+    [1.0, 2.0],
+    [0.5, 1.0]
+  ]
+}

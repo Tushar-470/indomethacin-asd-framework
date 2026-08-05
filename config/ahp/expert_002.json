@@ -1,0 +1,9 @@
+{
+  "expert_id": "EXP_002",
+  "expert_role": "Computational Pharmaceutics Specialist",
+  "criteria": ["PC1", "PC2"],
+  "pairwise_matrix": [
+    [1.0, 3.0],
+    [0.333, 1.0]
+  ]
+}

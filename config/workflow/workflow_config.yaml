@@ -1,0 +1,57 @@
+# Computational Polymer Screening Workflow Configuration
+# Aligned with Master Research Framework V2.0 (Frozen)
+
+workflow:
+  name: "indomethacin_polymer_screening"
+  version: "1.0.0"
+  random_seed: 42
+  execution_mode: "FULL"  # FULL, COMPUTE_ONLY, or VALIDATE_ONLY
+
+paths:
+  drug_profile: "config/drugs/indomethacin.json"
+  polymer_library: "config/polymers/polymer_library_v2.csv"
+  ahp_matrix_dir: "config/ahp"
+  output_dir: "results"
+  log_dir: "logs"
+
+gates:
+  gate1_hsp_red_threshold: 1.0
+  gate1_min_passing_polymers: 3
+  gate2_ahp_cr_max: 0.08
+  gate3_rmse_max_k: 10.0
+  gate3_spearman_rho_min: 0.70
+  gate3_baseline_delta_rho_min: 0.10
+  gate4_fbm_auc_min: 0.75
+  gate4_fbm_ci_width_max_percent: 20.0
+
+pca:
+  variance_threshold: 0.95
+
+uncertainty:
+  monte_carlo_iterations: 10000
+  gelman_rubin_rhat_threshold: 1.01
+  cov_threshold_percent: 5.0
+  magnitudes:
+    hsp_error_mpa: 1.5
+    chi_error_relative: 0.25
+    logp_error: 0.7
+    tg_drug_baird_error_k: 10.0
+    tg_polymer_lit_error_k: 3.0
+    density_error_g_cm3: 0.05
+    ahp_weight_relative: 0.20
+
+sensitivity:
+  oat_multipliers: [0.5, 1.5]
+  morris_trajectories: 10
+  morris_dominant_mu_threshold: 0.10
+  morris_interactive_sigma_threshold: 0.05
+
+prediction:
+  default_drug_loading_ww: 0.30
+  fbm_regularization_c: 1.0
+  fbm_safe_p_threshold: 0.30
+  fbm_failure_p_threshold: 0.70
+
+reporting:
+  export_formats: ["json", "xlsx", "csv", "md"]
+  figure_dpi: 300

@@ -1,0 +1,9 @@
+{
+  "expert_id": "EXP_003",
+  "expert_role": "Analytical Chemistry & Quality Specialist",
+  "criteria": ["PC1", "PC2"],
+  "pairwise_matrix": [
+    [1.0, 1.5],
+    [0.667, 1.0]
+  ]
+}

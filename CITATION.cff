@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or computational framework in your research, please cite it as below."
+authors:
+  - family-names: "Interdisciplinary Computational Pharmaceutics Team"
+title: "Quality by Design-Driven Development of Indomethacin Immediate-Release Tablets from Spray-Dried Amorphous Solid Dispersions Using an Integrated Computational Polymer Screening and Failure Mapping Framework"
+version: 1.0.0
+doi: 10.5281/zenodo.1234567
+date-released: 2026-08-05
+repository-code: "https://github.com/Tushar-470/indomethacin-asd-framework"
+keywords:
+  - "amorphous solid dispersions"
+  - "indomethacin"
+  - "polymer screening"
+  - "quality by design"
+  - "AHP-TOPSIS"
+  - "logistic regression"
+  - "failure boundary mapping"

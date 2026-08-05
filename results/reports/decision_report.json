@@ -1,0 +1,60 @@
+{
+  "selected_polymer": "Soluplus",
+  "selected_polymer_id": "POL-005-2026",
+  "topsis_CL": 0.7775821475801472,
+  "confidence_P_top1": 0.336,
+  "confidence_tier": "Low Confidence (P(top-1) < 0.40)",
+  "predicted_Tg_K": 334.5,
+  "Tg_prediction_interval": [
+    329.5,
+    339.5
+  ],
+  "predicted_chi": 0.226,
+  "chi_critical": 2.12,
+  "miscibility_class": "Miscible (Below Critical chi_c = 2.12)",
+  "stability_tier": "Medium Stability (Tg margin 30-50 K above 25\u00b0C); Medium-Low (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Moderate",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Slightly",
+  "pca_effective_dimensionality": {
+    "retained_components_k": 3,
+    "pc1_explained_variance_pct": 74.1,
+    "is_effectively_one_dimensional": false,
+    "interpretation": [
+      "PC1 (74.1% var): Dominated by s_chi loading.",
+      "PC2 (17.9% var): Dominated by s_lit loading.",
+      "PC3 (7.3% var): Dominated by s_GT loading."
+    ]
+  },
+  "baseline_comparison_delta": {
+    "spearman_full_cci": 0.8285714285714287,
+    "spearman_hsp_only": 0.3714285714285715,
+    "spearman_equal_weight": -0.4285714285714286,
+    "delta_vs_hsp_only": 0.45714285714285724,
+    "delta_vs_equal_weight": 1.2571428571428573,
+    "outperforms_baselines": true
+  },
+  "fbm_boundary_logistic": {
+    "beta_coefficients": [
+      0.5428421753626089,
+      -0.08194869290120269,
+      0.3911530221696501,
+      0.1491570435416293
+    ],
+    "intercept": 4.030599266657369,
+    "auc_roc": 0.8899999999999999,
+    "is_actionable": true,
+    "region_classification": {
+      "Rank1_100C_30%Load_10%Conc": "Safe (P=0.03 < 0.30)",
+      "Rank1_120C_40%Load_15%Conc": "Safe (P=0.01 < 0.30)",
+      "Rank2_80C_40%Load_15%Conc": "Safe (P=0.22 < 0.30)"
+    }
+  },
+  "validation_summary": {
+    "spearman_rho": 0.8285714285714287,
+    "kendall_tau": 0.7333333333333333,
+    "rmse_tg_k": 4.2,
+    "top1_agreement": true,
+    "classification": "Exploratory (n=6 polymers; confirmatory requires n>=20)"
+  }
+}

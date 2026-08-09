@@ -3,6 +3,7 @@ Programmatic 300 DPI publication figure generator for the framework figures.
 Aligned with Master Research Framework V2.0 Section 13.
 """
 
+import logging
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 import matplotlib
@@ -15,6 +16,36 @@ from asd_mcda.integration.pca import PCAResult
 from asd_mcda.prediction.fbm import FBMResult
 from asd_mcda.sensitivity.morris import MorrisResult
 from asd_mcda.uncertainty.monte_carlo import UQResult
+
+
+def resolve_polymer_display_name(
+    polymer_id: str,
+    polymer_name: Optional[str] = None,
+    abbreviation: Optional[str] = None,
+    poly_name_map: Optional[Dict[str, str]] = None,
+) -> str:
+    """
+    Centralized canonical polymer identity resolution mechanism.
+    Formats as "Polymer Name [Polymer ID]". Never silently fallback to POL-ID [POL-ID].
+    If unresolvable, returns "Unknown polymer [POL-ID]" and logs a data integrity warning.
+    """
+    pid = str(polymer_id).strip()
+
+    name = None
+    if polymer_name and str(polymer_name).strip() and str(polymer_name).strip() != pid:
+        name = str(polymer_name).strip()
+    elif poly_name_map and pid in poly_name_map and str(poly_name_map[pid]).strip() and str(poly_name_map[pid]).strip() != pid:
+        name = str(poly_name_map[pid]).strip()
+    elif abbreviation and str(abbreviation).strip() and str(abbreviation).strip() != pid:
+        name = str(abbreviation).strip()
+
+    if not name or name == pid:
+        logging.warning(
+            f"Data Integrity Alert: Unable to resolve canonical polymer_name for ID '{pid}'. Defaulting to 'Unknown polymer'."
+        )
+        name = "Unknown polymer"
+
+    return f"{name} [{pid}]"
 
 
 class FigureGenerator:
@@ -40,7 +71,7 @@ class FigureGenerator:
 
     def plot_figure_6_ranking(self, ranking_df: pd.DataFrame) -> Path:
         """
-        Figure 6: AHP-TOPSIS Ranking bar chart (Closeness Coefficient CL).
+        AHP-TOPSIS Ranking bar chart (Closeness Coefficient CL).
         Displays dynamically retrieved Polymer Name + Immutable Polymer ID.
         """
         fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -49,26 +80,14 @@ class FigureGenerator:
         y_pos = np.arange(len(df_sorted))
         cls = df_sorted["topsis_cl"].values
 
-        # Build dynamic presentation label: "Polymer Name [Polymer ID]"
+        # Build dynamic presentation label using centralized resolution helper
         labels = []
         for _, row in df_sorted.iterrows():
-            pid = str(row["polymer_id"]).strip()
+            pid = row["polymer_id"]
             raw_name = row.get("polymer_name")
             abbr = row.get("abbreviation")
-
-            if raw_name and str(raw_name).strip() and str(raw_name).strip() != pid:
-                name = str(raw_name).strip()
-            elif abbr and str(abbr).strip() and str(abbr).strip() != pid:
-                name = str(abbr).strip()
-            else:
-                name = "Unknown polymer"
-
-            # Strict guard against masked lookup failure (POL-ID [POL-ID])
-            if name == pid:
-                name = "Unknown polymer"
-
-            labels.append(f"{name} [{pid}]")
-
+            label = resolve_polymer_display_name(pid, polymer_name=raw_name, abbreviation=abbr)
+            labels.append(label)
 
         colors = ["#2b5c8f" if cl == max(cls) else "#4a90e2" for cl in cls]
 
@@ -76,7 +95,7 @@ class FigureGenerator:
         ax.set_yticks(y_pos)
         ax.set_yticklabels(labels, fontsize=9.5)
         ax.set_xlabel("TOPSIS Closeness Coefficient (CL)")
-        ax.set_title("Figure 6: Candidate Polymer AHP-TOPSIS Ranking", fontweight="bold")
+        ax.set_title("Candidate Polymer AHP-TOPSIS Ranking", fontweight="bold")
         ax.set_xlim(0.0, 1.0)
 
         for bar in bars:
@@ -91,7 +110,7 @@ class FigureGenerator:
 
     def plot_figure_7_sensitivity_morris(self, morris_res: MorrisResult) -> Path:
         """
-        Figure 7: Sensitivity Analysis Morris Scatter Plot (mu vs sigma).
+        Sensitivity Analysis Morris Scatter Plot (mu vs sigma).
         Displays all analyzed feature weights (including PC1, PC2, PC3 when k=3).
         """
         fig, ax = plt.subplots(figsize=(6.5, 5))
@@ -110,7 +129,7 @@ class FigureGenerator:
 
         ax.set_xlabel("Mean Elementary Effect (mu)")
         ax.set_ylabel("Standard Deviation of Elementary Effect (sigma)")
-        ax.set_title("Figure 7: Morris Elementary Effects Sensitivity Plot", fontweight="bold")
+        ax.set_title("Morris Elementary Effects Sensitivity Plot", fontweight="bold")
         ax.legend(loc="upper right")
 
         plt.tight_layout()
@@ -125,8 +144,8 @@ class FigureGenerator:
         poly_name_map: Optional[Dict[str, str]] = None
     ) -> Path:
         """
-        Figure 8: Uncertainty Propagation Monte Carlo P(top-1) Bar Chart.
-        Displays Polymer Name + Immutable Polymer ID on X-axis ticks.
+        Uncertainty Propagation Monte Carlo P(top-1) Bar Chart.
+        Displays Polymer Name + Immutable Polymer ID on X-axis ticks using centralized resolver.
         """
         fig, ax = plt.subplots(figsize=(8, 4.5))
 
@@ -134,14 +153,13 @@ class FigureGenerator:
         polys = list(p_top1.keys())
         probs = [p_top1[p] for p in polys]
 
-        # Format labels: "Polymer Name [Polymer ID]"
+        # Format labels via centralized resolver
         tick_labels = []
         for pid in polys:
-            if poly_name_map and pid in poly_name_map:
-                name = poly_name_map[pid]
-                tick_labels.append(f"{name}\n[{pid}]")
-            else:
-                tick_labels.append(pid)
+            p_name = poly_name_map.get(pid) if poly_name_map else None
+            disp_label = resolve_polymer_display_name(pid, polymer_name=p_name, poly_name_map=poly_name_map)
+            parts = disp_label.split(" [")
+            tick_labels.append(f"{parts[0]}\n[{parts[1]}")
 
         x_pos = np.arange(len(polys))
         ax.bar(x_pos, probs, color="#5cb85c", edgecolor="black", width=0.5)
@@ -151,7 +169,7 @@ class FigureGenerator:
         ax.set_xticklabels(tick_labels, rotation=20, ha="right", fontsize=9)
         ax.set_ylabel("Decision Confidence Metric P(top-1)")
         ax.set_ylim(0.0, 1.0)
-        ax.set_title(f"Figure 8: Joint-Distribution Monte Carlo UQ ({uq_res.confidence_tier})", fontweight="bold")
+        ax.set_title(f"Joint-Distribution Monte Carlo UQ ({uq_res.confidence_tier})", fontweight="bold")
         ax.legend()
 
         plt.tight_layout()
@@ -162,7 +180,7 @@ class FigureGenerator:
 
     def plot_figure_11_pca_scree(self, pca_res: PCAResult) -> Path:
         """
-        Figure 11: PCA Scree Plot and Cumulative Explained Variance.
+        PCA Scree Plot and Cumulative Explained Variance.
         Renamed from 'PCA Score Plot' to accurately reflect variance breakdown.
         """
         fig, ax1 = plt.subplots(figsize=(6.5, 4.5))
@@ -182,7 +200,7 @@ class FigureGenerator:
         ax2.set_ylim(0, 105)
 
         ax1.set_title(
-            f"Figure 11: PCA Scree Plot and Cumulative Explained Variance (Retained k={pca_res.n_components_retained} PCs)",
+            f"PCA Scree Plot and Cumulative Explained Variance (Retained k={pca_res.n_components_retained} PCs)",
             fontweight="bold"
         )
 
@@ -194,7 +212,7 @@ class FigureGenerator:
 
     def plot_figure_12_fbm_contour(self, fbm_res: FBMResult) -> Path:
         """
-        Figure 12: Exploratory Failure-Risk Probability Surface for Soluplus.
+        Exploratory Failure-Risk Probability Surface for Soluplus.
         Accurately displays multivariable binary logistic regression probability surface.
         Highlights training domain (0.20-0.40) vs extrapolation regions (0.10-0.20, 0.40-0.50).
         """
@@ -225,7 +243,7 @@ class FigureGenerator:
         ax.set_xlabel("Inlet Temperature (°C)")
         ax.set_ylabel("Drug Loading (mass fraction w/w)")
         ax.set_title(
-            "Figure 12: Exploratory Failure-Risk Probability Surface for Soluplus\n"
+            "Exploratory Failure-Risk Probability Surface for Soluplus\n"
             "[Multivariable Binary Logistic Regression Model (N=54 DoE Runs; 4 Predictors)]",
             fontweight="bold",
             fontsize=10

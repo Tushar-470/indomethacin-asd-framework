@@ -163,10 +163,12 @@ class RankingRow(BaseModel):
     """Single row in the TOPSIS ranking table."""
     rank: int
     polymer_id: str
+    polymer_name: str
     abbreviation: str
     topsis_cl: float
     topsis_ideal_distance: float
     topsis_anti_ideal_distance: float
+
 
 
 class ScreeningResponse(BaseModel):

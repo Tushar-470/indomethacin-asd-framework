@@ -383,17 +383,23 @@ def run_screening(
     with open(analysis_dir / "input_snapshot.json", "w", encoding="utf-8") as f:
         json.dump(input_snapshot, f, indent=2, default=str)
 
-    # Build ranking list
+    # Build ranking list with dynamic polymer_name resolution
+    poly_map = {p["polymer_id"]: p for p in selected_polymer_dicts}
     ranking_list = []
     for _, row in df_ranking.iterrows():
+        pid = row["polymer_id"]
+        p_info = poly_map.get(pid, {})
+        p_name = p_info.get("polymer_name", pid)
         ranking_list.append({
             "rank": int(row["topsis_rank"]),
-            "polymer_id": row["polymer_id"],
-            "abbreviation": row.get("abbreviation", row["polymer_id"]),
+            "polymer_id": pid,
+            "polymer_name": p_name,
+            "abbreviation": row.get("abbreviation", pid),
             "topsis_cl": float(row["topsis_cl"]),
             "topsis_ideal_distance": float(row["topsis_ideal_distance"]),
             "topsis_anti_ideal_distance": float(row["topsis_anti_ideal_distance"]),
         })
+
 
     # Build figure URLs (relative to API)
     figure_names = [p.name for p in figs]

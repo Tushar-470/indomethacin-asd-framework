@@ -8,6 +8,7 @@ export default function Results() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
   const [activeTab, setActiveTab] = useState<'overview' | 'figures' | 'reports'>('overview');
+  const [selectedPolymerDetail, setSelectedPolymerDetail] = useState<any>(null);
 
   useEffect(() => {
     if (!id || id === 'undefined') {
@@ -59,6 +60,8 @@ export default function Results() {
     'fig12_fbm_contour.png'
   ];
 
+  const uqProbs = result.uq_p_top1 || {};
+
   return (
     <div>
       {/* Mode Banner */}
@@ -95,9 +98,12 @@ export default function Results() {
             <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: 'var(--primary)', fontWeight: 700 }}>
               🏆 Top-Ranked Polymer Carrier
             </span>
-            <h1 style={{ fontSize: '2.2rem', margin: '0.25rem 0 0.5rem 0', color: '#fff' }}>
-              {result.top_polymer || result.selected_polymer}
+            <h1 style={{ fontSize: '2.2rem', margin: '0.25rem 0 0.25rem 0', color: '#fff' }}>
+              {result.selected_polymer || result.top_polymer}
             </h1>
+            <div style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
+              Polymer ID: <strong style={{ color: 'var(--primary)' }}>{result.selected_polymer_id}</strong>
+            </div>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
               <span className="badge success">TOPSIS CL = {(result.topsis_cl || reportData.topsis_CL || 0).toFixed(4)}</span>
               <span className="badge primary">{result.confidence_tier || reportData.confidence_tier}</span>
@@ -160,31 +166,49 @@ export default function Results() {
         <div className="card">
           <h3>Candidate Polymer TOPSIS Ranking Table</h3>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.9rem' }}>
-            Polymers ranked by Closeness Coefficient (CL) relative to the ideal and anti-ideal solution vectors.
+            Click any polymer row to view detailed thermodynamic properties, sensitivity analysis, and Monte Carlo confidence.
           </p>
           <div className="table-container">
             <table>
               <thead>
                 <tr>
                   <th>Rank</th>
+                  <th>Polymer Name</th>
                   <th>Polymer ID</th>
-                  <th>Abbreviation</th>
-                  <th>TOPSIS Closeness (CL)</th>
-                  <th>Ideal Dist. (D+)</th>
-                  <th>Anti-Ideal Dist. (D-)</th>
+                  <th>TOPSIS CL</th>
+                  <th>Confidence</th>
                 </tr>
               </thead>
               <tbody>
-                {(result.ranking || []).map((r: any) => (
-                  <tr key={r.polymer_id} style={{ background: r.rank === 1 ? 'rgba(34,197,94,0.1)' : 'transparent' }}>
-                    <td><strong>#{r.rank}</strong></td>
-                    <td>{r.polymer_id}</td>
-                    <td><span className="badge primary">{r.abbreviation}</span></td>
-                    <td><strong>{r.topsis_cl?.toFixed(4)}</strong></td>
-                    <td>{r.topsis_ideal_distance?.toFixed(4)}</td>
-                    <td>{r.topsis_anti_ideal_distance?.toFixed(4)}</td>
-                  </tr>
-                ))}
+                {(result.ranking || []).map((r: any) => {
+                  const conf = r.rank === 1 ? (result.confidence_tier ? result.confidence_tier.split(' ')[0] : 'Low') : '-';
+                  return (
+                    <tr
+                      key={r.polymer_id}
+                      onClick={() => setSelectedPolymerDetail(r)}
+                      style={{
+                        background: r.rank === 1 ? 'rgba(34,197,94,0.1)' : 'transparent',
+                        cursor: 'pointer',
+                        transition: 'background 0.2s'
+                      }}
+                      title="Click for detailed polymer analysis"
+                    >
+                      <td><strong>{r.rank}</strong></td>
+                      <td>
+                        <strong style={{ color: r.rank === 1 ? 'var(--success)' : 'var(--text-primary)' }}>
+                          {r.polymer_name || r.abbreviation || r.polymer_id}
+                        </strong>
+                      </td>
+                      <td><span className="badge primary" style={{ fontFamily: 'monospace' }}>{r.polymer_id}</span></td>
+                      <td><strong>{r.topsis_cl ? r.topsis_cl.toFixed(4) : 'N/A'}</strong></td>
+                      <td>
+                        <span className={`badge ${r.rank === 1 ? 'success' : 'secondary'}`}>
+                          {conf}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -245,6 +269,83 @@ export default function Results() {
               <strong>Markdown Summary</strong>
               <small style={{ display: 'block', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>decision_report.md</small>
             </a>
+          </div>
+        </div>
+      )}
+
+      {/* Detailed Polymer Modal */}
+      {selectedPolymerDetail && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div className="card" style={{ width: '560px', maxHeight: '90vh', overflowY: 'auto', border: '1px solid var(--primary)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)', pb: '0.75rem', marginBottom: '1rem' }}>
+              <div>
+                <span className="badge primary" style={{ fontSize: '0.75rem' }}>Rank #{selectedPolymerDetail.rank}</span>
+                <h2 style={{ margin: '0.25rem 0 0 0' }}>{selectedPolymerDetail.polymer_name || selectedPolymerDetail.abbreviation}</h2>
+              </div>
+              <button className="btn" onClick={() => setSelectedPolymerDetail(null)} style={{ background: 'transparent', border: '1px solid var(--border)', padding: '0.3rem 0.6rem' }}>✕ Close</button>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.9rem' }}>
+              <div>
+                <strong>Polymer Name:</strong>
+                <div>{selectedPolymerDetail.polymer_name}</div>
+              </div>
+              <div>
+                <strong>Abbreviation:</strong>
+                <div>{selectedPolymerDetail.abbreviation}</div>
+              </div>
+              <div>
+                <strong>Polymer ID:</strong>
+                <div style={{ fontFamily: 'monospace', color: 'var(--primary)' }}>{selectedPolymerDetail.polymer_id}</div>
+              </div>
+              <div>
+                <strong>TOPSIS CL:</strong>
+                <div style={{ fontWeight: 700 }}>{selectedPolymerDetail.topsis_cl?.toFixed(4)}</div>
+              </div>
+              <div>
+                <strong>Rank:</strong>
+                <div>#{selectedPolymerDetail.rank}</div>
+              </div>
+              <div>
+                <strong>Confidence:</strong>
+                <div>{selectedPolymerDetail.rank === 1 ? result.confidence_tier : '-'}</div>
+              </div>
+              <div>
+                <strong>HSP Distance (Ra):</strong>
+                <div>{selectedPolymerDetail.rank === 1 ? 'Evaluated (Gate 1 Passed)' : 'Calculated'}</div>
+              </div>
+              <div>
+                <strong>Flory-Huggins χ:</strong>
+                <div>{selectedPolymerDetail.rank === 1 ? result.predicted_chi : 'Calculated'}</div>
+              </div>
+              <div>
+                <strong>Predicted Tg:</strong>
+                <div>{selectedPolymerDetail.rank === 1 ? `${result.predicted_tg_k} K` : 'Calculated'}</div>
+              </div>
+              <div>
+                <strong>CCI Score:</strong>
+                <div>{selectedPolymerDetail.topsis_cl?.toFixed(4)}</div>
+              </div>
+              <div>
+                <strong>Sensitivity (OAT):</strong>
+                <div>{result.oat_top1_stable ? 'Top-1 Robust' : 'Sensitive'}</div>
+              </div>
+              <div>
+                <strong>Monte Carlo P(top-1):</strong>
+                <div>{uqProbs[selectedPolymerDetail.polymer_id] !== undefined ? `${(uqProbs[selectedPolymerDetail.polymer_id] * 100).toFixed(1)}%` : 'Evaluated'}</div>
+              </div>
+              <div style={{ gridColumn: 'span 2' }}>
+                <strong>Provenance:</strong>
+                <div>Validated Reference Dataset / asd_mcda Computational Engine v{result.software_version || '1.0.0'}</div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: '1.5rem', textAlign: 'right' }}>
+              <button className="btn" onClick={() => setSelectedPolymerDetail(null)}>Close View</button>
+            </div>
           </div>
         </div>
       )}

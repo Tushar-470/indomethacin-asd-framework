@@ -32,6 +32,11 @@ class TOPSISRanker:
             if "polymer_id" in decision_matrix_df.columns
             else decision_matrix_df.index.tolist()
         )
+        polymer_names = (
+            decision_matrix_df["polymer_name"].tolist()
+            if "polymer_name" in decision_matrix_df.columns
+            else polymer_ids
+        )
         abbreviations = (
             decision_matrix_df["abbreviation"].tolist()
             if "abbreviation" in decision_matrix_df.columns
@@ -41,7 +46,7 @@ class TOPSISRanker:
         score_cols = [
             c
             for c in decision_matrix_df.columns
-            if c not in ["polymer_id", "abbreviation"]
+            if c not in ["polymer_id", "polymer_name", "abbreviation"]
         ]
         matrix = decision_matrix_df[score_cols].values.astype(float)
 
@@ -76,6 +81,7 @@ class TOPSISRanker:
         df_result = pd.DataFrame(
             {
                 "polymer_id": polymer_ids,
+                "polymer_name": polymer_names,
                 "abbreviation": abbreviations,
                 "topsis_ideal_distance": d_plus,
                 "topsis_anti_ideal_distance": d_minus,
@@ -83,6 +89,7 @@ class TOPSISRanker:
                 "topsis_rank": ranks,
             }
         )
+
         df_result.sort_values(by="topsis_rank", inplace=True)
         df_result.set_index("polymer_id", inplace=False)
 

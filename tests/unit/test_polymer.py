@@ -50,3 +50,43 @@ def test_copolymer_detection():
     assert poly.is_copolymer()
     desc = poly.get_weighted_2d_descriptors()
     assert "MolWt" in desc
+
+
+def test_polymer_library_lookup_canonical_names():
+    """Verify that PolymerLibrary loads and returns exact canonical polymer names from CSV."""
+    from pathlib import Path
+    from asd_mcda.drug.drug_profile import Drug
+    
+    csv_path = Path("config/polymers/polymer_library_v2.csv")
+    assert csv_path.exists()
+    
+    drug_data = {
+        "drug_id": "IND-001-2026",
+        "generic_name": "Indomethacin",
+        "smiles": "CC1=C(C=C(C=C1)OC)C(=O)C2=CC=C(C=C2)Cl",
+        "mw_da": 357.79,
+        "tm_k": 434.0,
+        "tg_k": 315.0,
+        "hsp_delta_d": 19.5,
+        "hsp_delta_p": 5.6,
+        "hsp_delta_h": 6.8
+    }
+    drug = Drug.from_dict(drug_data)
+    lib = PolymerLibrary.from_csv(csv_path, drug)
+    
+    sol = lib.get_by_id("POL-005-2026")
+    assert sol is not None
+    assert sol.polymer_name == "Soluplus"
+    
+    hpmcas = lib.get_by_id("POL-003-2026")
+    assert hpmcas is not None
+    assert hpmcas.polymer_name == "HPMC Acetate Succinate Low"
+    
+    pvp_va = lib.get_by_id("POL-002-2026")
+    assert pvp_va is not None
+    assert pvp_va.polymer_name == "PVP-Vinyl Acetate 64"
+
+    pvp_k30 = lib.get_by_id("POL-001-2026")
+    assert pvp_k30 is not None
+    assert pvp_k30.polymer_name == "Polyvinylpyrrolidone K30"
+

@@ -52,9 +52,23 @@ class FigureGenerator:
         # Build dynamic presentation label: "Polymer Name [Polymer ID]"
         labels = []
         for _, row in df_sorted.iterrows():
-            name = row.get("polymer_name") or row.get("abbreviation") or row["polymer_id"]
-            pid = row["polymer_id"]
+            pid = str(row["polymer_id"]).strip()
+            raw_name = row.get("polymer_name")
+            abbr = row.get("abbreviation")
+
+            if raw_name and str(raw_name).strip() and str(raw_name).strip() != pid:
+                name = str(raw_name).strip()
+            elif abbr and str(abbr).strip() and str(abbr).strip() != pid:
+                name = str(abbr).strip()
+            else:
+                name = "Unknown polymer"
+
+            # Strict guard against masked lookup failure (POL-ID [POL-ID])
+            if name == pid:
+                name = "Unknown polymer"
+
             labels.append(f"{name} [{pid}]")
+
 
         colors = ["#2b5c8f" if cl == max(cls) else "#4a90e2" for cl in cls]
 

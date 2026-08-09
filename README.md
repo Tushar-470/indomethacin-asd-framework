@@ -52,7 +52,21 @@ Run the complete 11-step computational pipeline from the command line:
 python -m asd_mcda.cli --config config/workflow/workflow_config.yaml
 ```
 
+### 3. Web Application (Local-First Dashboard)
+
+Launch the integrated FastAPI backend and React frontend dashboard:
+
+```bash
+python start_app.py
+```
+
+Access the interface at:
+- **Frontend Dashboard**: `http://127.0.0.1:5173`
+- **FastAPI Backend**: `http://127.0.0.1:8000`
+- **Interactive API Docs**: `http://127.0.0.1:8000/api/docs`
+
 ---
+
 
 ## 📊 Outputs & Reports
 

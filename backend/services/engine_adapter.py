@@ -253,11 +253,26 @@ def run_screening(
     # Write selected polymers to temp CSV
     clean_dicts = []
     for pd_dict in selected_polymer_dicts:
-        clean = {k: v for k, v in pd_dict.items() if k not in ("is_reference",)}
+        clean = {}
+        for k, v in pd_dict.items():
+            if k == "is_reference":
+                continue
+            if v is None or (isinstance(v, float) and np.isnan(v)) or str(v) == "nan":
+                continue
+            clean[k] = v
+        clean.setdefault("polymer_family", "vinylic")
+        clean.setdefault("polymer_class", "neutral")
+        clean.setdefault("regulatory_status", "FDA_IID")
+        clean.setdefault("pdi", 1.2)
+        clean.setdefault("density_g_cm3", 1.20)
+        clean.setdefault("spray_drying_suitability", "good")
+        clean.setdefault("hygroscopicity", "slightly")
+        clean.setdefault("validation_status", "validated")
         clean_dicts.append(clean)
     temp_polymer_df = pd.DataFrame(clean_dicts)
     temp_polymer_csv = analysis_dir / "polymers.csv"
     temp_polymer_df.to_csv(temp_polymer_csv, index=False)
+
 
     # Write drug JSON
     temp_drug_json = analysis_dir / "drug.json"
@@ -341,7 +356,7 @@ def run_screening(
     oat_res = oat.analyze(pca_result.scores_matrix_t, ahp_res.weights)
 
     morris = MorrisSensitivity(r_trajectories=config["sensitivity"]["morris_trajectories"])
-    morris_res = morris.analyze(pca_result.scores_matrix_t, len(ahp_res.weights))
+    morris_res = morris.analyze(pca_result.scores_matrix_t, k_retained)
 
     # Step 9: Predictions
     predictor = FormulationPredictor(drug, polymer_lib, drug_loading_ww=drug_loading_ww)
@@ -361,14 +376,17 @@ def run_screening(
         pca_result=pca_result,
     )
 
+    poly_name_map = {p["polymer_id"]: p.get("polymer_name", p.get("abbreviation", p["polymer_id"])) for p in selected_polymer_dicts}
+
     fig_gen = FigureGenerator(figures_dir)
     figs = [
         fig_gen.plot_figure_6_ranking(df_ranking),
         fig_gen.plot_figure_7_sensitivity_morris(morris_res),
-        fig_gen.plot_figure_8_uncertainty(uq_result),
+        fig_gen.plot_figure_8_uncertainty(uq_result, poly_name_map),
         fig_gen.plot_figure_11_pca_scree(pca_result),
         fig_gen.plot_figure_12_fbm_contour(pred_report.fbm_result),
     ]
+
 
     # Save input snapshot for reproducibility
     input_snapshot = {

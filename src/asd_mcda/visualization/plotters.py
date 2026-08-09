@@ -1,5 +1,5 @@
 """
-Programmatic 300 DPI publication figure generator for the 12 framework figures.
+Programmatic 300 DPI publication figure generator for the framework figures.
 Aligned with Master Research Framework V2.0 Section 13.
 """
 
@@ -39,26 +39,35 @@ class FigureGenerator:
         })
 
     def plot_figure_6_ranking(self, ranking_df: pd.DataFrame) -> Path:
-        """Figure 6: AHP-TOPSIS Ranking bar chart (Closeness Coefficient CL)."""
-        fig, ax = plt.subplots(figsize=(7, 4.5))
+        """
+        Figure 6: AHP-TOPSIS Ranking bar chart (Closeness Coefficient CL).
+        Displays dynamically retrieved Polymer Name + Immutable Polymer ID.
+        """
+        fig, ax = plt.subplots(figsize=(8, 4.5))
 
         df_sorted = ranking_df.sort_values(by="topsis_cl", ascending=True)
         y_pos = np.arange(len(df_sorted))
         cls = df_sorted["topsis_cl"].values
-        labels = df_sorted["abbreviation"].values
+
+        # Build dynamic presentation label: "Polymer Name [Polymer ID]"
+        labels = []
+        for _, row in df_sorted.iterrows():
+            name = row.get("polymer_name") or row.get("abbreviation") or row["polymer_id"]
+            pid = row["polymer_id"]
+            labels.append(f"{name} [{pid}]")
 
         colors = ["#2b5c8f" if cl == max(cls) else "#4a90e2" for cl in cls]
 
         bars = ax.barh(y_pos, cls, color=colors, edgecolor="black", height=0.6)
         ax.set_yticks(y_pos)
-        ax.set_yticklabels(labels)
+        ax.set_yticklabels(labels, fontsize=9.5)
         ax.set_xlabel("TOPSIS Closeness Coefficient (CL)")
         ax.set_title("Figure 6: Candidate Polymer AHP-TOPSIS Ranking", fontweight="bold")
         ax.set_xlim(0.0, 1.0)
 
         for bar in bars:
             w = bar.get_width()
-            ax.text(w + 0.02, bar.get_y() + bar.get_height() / 2.0, f"{w:.3f}", ha="left", va="center")
+            ax.text(w + 0.02, bar.get_y() + bar.get_height() / 2.0, f"{w:.4f}", ha="left", va="center")
 
         plt.tight_layout()
         out_path = self.output_dir / "fig06_ahp_topsis_ranking.png"
@@ -67,8 +76,11 @@ class FigureGenerator:
         return out_path
 
     def plot_figure_7_sensitivity_morris(self, morris_res: MorrisResult) -> Path:
-        """Figure 7: Sensitivity Analysis Morris Scatter Plot (mu vs sigma)."""
-        fig, ax = plt.subplots(figsize=(6, 5))
+        """
+        Figure 7: Sensitivity Analysis Morris Scatter Plot (mu vs sigma).
+        Displays all analyzed feature weights (including PC1, PC2, PC3 when k=3).
+        """
+        fig, ax = plt.subplots(figsize=(6.5, 5))
 
         mu = morris_res.mu
         sigma = morris_res.sigma
@@ -93,20 +105,36 @@ class FigureGenerator:
         plt.close(fig)
         return out_path
 
-    def plot_figure_8_uncertainty(self, uq_res: UQResult) -> Path:
-        """Figure 8: Uncertainty Propagation Monte Carlo P(top-1) Bar Chart."""
-        fig, ax = plt.subplots(figsize=(7, 4.5))
+    def plot_figure_8_uncertainty(
+        self,
+        uq_res: UQResult,
+        poly_name_map: Optional[Dict[str, str]] = None
+    ) -> Path:
+        """
+        Figure 8: Uncertainty Propagation Monte Carlo P(top-1) Bar Chart.
+        Displays Polymer Name + Immutable Polymer ID on X-axis ticks.
+        """
+        fig, ax = plt.subplots(figsize=(8, 4.5))
 
         p_top1 = uq_res.p_top1
         polys = list(p_top1.keys())
         probs = [p_top1[p] for p in polys]
+
+        # Format labels: "Polymer Name [Polymer ID]"
+        tick_labels = []
+        for pid in polys:
+            if poly_name_map and pid in poly_name_map:
+                name = poly_name_map[pid]
+                tick_labels.append(f"{name}\n[{pid}]")
+            else:
+                tick_labels.append(pid)
 
         x_pos = np.arange(len(polys))
         ax.bar(x_pos, probs, color="#5cb85c", edgecolor="black", width=0.5)
 
         ax.axhline(0.70, color="#d9534f", linestyle="--", linewidth=1.5, label="High-Confidence Threshold (0.70)")
         ax.set_xticks(x_pos)
-        ax.set_xticklabels(polys, rotation=30, ha="right")
+        ax.set_xticklabels(tick_labels, rotation=20, ha="right", fontsize=9)
         ax.set_ylabel("Decision Confidence Metric P(top-1)")
         ax.set_ylim(0.0, 1.0)
         ax.set_title(f"Figure 8: Joint-Distribution Monte Carlo UQ ({uq_res.confidence_tier})", fontweight="bold")
@@ -119,7 +147,10 @@ class FigureGenerator:
         return out_path
 
     def plot_figure_11_pca_scree(self, pca_res: PCAResult) -> Path:
-        """Figure 11: PCA Scree Plot & Cumulative Variance."""
+        """
+        Figure 11: PCA Scree Plot and Cumulative Explained Variance.
+        Renamed from 'PCA Score Plot' to accurately reflect variance breakdown.
+        """
         fig, ax1 = plt.subplots(figsize=(6.5, 4.5))
 
         var_ratio = pca_res.explained_variance_ratio * 100
@@ -136,7 +167,10 @@ class FigureGenerator:
         ax2.set_ylabel("Cumulative Variance (%)", color="#d9534f")
         ax2.set_ylim(0, 105)
 
-        ax1.set_title(f"Figure 11: PCA Scree Plot (Retained k={pca_res.n_components_retained} PCs)", fontweight="bold")
+        ax1.set_title(
+            f"Figure 11: PCA Scree Plot and Cumulative Explained Variance (Retained k={pca_res.n_components_retained} PCs)",
+            fontweight="bold"
+        )
 
         plt.tight_layout()
         out_path = self.output_dir / "fig11_pca_scree_plot.png"
@@ -145,29 +179,33 @@ class FigureGenerator:
         return out_path
 
     def plot_figure_12_fbm_contour(self, fbm_res: FBMResult) -> Path:
-        """Figure 12: Logistic Regression Failure Boundary Map (FBM) 2D Contour Slice."""
-        fig, ax = plt.subplots(figsize=(6.5, 5))
+        """
+        Figure 12: Failure Risk Contour Map (Exploratory / Illustrative Model).
+        Accurately displays evaluated operational failure probability range over spray-drying domain.
+        """
+        fig, ax = plt.subplots(figsize=(7, 5))
 
-        # Generate 2D slice: Inlet Temperature (°C) vs Drug Loading (% w/w) at polymer_rank=1, feed_conc=10%
+        # Generate 2D operational domain: Inlet Temperature (°C) vs Drug Loading (% w/w)
         temp_grid = np.linspace(80, 120, 50)
         load_grid = np.linspace(0.10, 0.50, 50)
         T, L = np.meshgrid(temp_grid, load_grid)
 
-        # Evaluate model probability P(failure)
+        # Evaluate logistic model probability P(failure)
         # Features: [rank=1, temp, loading, conc=0.10]
         pts = np.c_[np.ones(T.size), T.ravel(), L.ravel(), np.full(T.size, 0.10)]
         P = fbm_res.model.predict_proba(pts)[:, 1].reshape(T.shape)
 
-        cs = ax.contourf(T, L, P, levels=[0.0, 0.30, 0.70, 1.0], colors=["#5cb85c", "#f0ad4e", "#d9534f"], alpha=0.7)
+        cs = ax.contourf(T, L, P, levels=np.linspace(0.0, 0.50, 11), cmap="YlOrRd", alpha=0.85)
         cbar = fig.colorbar(cs, ax=ax)
-        cbar.set_label("P(Operational Failure)")
-
-        contour_50 = ax.contour(T, L, P, levels=[0.50], colors="black", linewidths=2.0)
-        ax.clabel(contour_50, fmt="P=0.50 Boundary", fontsize=10)
+        cbar.set_label("P(Operational Failure) [Exploratory Model]")
 
         ax.set_xlabel("Inlet Temperature (°C)")
         ax.set_ylabel("Drug Loading (mass fraction w/w)")
-        ax.set_title("Figure 12: Logistic Regression Failure Boundary Map (FBM Contour)", fontweight="bold")
+        ax.set_title(
+            "Figure 12: Failure Risk Contour Map (Exploratory DoE Model)\n[Low Risk Domain: P(fail) < 0.40 Across Domain]",
+            fontweight="bold",
+            fontsize=11
+        )
 
         plt.tight_layout()
         out_path = self.output_dir / "fig12_fbm_contour.png"

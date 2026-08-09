@@ -168,6 +168,8 @@ class RankingRow(BaseModel):
     topsis_cl: float
     topsis_ideal_distance: float
     topsis_anti_ideal_distance: float
+    confidence_p_top1: Optional[float] = None
+
 
 
 

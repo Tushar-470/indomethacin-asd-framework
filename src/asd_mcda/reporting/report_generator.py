@@ -34,6 +34,21 @@ class ReportGenerator:
         """Generate JSON, XLSX, CSV, and Markdown report files."""
         top_poly = prediction_report.selected_polymer_name
 
+        ranking_records = []
+        for _, row in ranking_df.iterrows():
+            pid = str(row["polymer_id"])
+            ranking_records.append({
+                "rank": int(row["topsis_rank"]),
+                "polymer_id": pid,
+                "polymer_name": str(row.get("polymer_name", row.get("abbreviation", pid))),
+                "abbreviation": str(row.get("abbreviation", pid)),
+                "topsis_cl": float(row["topsis_cl"]),
+                "topsis_ideal_distance": float(row.get("topsis_ideal_distance", 0.0)),
+                "topsis_anti_ideal_distance": float(row.get("topsis_anti_ideal_distance", 0.0)),
+                "confidence_p_top1": float(uq_result.p_top1.get(pid, 0.0)),
+            })
+
+
         report_dict: Dict[str, Any] = {
           "selected_polymer": top_poly,
           "selected_polymer_id": prediction_report.selected_polymer_id,
@@ -49,6 +64,7 @@ class ReportGenerator:
           "risk_recrystallization": prediction_report.risk_recrystallization,
           "risk_phase_separation": prediction_report.risk_phase_separation,
           "risk_hygroscopicity": prediction_report.risk_hygroscopicity,
+          "ranking": ranking_records,
           "pca_effective_dimensionality": {
               "retained_components_k": pca_result.n_components_retained,
               "pc1_explained_variance_pct": round(float(pca_result.explained_variance_ratio[0] * 100), 1),
@@ -78,6 +94,7 @@ class ReportGenerator:
               "classification": validation_report.classification,
           },
         }
+
 
         # 1. Save JSON
         json_path = self.output_dir / "decision_report.json"

@@ -63,7 +63,8 @@ def test_polymer_library_lookup_canonical_names():
     drug_data = {
         "drug_id": "IND-001-2026",
         "generic_name": "Indomethacin",
-        "smiles": "CC1=C(C=C(C=C1)OC)C(=O)C2=CC=C(C=C2)Cl",
+        "canonical_smiles": "CC1=C(C=C(C=C1)OC)C(=O)C2=CC=C(C=C2)Cl",
+
         "mw_da": 357.79,
         "tm_k": 434.0,
         "tg_k": 315.0,

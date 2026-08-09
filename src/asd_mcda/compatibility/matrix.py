@@ -90,7 +90,6 @@ class CompatibilityMatrix:
 
             records.append({
                 "polymer_id": pid,
-                "polymer_name": poly.polymer_name,
                 "abbreviation": poly.abbreviation,
                 "s_HSP": s_hsp,
                 "s_chi": s_chi,
@@ -98,6 +97,7 @@ class CompatibilityMatrix:
                 "s_GT": s_gt,
                 "s_lit": s_lit,
             })
+
 
 
         df = pd.DataFrame(records)

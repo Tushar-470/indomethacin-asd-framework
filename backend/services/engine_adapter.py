@@ -342,6 +342,11 @@ def run_screening(
     topsis = TOPSISRanker()
     topsis_res = topsis.fit_predict(pca_result.scores_matrix_t, weights_k)
     df_ranking = topsis_res.ranking_table
+    poly_name_map = {p["polymer_id"]: p.get("polymer_name", p["polymer_id"]) for p in selected_polymer_dicts}
+    poly_abbr_map = {p["polymer_id"]: p.get("abbreviation", p["polymer_id"]) for p in selected_polymer_dicts}
+    df_ranking["polymer_name"] = df_ranking["polymer_id"].map(poly_name_map)
+    df_ranking["abbreviation"] = df_ranking["polymer_id"].map(poly_abbr_map)
+
 
     # Step 8b: Monte Carlo UQ
     uq_engine = MonteCarloUQ(
@@ -401,13 +406,14 @@ def run_screening(
     with open(analysis_dir / "input_snapshot.json", "w", encoding="utf-8") as f:
         json.dump(input_snapshot, f, indent=2, default=str)
 
-    # Build ranking list with dynamic polymer_name resolution
+    # Build ranking list with dynamic polymer_name resolution and UQ P(top-1) confidence
     poly_map = {p["polymer_id"]: p for p in selected_polymer_dicts}
     ranking_list = []
     for _, row in df_ranking.iterrows():
         pid = row["polymer_id"]
         p_info = poly_map.get(pid, {})
         p_name = p_info.get("polymer_name", pid)
+        p_top1 = float(uq_result.p_top1.get(pid, 0.0))
         ranking_list.append({
             "rank": int(row["topsis_rank"]),
             "polymer_id": pid,
@@ -416,7 +422,9 @@ def run_screening(
             "topsis_cl": float(row["topsis_cl"]),
             "topsis_ideal_distance": float(row["topsis_ideal_distance"]),
             "topsis_anti_ideal_distance": float(row["topsis_anti_ideal_distance"]),
+            "confidence_p_top1": p_top1,
         })
+
 
 
     # Build figure URLs (relative to API)
@@ -504,6 +512,27 @@ def get_screening_result(analysis_id: str) -> Optional[Dict[str, Any]]:
         with open(result_json, "r", encoding="utf-8") as f:
             report_data = json.load(f)
             record["report_data"] = report_data
+
+            # Populate top-level fields for frontend UI rendering
+            if "ranking" in report_data:
+                record["ranking"] = report_data["ranking"]
+            if "selected_polymer" in report_data:
+                record["selected_polymer"] = report_data["selected_polymer"]
+            if "selected_polymer_id" in report_data:
+                record["selected_polymer_id"] = report_data["selected_polymer_id"]
+            if "topsis_CL" in report_data:
+                record["topsis_cl"] = report_data["topsis_CL"]
+            if "confidence_tier" in report_data:
+                record["confidence_tier"] = report_data["confidence_tier"]
+            if "predicted_Tg_K" in report_data:
+                record["predicted_tg_k"] = report_data["predicted_Tg_K"]
+            if "predicted_chi" in report_data:
+                record["predicted_chi"] = report_data["predicted_chi"]
+            if "chi_critical" in report_data:
+                record["chi_critical"] = report_data["chi_critical"]
+            if "miscibility_class" in report_data:
+                record["miscibility_class"] = report_data["miscibility_class"]
+
 
     # List available figures
     figures_dir = analysis_dir / "figures"

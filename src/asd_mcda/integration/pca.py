@@ -56,13 +56,8 @@ class PCAPreprocessor:
         t_matrix = self.pca_model.fit_transform(scaled_values)
 
         pc_cols = [f"PC{i+1}" for i in range(k)]
-        df_scores_t = pd.DataFrame(t_matrix, columns=pc_cols)
-        df_scores_t["polymer_id"] = polymer_ids
-        if "polymer_name" in score_matrix_df.columns:
-            df_scores_t["polymer_name"] = score_matrix_df["polymer_name"].values
-        if "abbreviation" in score_matrix_df.columns:
-            df_scores_t["abbreviation"] = score_matrix_df["abbreviation"].values
-        df_scores_t.index = polymer_ids
+        df_scores_t = pd.DataFrame(t_matrix, columns=pc_cols, index=polymer_ids)
+
 
         df_loadings_p = pd.DataFrame(
             self.pca_model.components_.T, index=score_cols, columns=pc_cols

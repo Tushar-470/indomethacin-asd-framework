@@ -126,6 +126,10 @@ class WorkflowOrchestrator:
         topsis = TOPSISRanker()
         topsis_res = topsis.fit_predict(pca_result.scores_matrix_t, weights_k)
         df_ranking = topsis_res.ranking_table
+        poly_name_map = {p.polymer_id: p.polymer_name for p in polymer_lib.polymers}
+        poly_abbr_map = {p.polymer_id: p.abbreviation for p in polymer_lib.polymers}
+        df_ranking["polymer_name"] = df_ranking["polymer_id"].map(poly_name_map)
+        df_ranking["abbreviation"] = df_ranking["polymer_id"].map(poly_abbr_map)
         self.logger.info("TOPSIS ranking completed.")
 
         # Step 8b: Monte Carlo Uncertainty Quantification
@@ -145,7 +149,7 @@ class WorkflowOrchestrator:
         oat_res = oat.analyze(pca_result.scores_matrix_t, ahp_res.weights)
 
         morris = MorrisSensitivity(r_trajectories=self.config["sensitivity"]["morris_trajectories"])
-        morris_res = morris.analyze(pca_result.scores_matrix_t, len(ahp_res.weights))
+        morris_res = morris.analyze(pca_result.scores_matrix_t, k_retained)
 
         # Step 9: Layer 7 Predictions & Failure Boundary Mapping
         self.logger.info("Stage 9: Performance predictions and Failure Boundary Mapping...")
@@ -178,10 +182,11 @@ class WorkflowOrchestrator:
         figs = [
             fig_gen.plot_figure_6_ranking(df_ranking),
             fig_gen.plot_figure_7_sensitivity_morris(morris_res),
-            fig_gen.plot_figure_8_uncertainty(uq_result),
+            fig_gen.plot_figure_8_uncertainty(uq_result, poly_name_map),
             fig_gen.plot_figure_11_pca_scree(pca_result),
             fig_gen.plot_figure_12_fbm_contour(pred_report.fbm_result),
         ]
+
 
         self.logger.info("=== Computational Polymer Screening Pipeline Completed Successfully ===")
 

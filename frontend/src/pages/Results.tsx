@@ -60,7 +60,17 @@ export default function Results() {
     'fig12_fbm_contour.png'
   ];
 
-  const uqProbs = result.uq_p_top1 || {};
+  const getConfidenceDisplay = (r: any) => {
+    const pTop1 = r.confidence_p_top1 !== undefined ? r.confidence_p_top1 : uqProbs[r.polymer_id];
+    if (pTop1 !== undefined && pTop1 !== null) {
+      const pct = (pTop1 * 100).toFixed(1);
+      const tier = r.rank === 1 && (result.confidence_tier || reportData.confidence_tier)
+        ? (result.confidence_tier || reportData.confidence_tier).split(' ')[0]
+        : (pTop1 >= 0.70 ? 'High' : (pTop1 >= 0.40 ? 'Moderate' : 'Low'));
+      return `${tier} (${pct}%)`;
+    }
+    return 'Not available';
+  };
 
   return (
     <div>
@@ -99,10 +109,10 @@ export default function Results() {
               🏆 Top-Ranked Polymer Carrier
             </span>
             <h1 style={{ fontSize: '2.2rem', margin: '0.25rem 0 0.25rem 0', color: '#fff' }}>
-              {result.selected_polymer || result.top_polymer}
+              {result.selected_polymer || reportData.selected_polymer || result.top_polymer}
             </h1>
             <div style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
-              Polymer ID: <strong style={{ color: 'var(--primary)' }}>{result.selected_polymer_id}</strong>
+              Polymer ID: <strong style={{ color: 'var(--primary)' }}>{result.selected_polymer_id || reportData.selected_polymer_id}</strong>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
               <span className="badge success">TOPSIS CL = {(result.topsis_cl || reportData.topsis_CL || 0).toFixed(4)}</span>
@@ -137,7 +147,7 @@ export default function Results() {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', pb: '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
         <button
           className="btn"
           onClick={() => setActiveTab('overview')}
@@ -168,21 +178,26 @@ export default function Results() {
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.9rem' }}>
             Click any polymer row to view detailed thermodynamic properties, sensitivity analysis, and Monte Carlo confidence.
           </p>
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Polymer Name</th>
-                  <th>Polymer ID</th>
-                  <th>TOPSIS CL</th>
-                  <th>Confidence</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(result.ranking || []).map((r: any) => {
-                  const conf = r.rank === 1 ? (result.confidence_tier ? result.confidence_tier.split(' ')[0] : 'Low') : '-';
-                  return (
+
+          {rankingList.length === 0 ? (
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
+              <p style={{ color: 'var(--warning)', fontWeight: 600 }}>No ranking data available.</p>
+              <small>Data integrity error: polymer identity could not be resolved or screening output was empty.</small>
+            </div>
+          ) : (
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Polymer Name</th>
+                    <th>Polymer ID</th>
+                    <th>TOPSIS CL</th>
+                    <th>Confidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rankingList.map((r: any) => (
                     <tr
                       key={r.polymer_id}
                       onClick={() => setSelectedPolymerDetail(r)}
@@ -200,20 +215,21 @@ export default function Results() {
                         </strong>
                       </td>
                       <td><span className="badge primary" style={{ fontFamily: 'monospace' }}>{r.polymer_id}</span></td>
-                      <td><strong>{r.topsis_cl ? r.topsis_cl.toFixed(4) : 'N/A'}</strong></td>
+                      <td><strong>{r.topsis_cl !== undefined ? r.topsis_cl.toFixed(4) : 'N/A'}</strong></td>
                       <td>
                         <span className={`badge ${r.rank === 1 ? 'success' : 'secondary'}`}>
-                          {conf}
+                          {getConfidenceDisplay(r)}
                         </span>
                       </td>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
+
 
       {/* Tab 2: Figures */}
       {activeTab === 'figures' && (
@@ -280,7 +296,7 @@ export default function Results() {
           background: 'rgba(0,0,0,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
         }}>
           <div className="card" style={{ width: '560px', maxHeight: '90vh', overflowY: 'auto', border: '1px solid var(--primary)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)', pb: '0.75rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem', marginBottom: '1rem' }}>
               <div>
                 <span className="badge primary" style={{ fontSize: '0.75rem' }}>Rank #{selectedPolymerDetail.rank}</span>
                 <h2 style={{ margin: '0.25rem 0 0 0' }}>{selectedPolymerDetail.polymer_name || selectedPolymerDetail.abbreviation}</h2>
@@ -311,7 +327,7 @@ export default function Results() {
               </div>
               <div>
                 <strong>Confidence:</strong>
-                <div>{selectedPolymerDetail.rank === 1 ? result.confidence_tier : '-'}</div>
+                <div>{getConfidenceDisplay(selectedPolymerDetail)}</div>
               </div>
               <div>
                 <strong>HSP Distance (Ra):</strong>
@@ -319,11 +335,11 @@ export default function Results() {
               </div>
               <div>
                 <strong>Flory-Huggins χ:</strong>
-                <div>{selectedPolymerDetail.rank === 1 ? result.predicted_chi : 'Calculated'}</div>
+                <div>{selectedPolymerDetail.rank === 1 ? (result.predicted_chi || reportData.predicted_chi) : 'Calculated'}</div>
               </div>
               <div>
                 <strong>Predicted Tg:</strong>
-                <div>{selectedPolymerDetail.rank === 1 ? `${result.predicted_tg_k} K` : 'Calculated'}</div>
+                <div>{selectedPolymerDetail.rank === 1 ? `${result.predicted_tg_k || reportData.predicted_Tg_K} K` : 'Calculated'}</div>
               </div>
               <div>
                 <strong>CCI Score:</strong>
@@ -335,8 +351,9 @@ export default function Results() {
               </div>
               <div>
                 <strong>Monte Carlo P(top-1):</strong>
-                <div>{uqProbs[selectedPolymerDetail.polymer_id] !== undefined ? `${(uqProbs[selectedPolymerDetail.polymer_id] * 100).toFixed(1)}%` : 'Evaluated'}</div>
+                <div>{getConfidenceDisplay(selectedPolymerDetail)}</div>
               </div>
+
               <div style={{ gridColumn: 'span 2' }}>
                 <strong>Provenance:</strong>
                 <div>Validated Reference Dataset / asd_mcda Computational Engine v{result.software_version || '1.0.0'}</div>

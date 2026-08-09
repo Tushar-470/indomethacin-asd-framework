@@ -76,7 +76,7 @@ class Polymer:
             polymer_class=str(data.get("polymer_class", "neutral")),
             regulatory_status=str(data.get("regulatory_status", "FDA_IID")),
             mn_da=float(data["mn_da"]),
-            mw_da=float(data["mw_da"]) if data.get("mw_da") else None,
+            mw_da=float(data["mw_da"]) if (data.get("mw_da") is not None and not pd.isna(data.get("mw_da"))) else None,
             pdi=float(data.get("pdi", 1.2)),
             tg_k=float(data["tg_k"]),
             density_g_cm3=float(data.get("density_g_cm3", 1.20)),
@@ -93,6 +93,7 @@ class Polymer:
             validation_status=str(data.get("validation_status", "validated")),
             checksum_sha256=checksum,
         )
+
 
     def is_copolymer(self) -> bool:
         """Return True if polymer is a copolymer with multiple monomer SMILES."""

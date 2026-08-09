@@ -136,7 +136,19 @@ class PolymerLibrary:
         polymers = [Polymer.from_dict(row.to_dict()) for _, row in df.iterrows()]
         return cls(polymers=polymers, drug=drug)
 
+    def get_by_id(self, polymer_id: str) -> Optional[Polymer]:
+        """Get polymer by polymer_id."""
+        for p in self.polymers:
+            if p.polymer_id == polymer_id:
+                return p
+        return None
+
+    def get_polymer(self, polymer_id: str) -> Optional[Polymer]:
+        """Alias for get_by_id."""
+        return self.get_by_id(polymer_id)
+
     def to_dataframe(self) -> pd.DataFrame:
+
         """Convert polymer library attributes into pandas DataFrame."""
         records = []
         for p in self.polymers:

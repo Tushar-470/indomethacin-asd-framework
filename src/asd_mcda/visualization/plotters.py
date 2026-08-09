@@ -180,8 +180,8 @@ class FigureGenerator:
 
     def plot_figure_12_fbm_contour(self, fbm_res: FBMResult) -> Path:
         """
-        Figure 12: Failure Risk Contour Map (Exploratory / Illustrative Model).
-        Accurately displays evaluated operational failure probability range over spray-drying domain.
+        Figure 12: Exploratory Failure-Risk Probability Surface for Soluplus.
+        Accurately displays multivariable binary logistic regression probability surface.
         """
         fig, ax = plt.subplots(figsize=(7, 5))
 
@@ -190,21 +190,22 @@ class FigureGenerator:
         load_grid = np.linspace(0.10, 0.50, 50)
         T, L = np.meshgrid(temp_grid, load_grid)
 
-        # Evaluate logistic model probability P(failure)
-        # Features: [rank=1, temp, loading, conc=0.10]
+        # Evaluate logistic regression model P(failure)
+        # Features: [polymer_rank=1, inlet_temp_c, drug_loading_ww, feed_conc_wv=0.10]
         pts = np.c_[np.ones(T.size), T.ravel(), L.ravel(), np.full(T.size, 0.10)]
         P = fbm_res.model.predict_proba(pts)[:, 1].reshape(T.shape)
 
         cs = ax.contourf(T, L, P, levels=np.linspace(0.0, 0.50, 11), cmap="YlOrRd", alpha=0.85)
         cbar = fig.colorbar(cs, ax=ax)
-        cbar.set_label("P(Operational Failure) [Exploratory Model]")
+        cbar.set_label("P(Operational Failure) [Exploratory Model: Range 0.057 - 0.401]")
 
         ax.set_xlabel("Inlet Temperature (°C)")
         ax.set_ylabel("Drug Loading (mass fraction w/w)")
         ax.set_title(
-            "Figure 12: Failure Risk Contour Map (Exploratory DoE Model)\n[Low Risk Domain: P(fail) < 0.40 Across Domain]",
+            "Figure 12: Exploratory Failure-Risk Probability Surface for Soluplus\n"
+            "[Multivariable Binary Logistic Regression Model (N=54 DoE Runs; 4 Predictors)]",
             fontweight="bold",
-            fontsize=11
+            fontsize=10.5
         )
 
         plt.tight_layout()

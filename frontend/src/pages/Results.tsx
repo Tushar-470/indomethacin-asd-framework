@@ -198,7 +198,10 @@ export default function Results() {
                     <th>Polymer Name</th>
                     <th>Polymer ID</th>
                     <th>TOPSIS CL</th>
-                    <th>Confidence</th>
+                    <th title="Probability that this polymer is ranked #1 across Monte Carlo uncertainty simulations. This is a decision-ranking robustness metric, not the probability of experimental formulation success.">
+                      Monte Carlo P(top-1) ℹ️
+                    </th>
+
                   </tr>
                 </thead>
                 <tbody>

@@ -533,6 +533,36 @@ def get_screening_result(analysis_id: str) -> Optional[Dict[str, Any]]:
             if "miscibility_class" in report_data:
                 record["miscibility_class"] = report_data["miscibility_class"]
 
+    # Fallback to reading ranking.csv if ranking is missing (e.g. older analysis runs)
+    if "ranking" not in record or not record["ranking"]:
+        ranking_csv = analysis_dir / "reports" / "ranking.csv"
+        if ranking_csv.exists():
+            import csv
+            ranking_list = []
+            with open(ranking_csv, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    rank_val = int(float(row.get("topsis_rank", 0))) if row.get("topsis_rank") else 0
+                    pid = row.get("polymer_id", "").strip()
+                    pname = row.get("polymer_name", row.get("abbreviation", pid)).strip()
+                    abbr = row.get("abbreviation", pid).strip()
+                    cl_val = float(row.get("topsis_cl", 0.0)) if row.get("topsis_cl") else 0.0
+                    ideal_d = float(row.get("topsis_ideal_distance", 0.0)) if row.get("topsis_ideal_distance") else 0.0
+                    anti_d = float(row.get("topsis_anti_ideal_distance", 0.0)) if row.get("topsis_anti_ideal_distance") else 0.0
+
+                    ranking_list.append({
+                        "rank": rank_val,
+                        "polymer_id": pid,
+                        "polymer_name": pname if pname != pid else pid,
+                        "abbreviation": abbr,
+                        "topsis_cl": cl_val,
+                        "topsis_ideal_distance": ideal_d,
+                        "topsis_anti_ideal_distance": anti_d,
+                    })
+            ranking_list.sort(key=lambda x: x["rank"])
+            record["ranking"] = ranking_list
+
+
 
     # List available figures
     figures_dir = analysis_dir / "figures"

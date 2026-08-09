@@ -107,9 +107,13 @@ def test_newly_added_polymer_displays_actual_name():
         "validation_status": "draft"
     }
 
+    # Pre-clean if polymer exists from previous interrupted run
+    client.delete("/api/polymers/POL-CUSTOM-REGRESSION-888")
+
     # Add custom polymer via API
     add_res = client.post("/api/polymers", json=new_poly_payload)
     assert add_res.status_code == 201
+
 
     try:
         # Run screening with reference + custom polymer

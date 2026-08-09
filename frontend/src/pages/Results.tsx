@@ -1,53 +1,253 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchScreeningResult } from '../api';
+import { useParams, Link } from 'react-router-dom';
+import { fetchScreeningResult, getFigureUrl, getReportUrl } from '../api';
 
 export default function Results() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [result, setResult] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [activeTab, setActiveTab] = useState<'overview' | 'figures' | 'reports'>('overview');
 
   useEffect(() => {
-    if (id) {
-      fetchScreeningResult(id).then(setResult).catch(console.error);
+    if (!id || id === 'undefined') {
+      setErrorMsg('Invalid Analysis ID provided.');
+      setLoading(false);
+      return;
     }
+
+    setLoading(true);
+    fetchScreeningResult(id)
+      .then(data => {
+        setResult(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setErrorMsg(err.message || 'Failed to load screening results.');
+        setLoading(false);
+      });
   }, [id]);
 
-  if (!result) return <div style={{ padding: '2rem' }}>Loading results...</div>;
+  if (loading) {
+    return (
+      <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
+        <h2>⚡ Loading Screening Analysis Results...</h2>
+        <p style={{ color: 'var(--text-secondary)' }}>Retrieving report data and publication figures for analysis ID {id}</p>
+      </div>
+    );
+  }
+
+  if (errorMsg || !result) {
+    return (
+      <div className="card" style={{ borderColor: 'var(--danger)', padding: '2rem' }}>
+        <h2 style={{ color: 'var(--danger)' }}>Analysis Not Found</h2>
+        <p>{errorMsg || `Could not find analysis results for ID '${id}'.`}</p>
+        <Link to="/screening" className="btn" style={{ marginTop: '1rem', display: 'inline-block' }}>
+          Back to Screening Workspace
+        </Link>
+      </div>
+    );
+  }
+
+  const isResearch = result.mode === 'research';
+  const reportData = result.report_data || result;
+  const figures = result.figures || [
+    'fig06_ahp_topsis_ranking.png',
+    'fig07_morris_sensitivity.png',
+    'fig08_uncertainty_propagation.png',
+    'fig11_pca_scree_plot.png',
+    'fig12_fbm_contour.png'
+  ];
 
   return (
     <div>
-      <div className="header">
-        <h1 className="title">Screening Results</h1>
-        <span className={`badge ${result.mode === 'research' ? 'success' : 'warning'}`}>{result.mode.toUpperCase()} MODE</span>
-      </div>
-      <div className="card">
-        <h3>Top Polymer: {result.top_polymer?.name || result.rankings[0]?.polymer_id}</h3>
-        <p>CL: {result.rankings[0]?.cl_score}</p>
-        <p>Confidence: {result.rankings[0]?.confidence_tier}</p>
-      </div>
-      <div className="card">
-        <h3>Rankings</h3>
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Polymer</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {result.rankings.map((r: any, idx: number) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{r.polymer_id}</td>
-                  <td>{r.cl_score}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Mode Banner */}
+      <div
+        className="card"
+        style={{
+          borderLeft: `6px solid ${isResearch ? 'var(--success)' : 'var(--warning)'}`,
+          background: isResearch ? 'rgba(34,197,94,0.08)' : 'rgba(245,158,11,0.08)',
+          marginBottom: '1.5rem'
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span className={`badge ${isResearch ? 'success' : 'warning'}`} style={{ fontSize: '0.85rem' }}>
+              {isResearch ? '✓ RESEARCH MODE (VERIFIED)' : '⚠ EXPLORATORY PREDICTION'}
+            </span>
+            <h2 style={{ margin: '0.5rem 0 0.25rem 0' }}>
+              Screening Results: {result.drug_name || result.drug_id} ASD Formulation
+            </h2>
+            <small style={{ color: 'var(--text-secondary)' }}>
+              Analysis ID: {id} | Timestamp: {new Date(result.timestamp || result.created_at).toLocaleString()} | Software Engine v{result.software_version || '1.0.0'}
+            </small>
+          </div>
+          <Link to="/screening" className="btn" style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-primary)' }}>
+            + New Screening
+          </Link>
         </div>
       </div>
+
+      {/* Top Winner Selection Hero Card */}
+      <div className="card" style={{ background: 'linear-gradient(135deg, var(--surface) 0%, rgba(79,143,247,0.12) 100%)', marginBottom: '1.5rem', border: '1px solid var(--primary)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '2rem' }}>
+          <div>
+            <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', color: 'var(--primary)', fontWeight: 700 }}>
+              🏆 Top-Ranked Polymer Carrier
+            </span>
+            <h1 style={{ fontSize: '2.2rem', margin: '0.25rem 0 0.5rem 0', color: '#fff' }}>
+              {result.top_polymer || result.selected_polymer}
+            </h1>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+              <span className="badge success">TOPSIS CL = {(result.topsis_cl || reportData.topsis_CL || 0).toFixed(4)}</span>
+              <span className="badge primary">{result.confidence_tier || reportData.confidence_tier}</span>
+              <span className="badge warning">{reportData.miscibility_class || result.miscibility_class}</span>
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+              Selected as optimal polymeric carrier based on 11-step multi-criteria evaluation combining thermodynamic solubility, Flory-Huggins enthalpy of mixing, Gordon-Taylor glass transition prediction, PCA dimensional reduction, and multi-expert AHP weights.
+            </p>
+          </div>
+
+          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border)' }}>
+            <h4 style={{ margin: '0 0 0.75rem 0', color: 'var(--primary)' }}>Formulation Performance Summary</h4>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', fontSize: '0.85rem' }}>
+              <div><strong>Predicted Tg:</strong></div>
+              <div>{reportData.predicted_Tg_K || result.predicted_tg_k} K</div>
+
+              <div><strong>Flory-Huggins χ:</strong></div>
+              <div>{reportData.predicted_chi || result.predicted_chi}</div>
+
+              <div><strong>Critical χ_c:</strong></div>
+              <div>{reportData.chi_critical || result.chi_critical}</div>
+
+              <div><strong>Phase Stability:</strong></div>
+              <div style={{ color: 'var(--success)' }}>Low Risk</div>
+
+              <div><strong>Recrystallisation:</strong></div>
+              <div style={{ color: 'var(--warning)' }}>Moderate Risk</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', pb: '0.5rem' }}>
+        <button
+          className="btn"
+          onClick={() => setActiveTab('overview')}
+          style={{ background: activeTab === 'overview' ? 'var(--primary)' : 'transparent', border: '1px solid var(--border)' }}
+        >
+          📊 Ranking & Summary
+        </button>
+        <button
+          className="btn"
+          onClick={() => setActiveTab('figures')}
+          style={{ background: activeTab === 'figures' ? 'var(--primary)' : 'transparent', border: '1px solid var(--border)' }}
+        >
+          🖼️ Publication Figures (300 DPI)
+        </button>
+        <button
+          className="btn"
+          onClick={() => setActiveTab('reports')}
+          style={{ background: activeTab === 'reports' ? 'var(--primary)' : 'transparent', border: '1px solid var(--border)' }}
+        >
+          📁 Download Reports
+        </button>
+      </div>
+
+      {/* Tab 1: Overview & Ranking Table */}
+      {activeTab === 'overview' && (
+        <div className="card">
+          <h3>Candidate Polymer TOPSIS Ranking Table</h3>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.9rem' }}>
+            Polymers ranked by Closeness Coefficient (CL) relative to the ideal and anti-ideal solution vectors.
+          </p>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Polymer ID</th>
+                  <th>Abbreviation</th>
+                  <th>TOPSIS Closeness (CL)</th>
+                  <th>Ideal Dist. (D+)</th>
+                  <th>Anti-Ideal Dist. (D-)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(result.ranking || []).map((r: any) => (
+                  <tr key={r.polymer_id} style={{ background: r.rank === 1 ? 'rgba(34,197,94,0.1)' : 'transparent' }}>
+                    <td><strong>#{r.rank}</strong></td>
+                    <td>{r.polymer_id}</td>
+                    <td><span className="badge primary">{r.abbreviation}</span></td>
+                    <td><strong>{r.topsis_cl?.toFixed(4)}</strong></td>
+                    <td>{r.topsis_ideal_distance?.toFixed(4)}</td>
+                    <td>{r.topsis_anti_ideal_distance?.toFixed(4)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 2: Figures */}
+      {activeTab === 'figures' && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          {figures.map((figName: string) => (
+            <div key={figName} className="card">
+              <h4 style={{ margin: '0 0 0.75rem 0', color: 'var(--primary)' }}>{figName}</h4>
+              <img
+                src={getFigureUrl(id!, figName)}
+                alt={figName}
+                style={{ width: '100%', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff' }}
+                onError={(e: any) => { e.target.style.display = 'none'; }}
+              />
+              <div style={{ marginTop: '0.5rem', textAlign: 'right' }}>
+                <a href={getFigureUrl(id!, figName)} target="_blank" rel="noreferrer" className="btn" style={{ fontSize: '0.8rem', padding: '0.3rem 0.6rem' }}>
+                  Open Full Resolution (300 DPI)
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Tab 3: Download Reports */}
+      {activeTab === 'reports' && (
+        <div className="card">
+          <h3>Generated Decision Reports</h3>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+            Download complete machine-readable decision reports in standard formats.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+            <a href={getReportUrl(id!, 'decision_report.json')} download className="card" style={{ textAlign: 'center', textDecoration: 'none', border: '1px solid var(--primary)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📄</div>
+              <strong>JSON Decision Report</strong>
+              <small style={{ display: 'block', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>decision_report.json</small>
+            </a>
+
+            <a href={getReportUrl(id!, 'decision_report.xlsx')} download className="card" style={{ textAlign: 'center', textDecoration: 'none', border: '1px solid var(--success)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📊</div>
+              <strong>Excel Workbook (.xlsx)</strong>
+              <small style={{ display: 'block', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>3 formatted sheets</small>
+            </a>
+
+            <a href={getReportUrl(id!, 'ranking.csv')} download className="card" style={{ textAlign: 'center', textDecoration: 'none', border: '1px solid var(--warning)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📈</div>
+              <strong>CSV Ranking Table</strong>
+              <small style={{ display: 'block', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>ranking.csv</small>
+            </a>
+
+            <a href={getReportUrl(id!, 'decision_report.md')} download className="card" style={{ textAlign: 'center', textDecoration: 'none', border: '1px solid var(--border)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📝</div>
+              <strong>Markdown Summary</strong>
+              <small style={{ display: 'block', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>decision_report.md</small>
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -60,7 +60,11 @@ export default function Results() {
     'fig12_fbm_contour.png'
   ];
 
+  const uqProbs = result.uq_p_top1 || reportData.uq_p_top1 || {};
+  const rankingList = result.ranking || reportData.ranking || [];
+
   const getConfidenceDisplay = (r: any) => {
+    if (!r) return 'Not available';
     const pTop1 = r.confidence_p_top1 !== undefined ? r.confidence_p_top1 : uqProbs[r.polymer_id];
     if (pTop1 !== undefined && pTop1 !== null) {
       const pct = (pTop1 * 100).toFixed(1);
@@ -71,6 +75,7 @@ export default function Results() {
     }
     return 'Not available';
   };
+
 
   return (
     <div>

@@ -182,8 +182,9 @@ class FigureGenerator:
         """
         Figure 12: Exploratory Failure-Risk Probability Surface for Soluplus.
         Accurately displays multivariable binary logistic regression probability surface.
+        Highlights training domain (0.20-0.40) vs extrapolation regions (0.10-0.20, 0.40-0.50).
         """
-        fig, ax = plt.subplots(figsize=(7, 5))
+        fig, ax = plt.subplots(figsize=(7.5, 5.2))
 
         # Generate 2D operational domain: Inlet Temperature (°C) vs Drug Loading (% w/w)
         temp_grid = np.linspace(80, 120, 50)
@@ -195,9 +196,17 @@ class FigureGenerator:
         pts = np.c_[np.ones(T.size), T.ravel(), L.ravel(), np.full(T.size, 0.10)]
         P = fbm_res.model.predict_proba(pts)[:, 1].reshape(T.shape)
 
-        cs = ax.contourf(T, L, P, levels=np.linspace(0.0, 0.50, 11), cmap="YlOrRd", alpha=0.85)
+        cs = ax.contourf(T, L, P, levels=np.linspace(0.0, 0.20, 11), cmap="YlOrRd", alpha=0.85)
         cbar = fig.colorbar(cs, ax=ax)
-        cbar.set_label("P(Operational Failure) [Exploratory Model: Range 0.057 - 0.401]")
+        cbar.set_label("P(Operational Failure) [Exploratory Model: Range 0.005 - 0.145]")
+
+        # Annotate training bounds vs extrapolation regions
+        ax.axhline(0.20, color="blue", linestyle="--", linewidth=1.5, label="DoE Training Bounds (L=0.20, 0.40)")
+        ax.axhline(0.40, color="blue", linestyle="--", linewidth=1.5)
+
+        ax.text(82, 0.30, "Training-Supported Region (L=0.20–0.40)", color="blue", fontweight="bold", fontsize=9, bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="blue", alpha=0.8))
+        ax.text(82, 0.14, "Extrapolation Zone (L < 0.20)", color="gray", fontsize=8.5, fontstyle="italic")
+        ax.text(82, 0.44, "Extrapolation Zone (L > 0.40)", color="gray", fontsize=8.5, fontstyle="italic")
 
         ax.set_xlabel("Inlet Temperature (°C)")
         ax.set_ylabel("Drug Loading (mass fraction w/w)")
@@ -205,8 +214,9 @@ class FigureGenerator:
             "Figure 12: Exploratory Failure-Risk Probability Surface for Soluplus\n"
             "[Multivariable Binary Logistic Regression Model (N=54 DoE Runs; 4 Predictors)]",
             fontweight="bold",
-            fontsize=10.5
+            fontsize=10
         )
+        ax.legend(loc="upper right", fontsize=8.5)
 
         plt.tight_layout()
         out_path = self.output_dir / "fig12_fbm_contour.png"

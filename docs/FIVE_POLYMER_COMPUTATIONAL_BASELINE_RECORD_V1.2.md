@@ -1,8 +1,10 @@
 # Five-Polymer Computational Baseline Record (v1.2.0)
 
 **Project**: Quality by Design-Driven Development of Indomethacin Immediate-Release Tablets from Spray-Dried Amorphous Solid Dispersions  
-**Release Baseline**: `v1.2.0` (Five-Polymer Candidate Set)  
+**Release Baseline**: `v1.2.0` (Five-Polymer Candidate Set for Immediate-Release Tablets)  
 **Historical Baseline**: `v1.1.0` (Preserved intact)  
+**Release Tag**: `v1.2.0`  
+**Git Commit**: `4aeed7e`  
 **Date**: August 13, 2026  
 **Status**: COMPUTATIONALLY VERIFIED & LOCKED FIVE-POLYMER BASELINE  
 
@@ -37,10 +39,10 @@ $$\mathbf{S} = \begin{bmatrix} s_{\text{HSP}} & s_{\chi} & s_{\text{desc}} & s_{
 | Polymer ID | Abbreviation | $s_{\text{HSP}}$ | $s_{\chi}$ | $s_{\text{desc}}$ | $s_{\text{GT}}$ | $s_{\text{lit}}$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | `POL-005-2026` | `SOLUPLUS` | **0.7972** | **0.7735** | 0.2268 | 0.0000 | 1.0000 |
+| `POL-006-2026` | `HPMC_E5` | 0.7521 | 0.5885 | 0.2268 | **0.9731** | 1.0000 |
 | `POL-002-2026` | `PVP_VA_64` | 0.7073 | 0.6094 | 0.2268 | 0.2368 | 1.0000 |
+| `POL-001-2026` | `PVP_K30` | 0.6942 | 0.4836 | 0.2268 | 0.9848 | 1.0000 |
 | `POL-007-2026` | `EDR_EPO` | 0.6359 | 0.3193 | 0.2268 | 0.0000 | 1.0000 |
-| `POL-001-2026` | `PVP_K30` | 0.6942 | 0.4836 | 0.2268 | **0.9848** | 1.0000 |
-| `POL-006-2026` | `HPMC_E5` | 0.7521 | 0.5885 | 0.2268 | 0.9731 | 1.0000 |
 
 ---
 
@@ -49,10 +51,10 @@ $$\mathbf{S} = \begin{bmatrix} s_{\text{HSP}} & s_{\chi} & s_{\text{desc}} & s_{
 | Polymer ID | Abbreviation | Flory–Huggins $\chi$ | Corrected $\chi_c$ | Spinodal Stability Margin ($\chi_c - \chi$) | Gordon–Taylor $T_{g,\text{mix}}$ ($30\text{ wt}\%$) | $T_g$ Margin above $25^\circ\text{C}$ | Phase Separation Risk |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `POL-005-2026` | `SOLUPLUS` | 0.2265 | 0.5589 | +0.3324 (Stable) | 335.0 K (61.8 °C) | +36.8 K | **Low** |
-| `POL-002-2026` | `PVP_VA_64` | 0.3906 | 0.5890 | +0.1984 (Stable) | 357.0 K (83.8 °C) | +58.8 K | **Low** |
-| `POL-007-2026` | `EDR_EPO` | 0.6807 | 0.5927 | -0.0880 (Metastable) | 320.8 K (47.7 °C) | +22.7 K | **Moderate** |
-| `POL-001-2026` | `PVP_K30` | 0.5164 | 0.5946 | +0.0782 (Stable) | 394.4 K (121.2 °C) | +96.2 K | **Low** |
 | `POL-006-2026` | `HPMC_E5` | 0.4115 | 0.6403 | +0.2288 (Stable) | 393.8 K (120.6 °C) | +95.7 K | **Low** |
+| `POL-002-2026` | `PVP_VA_64` | 0.3906 | 0.5890 | +0.1984 (Stable) | 357.0 K (83.8 °C) | +58.8 K | **Low** |
+| `POL-001-2026` | `PVP_K30` | 0.5164 | 0.5946 | +0.0782 (Stable) | 394.4 K (121.2 °C) | +96.2 K | **Low** |
+| `POL-007-2026` | `EDR_EPO` | 0.6807 | 0.5927 | -0.0880 (Metastable) | 320.8 K (47.7 °C) | +22.7 K | **Moderate** |
 
 ---
 
@@ -60,11 +62,11 @@ $$\mathbf{S} = \begin{bmatrix} s_{\text{HSP}} & s_{\chi} & s_{\text{desc}} & s_{
 
 | Rank | Polymer Name | Polymer ID | TOPSIS Ideal Distance ($d^+$) | TOPSIS Anti-Ideal Distance ($d^-$) | TOPSIS Closeness ($C_L$) | Monte Carlo Top-1 Count ($N=10,000$) | Monte Carlo $P(\text{top-1})$ | Decision Confidence Tier |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1** | **Soluplus** | `POL-005-2026` | **0.219808** | **0.725206** | **0.767512** | **3,460** | **34.60%** | **High Confidence** |
-| **2** | **PVP-Vinyl Acetate 64** | `POL-002-2026` | **0.366249** | **0.578761** | **0.612444** | **2,230** | **22.30%** | **High Confidence** |
-| **3** | **Eudragit E PO** | `POL-007-2026` | **0.470487** | **0.481343** | **0.505703** | **1,750** | **17.50%** | **Moderate Confidence** |
-| **4** | **PVP K30** | `POL-001-2026` | **0.482068** | **0.464627** | **0.490799** | **1,700** | **17.00%** | **Moderate Confidence** |
-| **5** | **HPMC E5** | `POL-006-2026` | **0.707767** | **0.238550** | **0.252084** | **860** | **8.60%** | **Low Confidence** |
+| **1** | **Soluplus** | `POL-005-2026` | **0.323503** | **0.903459** | **0.736338** | **4,320** | **43.20%** | **Moderate Confidence** |
+| **2** | **HPMC E5** | `POL-006-2026` | **0.311569** | **0.674606** | **0.684063** | **3,100** | **31.00%** | **Moderate Confidence** |
+| **3** | **PVP-Vinyl Acetate 64** | `POL-002-2026` | **0.484853** | **0.494613** | **0.504982** | **580** | **5.80%** | **Low Confidence** |
+| **4** | **PVP K30** | `POL-001-2026` | **0.577437** | **0.459099** | **0.442917** | **1,440** | **14.40%** | **Low Confidence** |
+| **5** | **Eudragit E PO** | `POL-007-2026` | **0.959686** | **0.000000** | **0.000000** | **560** | **5.60%** | **Low Confidence** |
 
 ---
 
@@ -78,6 +80,6 @@ $$\mathbf{S} = \begin{bmatrix} s_{\text{HSP}} & s_{\chi} & s_{\text{desc}} & s_{
 
 ## 7. Recommended Final Shortlist for Immediate-Release Spray-Dried Tablets
 
-1. **Soluplus** (`POL-005-2026`) — **Rank #1 ($C_L = 0.7675$)**: Outstanding solubility enhancement ($\chi = 0.2265$), amphiphilic micellar solubilization during dissolution.
-2. **PVP-Vinyl Acetate 64** (`POL-002-2026`) — **Rank #2 ($C_L = 0.6124$)**: High glass transition temperature margin ($T_{g,\text{mix}} = 83.8^\circ\text{C}$), robust processability.
-3. **Eudragit E PO** (`POL-007-2026`) — **Rank #3 ($C_L = 0.5057$)**: Cationic polymer providing rapid pH-independent solubility enhancement in acidic dissolution media.
+1. **Soluplus** (`POL-005-2026`) — **Rank #1 ($C_L = 0.7363$, $P(\text{top-1}) = 43.2\%$)**: Outstanding solubility enhancement ($\chi = 0.2265$), amphiphilic micellar solubilization during dissolution.
+2. **HPMC E5** (`POL-006-2026`) — **Rank #2 ($C_L = 0.6841$, $P(\text{top-1}) = 31.0\%$)**: High glass transition temperature margin ($T_{g,\text{mix}} = 120.6^\circ\text{C}$), strong crystallization inhibition.
+3. **PVP-Vinyl Acetate 64** (`POL-002-2026`) — **Rank #3 ($C_L = 0.5050$, $P(\text{top-1}) = 5.8\%$)**: Excellent spray-drying processability, strong H-bonding acceptor capacity.

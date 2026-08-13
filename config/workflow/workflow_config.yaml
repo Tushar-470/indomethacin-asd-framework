@@ -9,7 +9,8 @@ workflow:
 
 paths:
   drug_profile: "config/drugs/indomethacin.json"
-  polymer_library: "config/polymers/polymer_library_v2.csv"
+  polymer_library: "config/polymers/polymer_library_v3_five_polymers.csv"
+
   ahp_matrix_dir: "config/ahp"
   output_dir: "results"
   log_dir: "logs"

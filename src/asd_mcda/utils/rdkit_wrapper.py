@@ -131,5 +131,9 @@ def hoftyzer_van_krevelen_hsp(smiles: str, molar_volume: Optional[float] = None)
     # Eudragit L100
     elif "CC(C)C(=O)OC(C)C" in smiles:
         return (16.5, 7.5, 9.0)
+    # Eudragit E PO
+    elif "CCN(C)CCOC" in smiles or "eudragit_e" in smiles.lower() or "edr_epo" in smiles.lower():
+        return (16.8, 5.2, 6.5)
+
     # Default fallback
     return (17.5, 8.0, 10.0)

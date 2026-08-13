@@ -93,6 +93,60 @@ def test_flory_huggins(test_setup):
     assert 0.0 <= s_chi <= 1.0
 
 
+def test_flory_huggins_chi_critical_analytical_value(test_setup):
+    """
+    Verify chi_c follows classical binary Flory-Huggins equation: chi_c = 0.5 * (1/sqrt(r1) + 1/sqrt(r2))^2.
+    For r1 = 1 and r2 = 100, chi_c must equal exactly 0.5 * (1 + 1/10)^2 = 0.605.
+    (Under the old faulty extra +1 implementation, this gave 2.205).
+    """
+    drug, library, _ = test_setup
+    # Construct synthetic polymer such that V_poly / V_drug = 100.0
+    # V_drug = 273.0 cm3/mol -> V_poly = 27,300 cm3/mol. Density = 1.0 -> Mn = 27300 Da.
+    poly_r100 = Polymer.from_dict({
+        "polymer_id": "SYN_100",
+        "polymer_name": "Synthetic Polymer r2=100",
+        "mn_da": 27300.0,
+        "tg_k": 350.0,
+        "density_g_cm3": 1.0,
+        "hsp_delta_d": 18.0,
+        "hsp_delta_p": 8.0,
+        "hsp_delta_h": 10.0,
+        "monomer_smiles": "CCO",
+    })
+    fh = FloryHugginsModel(drug, PolymerLibrary([poly_r100], drug))
+    chi_c = fh.compute_chi_critical(poly_r100)
+
+    # Expected analytical value: 0.5 * (1.0 + 1/sqrt(100))^2 = 0.5 * (1.1)^2 = 0.605
+    assert abs(chi_c - 0.605) < 1e-4
+
+
+def test_flory_huggins_chi_critical_asymptotic_value(test_setup):
+    """
+    Verify that as r2 -> infinity (very high MW polymer), chi_c asymptotically approaches 0.500.
+    (Under the old faulty extra +1 implementation, chi_c approached 2.000).
+    """
+    drug, library, _ = test_setup
+    # Very high MW polymer -> r2 = 1,000,000
+    poly_high_mw = Polymer.from_dict({
+        "polymer_id": "SYN_HIGH",
+        "polymer_name": "Synthetic Polymer High MW",
+        "mn_da": 273000000.0,
+        "tg_k": 400.0,
+        "density_g_cm3": 1.0,
+        "hsp_delta_d": 18.0,
+        "hsp_delta_p": 8.0,
+        "hsp_delta_h": 10.0,
+        "monomer_smiles": "CCO",
+    })
+    fh = FloryHugginsModel(drug, PolymerLibrary([poly_high_mw], drug))
+    chi_c = fh.compute_chi_critical(poly_high_mw)
+
+    # Asymptotic value as r2 -> infinity: chi_c -> 0.500
+    assert abs(chi_c - 0.500) < 1e-2
+
+
+
+
 def test_gordon_taylor(test_setup):
     drug, library, poly1 = test_setup
     gt = GordonTaylorModel(drug, library, drug_loading_ww=0.30)

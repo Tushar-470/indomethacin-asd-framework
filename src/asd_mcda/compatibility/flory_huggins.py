@@ -48,17 +48,22 @@ class FloryHugginsModel:
 
     def compute_chi_critical(self, polymer: Polymer) -> float:
         """
-        Compute critical chi_c for phase separation.
-        chi_c = 0.5 * (1 + 1/sqrt(r1) + 1/sqrt(r2))^2
-        where r1, r2 are relative molar volumes (r1 = 1 for drug, r2 = V_polymer / V_drug).
+        Compute classical binary Flory-Huggins critical interaction parameter chi_c for phase separation.
+        chi_c = 0.5 * (1/sqrt(r1) + 1/sqrt(r2))^2
+        where:
+          - r1 = 1.0 (small-molecule drug reference component)
+          - r2 = V_polymer / V_drug (relative molar volume ratio)
+          - V_polymer is derived from number-average molecular weight Mn and density rho.
+        Note: chi_c is a secondary phase-boundary/criticality diagnostic and is NOT used as an MCDA ranking score.
         """
         r1 = 1.0
         v_drug = self.drug.molar_volume_cm3_mol
         v_poly = polymer.mn_da / polymer.density_g_cm3 if polymer.density_g_cm3 > 0 else 1000.0
         r2 = v_poly / v_drug if v_drug > 0 else 10.0
 
-        chi_c = 0.5 * (1.0 + 1.0 / np.sqrt(r1) + 1.0 / np.sqrt(r2)) ** 2
+        chi_c = 0.5 * (1.0 / np.sqrt(r1) + 1.0 / np.sqrt(r2)) ** 2
         return float(chi_c)
+
 
     def compute_s_chi(self, polymer: Polymer) -> float:
         """

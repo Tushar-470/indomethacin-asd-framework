@@ -1,0 +1,62 @@
+[
+  {
+    "parameter": "hsp_delta_d",
+    "polymer_id": "ALL",
+    "nominal": "variable",
+    "distribution": "gaussian",
+    "std_dev": 1.5,
+    "unit": "MPa^0.5",
+    "source": "Hoftyzer-Van Krevelen group contribution variance",
+    "uncertainty_type": "parameter"
+  },
+  {
+    "parameter": "hsp_delta_p",
+    "polymer_id": "ALL",
+    "nominal": "variable",
+    "distribution": "gaussian",
+    "std_dev": 1.5,
+    "unit": "MPa^0.5",
+    "source": "Hoftyzer-Van Krevelen group contribution variance",
+    "uncertainty_type": "parameter"
+  },
+  {
+    "parameter": "hsp_delta_h",
+    "polymer_id": "ALL",
+    "nominal": "variable",
+    "distribution": "gaussian",
+    "std_dev": 1.5,
+    "unit": "MPa^0.5",
+    "source": "Hoftyzer-Van Krevelen group contribution variance",
+    "uncertainty_type": "parameter"
+  },
+  {
+    "parameter": "tg_k",
+    "polymer_id": "ALL",
+    "nominal": "variable",
+    "distribution": "gaussian",
+    "std_dev": 3.0,
+    "unit": "K",
+    "source": "Experimental DSC thermal scan variance",
+    "uncertainty_type": "parameter"
+  },
+  {
+    "parameter": "density_g_cm3",
+    "polymer_id": "ALL",
+    "nominal": "variable",
+    "distribution": "gaussian",
+    "std_dev": 0.05,
+    "unit": "g/cm3",
+    "source": "Helium pycnometry measurement variance",
+    "uncertainty_type": "parameter"
+  },
+  {
+    "parameter": "s_chi_transfer_function",
+    "polymer_id": "ALL",
+    "nominal": "max(0, 1 - chi)",
+    "distribution": "comparator",
+    "alternative": "1 / (1 + chi)",
+    "unit": "dimensionless",
+    "source": "Thermodynamic activity transformation model-form sensitivity",
+    "uncertainty_type": "model-form"
+  }
+]

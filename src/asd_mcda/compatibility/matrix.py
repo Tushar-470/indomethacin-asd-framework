@@ -104,6 +104,13 @@ class CompatibilityMatrix:
         df.set_index("polymer_id", inplace=False)
         return df
 
+    def build_active_matrix(self) -> pd.DataFrame:
+        """Build active N x 3 compatibility matrix S_active = [s_HSP, s_chi, s_GT], excluding zero-variance metadata columns."""
+        df_full = self.build_matrix()
+        return df_full[["s_HSP", "s_chi", "s_GT"]]
+
+
+
     def get_correlation_matrix(self) -> pd.DataFrame:
         """Return Spearman rank correlation matrix of the 5 raw compatibility scores."""
         df = self.build_matrix()

@@ -72,9 +72,11 @@ $$\mathbf{S} = \begin{bmatrix} s_{\text{HSP}} & s_{\chi} & s_{\text{desc}} & s_{
 
 ## 6. PCA & AHP Integration Results
 
-- **Retained PCA Components**: $k = 3$ (explaining $> 95\%$ cumulative variance).
-- **AHP Eigenvector Weights**: $w_1 = 0.6429, w_2 = 0.3571, w_3 = 0.0000$.
+- **Retained PCA Components**: $k = 2$ (PC 1 = 65.07%, PC 2 = 33.69%, cumulative variance = **98.76%** $> 95\%$).
+- **AHP Pairwise Matrix Dimensions**: $2 \times 2$ (matching retained PCs).
+- **AHP Eigenvector Weights**: $w_1 = 0.6429, w_2 = 0.3571$.
 - **AHP Consistency Ratio**: $CR = 0.0421$ ($< 0.08$ Gate 2 threshold).
+
 
 ---
 

@@ -30,14 +30,18 @@ class PCAPreprocessor:
         self.scaler = StandardScaler()
         self.pca_model: PCA = None
 
-    def fit_transform(self, score_matrix_df: pd.DataFrame) -> PCAResult:
+    def fit_transform(self, score_matrix_df: pd.DataFrame, score_cols: Optional[List[str]] = None) -> PCAResult:
         """
-        Fit StandardScaler and PCA on N x 5 score matrix.
+        Fit StandardScaler and PCA on score matrix.
         Retains principal components until cumulative variance >= variance_threshold.
         """
-        score_cols = ["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]
+        if score_cols is None:
+            score_cols = [c for c in score_matrix_df.columns if c in ["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]]
+            if not score_cols:
+                score_cols = list(score_matrix_df.columns)
         raw_values = score_matrix_df[score_cols].values
         polymer_ids = score_matrix_df["polymer_id"].tolist() if "polymer_id" in score_matrix_df.columns else score_matrix_df.index.tolist()
+
 
         # Center and scale
         scaled_values = self.scaler.fit_transform(raw_values)

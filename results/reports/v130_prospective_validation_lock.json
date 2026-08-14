@@ -1,0 +1,11 @@
+{
+  "version": "1.3.0",
+  "prediction_frozen": true,
+  "selected_polymer_id": "POL-005-2026",
+  "selected_polymer_name": "Soluplus",
+  "configuration_hash_sha256": "44304897f25aa2e8be66804bbbaecabcbdb6c9af3534b4fb24e680a6b46b281b",
+  "dataset_hash_sha256": "439b1a0364d96c46eeae9d0feebfcfab804ebed02e0ee37f61c3d1aa1c9ddc27",
+  "random_seed": 42,
+  "environment": "Python 3.14.5 (Windows Server/Windows 11)",
+  "git_commit": "0855737"
+}

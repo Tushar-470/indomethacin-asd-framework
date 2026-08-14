@@ -494,7 +494,8 @@ def run_screening(
         "baseline_outperforms": bool(val_report.baseline_result.outperforms_baselines),
         "fbm_auc": float(pred_report.fbm_result.auc_roc),
 
-        "fbm_actionable": pred_report.fbm_result.is_actionable,
+        "fbm_actionable": bool(pred_report.fbm_result.is_actionable),
+
         "figures": figure_names,
         "reports": report_formats,
         "software_version": ENGINE_VERSION,

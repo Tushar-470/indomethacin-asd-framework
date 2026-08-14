@@ -23,8 +23,7 @@ def test_api_reproduces_cli_indomethacin_screening():
         "polymer_ids": [
             "POL-001-2026",
             "POL-002-2026",
-            "POL-003-2026",
-            "POL-004-2026",
+            "POL-007-2026",
             "POL-005-2026",
             "POL-006-2026",
         ],
@@ -42,8 +41,8 @@ def test_api_reproduces_cli_indomethacin_screening():
     assert data["selected_polymer_id"] == "POL-005-2026"
     assert "Soluplus" in data["selected_polymer"]
 
-    # 2. TOPSIS CL numerical tolerance check (CLI benchmark: 0.7775821475801472)
-    assert abs(data["topsis_cl"] - 0.77758) < 1e-3
+    # 2. TOPSIS CL numerical tolerance check (CLI 5-polymer benchmark: 0.736338)
+    assert abs(data["topsis_cl"] - 0.736338) < 1e-3
 
     # 3. Gate checks
     assert data["gate1_passed"] is True
@@ -66,8 +65,7 @@ def test_polymer_name_resolution_and_display():
         "polymer_ids": [
             "POL-001-2026",
             "POL-002-2026",
-            "POL-003-2026",
-            "POL-004-2026",
+            "POL-007-2026",
             "POL-005-2026",
             "POL-006-2026",
         ],
@@ -85,8 +83,9 @@ def test_polymer_name_resolution_and_display():
 
     # Verify key polymer name mappings
     assert name_map["POL-005-2026"] == "Soluplus"
-    assert name_map["POL-003-2026"] == "HPMC Acetate Succinate Low"
+    assert name_map["POL-007-2026"] == "Eudragit E PO"
     assert name_map["POL-002-2026"] == "PVP-Vinyl Acetate 64"
+
 
 
 def test_newly_added_polymer_displays_actual_name():
@@ -119,11 +118,12 @@ def test_newly_added_polymer_displays_actual_name():
         # Run screening with reference + custom polymer
         run_payload = {
             "drug_id": "IND-001-2026",
-            "polymer_ids": ["POL-005-2026", "POL-003-2026", "POL-CUSTOM-REGRESSION-888"],
+            "polymer_ids": ["POL-005-2026", "POL-007-2026", "POL-CUSTOM-REGRESSION-888"],
             "mode": "exploratory",
             "drug_loading_ww": 0.30,
             "random_seed": 42
         }
+
 
         res = client.post("/api/screening/run", json=run_payload)
         assert res.status_code == 200

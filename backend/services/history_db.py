@@ -71,9 +71,10 @@ def save_analysis(
             analysis_id, now, drug_id, drug_name,
             json.dumps(polymer_ids), mode, top_polymer, topsis_cl,
             confidence_tier, software_version, config_checksum, random_seed,
-            json.dumps(input_snapshot), result_dir, json.dumps(warnings), now,
+            json.dumps(input_snapshot, default=str), result_dir, json.dumps(warnings, default=str), now,
         ),
     )
+
     conn.commit()
     conn.close()
 

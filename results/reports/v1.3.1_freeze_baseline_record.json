@@ -1,0 +1,63 @@
+{
+  "version": "v1.3.1-FREEZE",
+  "git_commit": "2220c44",
+  "active_dataset_filename": "config/polymers/polymer_library_v3_five_polymers.csv",
+  "dataset_sha256": "24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff",
+  "python_version": "3.14.5",
+  "platform": "Windows OS",
+  "pytest_suite": "41 / 41 PASSED (100%)",
+  "deterministic_ranking": [
+    {
+      "topsis_rank": 1,
+      "polymer_id": "POL-005-2026",
+      "polymer_name": "Soluplus",
+      "abbreviation": "SOLUPLUS",
+      "topsis_cl": 0.7363379273379228,
+      "p_top1_percent": 43.2
+    },
+    {
+      "topsis_rank": 2,
+      "polymer_id": "POL-006-2026",
+      "polymer_name": "Hydroxypropyl Methylcellulose E5",
+      "abbreviation": "HPMC_E5",
+      "topsis_cl": 0.6840632557494626,
+      "p_top1_percent": 31.0
+    },
+    {
+      "topsis_rank": 3,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 0.5049820844874976,
+      "p_top1_percent": 5.800000000000001
+    },
+    {
+      "topsis_rank": 4,
+      "polymer_id": "POL-001-2026",
+      "polymer_name": "Polyvinylpyrrolidone K30",
+      "abbreviation": "PVP_K30",
+      "topsis_cl": 0.4429166202841379,
+      "p_top1_percent": 14.399999999999999
+    },
+    {
+      "topsis_rank": 5,
+      "polymer_id": "POL-007-2026",
+      "polymer_name": "Eudragit E PO",
+      "abbreviation": "EDR_EPO",
+      "topsis_cl": 0.0,
+      "p_top1_percent": 5.6000000000000005
+    }
+  ],
+  "uncertainty_assumptions": {
+    "hsp_error_mpa": 1.5,
+    "chi_error_relative": 0.25,
+    "tg_polymer_error_k": 3.0,
+    "density_error_g_cm3": 0.05,
+    "ahp_weight_relative": 0.2
+  },
+  "known_limitations": [
+    "Pure H-V-K group contribution calculations exhibit systematic polar bias (+2.37 on dD, +3.98 on dH).",
+    "Monte Carlo uncertainty sampling is assumption-based; not an experimentally calibrated error distribution.",
+    "Predictions reflect thermodynamic compatibility prior to prospective laboratory spray-drying validation."
+  ]
+}

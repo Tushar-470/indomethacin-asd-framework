@@ -1,5 +1,5 @@
 # FINAL COMPUTATIONAL BASELINE MANIFEST
-# Release: v1.3.1-FREEZE
+# Release: v1.4.0-CORRECTED-FREEZE
 # Generated: August 2026
 # Status: PRE-EXPERIMENTATION
 
@@ -9,8 +9,7 @@ project_title: >-
   Experimental Framework for Polymer Selection, Predictive Formulation
   Design, and Failure Boundary Mapping
 
-release: v1.3.1-FREEZE
-git_commit: "2220c44"
+release: v1.4.0-CORRECTED-FREEZE
 polymer_library_file: config/polymers/polymer_library_v3_five_polymers.csv
 polymer_library_hash: "24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff"
 
@@ -33,30 +32,31 @@ active_polymers:
 
 final_ranking:
   - rank: 1
-    polymer_id: POL-005-2026
-    polymer_name: Soluplus
-    topsis_cl: 0.7363
-    p_top1_percent: 43.2
-  - rank: 2
     polymer_id: POL-006-2026
     polymer_name: Hydroxypropyl Methylcellulose E5
-    topsis_cl: 0.6841
-    p_top1_percent: 31.0
+    topsis_cl: 0.8359
+    p_top1_percent: 42.4
+  - rank: 2
+    polymer_id: POL-005-2026
+    polymer_name: Soluplus
+    topsis_cl: 0.6943
+    p_top1_percent: 35.0
   - rank: 3
-    polymer_id: POL-002-2026
-    polymer_name: PVP-Vinyl Acetate 64
-    topsis_cl: 0.5050
-    p_top1_percent: 5.8
-  - rank: 4
     polymer_id: POL-001-2026
     polymer_name: Polyvinylpyrrolidone K30
-    topsis_cl: 0.4429
-    p_top1_percent: 14.4
+    topsis_cl: 0.5494
+    p_top1_percent: 13.3
+  - rank: 4
+    polymer_id: POL-002-2026
+    polymer_name: PVP-Vinyl Acetate 64
+    topsis_cl: 0.4703
+    p_top1_percent: 3.2
   - rank: 5
     polymer_id: POL-007-2026
     polymer_name: Eudragit E PO
-    topsis_cl: 0.0000
-    p_top1_percent: 5.6
+    topsis_cl: 0.0905
+    p_top1_percent: 6.1
+
 
 monte_carlo:
   n_iterations: 10000

@@ -146,9 +146,45 @@ def test_flory_huggins_chi_critical_asymptotic_value(test_setup):
     assert abs(chi_c - 0.500) < 1e-2
 
 
+def test_flory_huggins_chi_critical_r2_10(test_setup):
+    """Verify chi_c for r2 = 10 gives approx 0.866 (Task 2 verification)."""
+    drug, _, _ = test_setup
+    poly_r10 = Polymer.from_dict({
+        "polymer_id": "SYN_10",
+        "polymer_name": "Synthetic Polymer r2=10",
+        "mn_da": 2730.0,
+        "tg_k": 350.0,
+        "density_g_cm3": 1.0,
+        "hsp_delta_d": 18.0,
+        "hsp_delta_p": 8.0,
+        "hsp_delta_h": 10.0,
+        "monomer_smiles": "CCO",
+    })
+    fh = FloryHugginsModel(drug, PolymerLibrary([poly_r10], drug))
+    chi_c = fh.compute_chi_critical(poly_r10)
+    expected = 0.5 * (1.0 + 1.0 / (10.0 ** 0.5)) ** 2
+    assert chi_c == pytest.approx(expected, rel=1e-5)
+    assert abs(chi_c - 0.866228) < 1e-4
+
+
+def test_flory_huggins_lindvig_chi_hand_calculation(test_setup):
+    """
+    Verify Lindvig chi calculation against independent hand calculation (Task 3 verification):
+    chi = alpha * (V_m / (R * T)) * [ 1.0*(dd)^2 + 0.25*(dp)^2 + 0.25*(dh)^2 ]
+    For Indomethacin (19.2, 7.9, 8.4, Vm=273.0, T=298.15) + Soluplus (18.0, 8.5, 10.5):
+    energy_diff = 1.0*(1.2)^2 + 0.25*(-0.6)^2 + 0.25*(-2.1)^2 = 1.44 + 0.09 + 1.1025 = 2.6325 MPa
+    chi = 0.60 * (273e-6 / (8.314462618 * 298.15)) * (2.6325 * 1e6) = 0.1739455
+    """
+    drug, library, poly1 = test_setup
+    fh = FloryHugginsModel(drug, library)
+    chi = fh.compute_chi(poly1)
+    expected_chi = 0.60 * (273.0e-6 / (8.314462618 * 298.15)) * (2.6325e6)
+    assert chi == pytest.approx(expected_chi, rel=1e-5)
+    assert abs(chi - 0.1739455) < 1e-5
 
 
 def test_gordon_taylor(test_setup):
+
     drug, library, poly1 = test_setup
     gt = GordonTaylorModel(drug, library, drug_loading_ww=0.30)
     k, _ = gt.compute_k_simha_boyer(poly1)

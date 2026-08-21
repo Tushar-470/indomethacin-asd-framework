@@ -1,9 +1,8 @@
 # Source of Truth — Authoritative File Map
 
-**Release**: v1.3.1-FREEZE  
-**Git Commit**: 2220c44  
+**Release**: v1.4.0-CORRECTED-FREEZE  
 **Date**: August 2026  
-**Status**: FROZEN COMPUTATIONAL BASELINE  
+**Status**: FROZEN COMPUTATIONAL BASELINE (CORRECTED)  
 
 ---
 
@@ -18,12 +17,13 @@ This document establishes the single, unambiguous authoritative file mapping for
 | **Final Drug Profile (Indomethacin)** | `config/drugs/indomethacin.json` | IND-001-2026 | Hancock et al. (*J. Pharm. Sci.* 2007) | Literature curation | **FROZEN** |
 | **Final AHP Matrices** | `config/ahp/default_matrix.json` | DEFAULT_AHP_V2 | Expert consensus pairwise comparisons | Multi-expert elicitation | **FROZEN** |
 | **Final HSP Calculation Inputs** | `config/polymers/polymer_library_v3_five_polymers.csv` | H-V-K Group Contribution | Hoftyzer–Van Krevelen method | `src/asd_mcda/compatibility/hsp_model.py` | **FROZEN** |
-| **Final Compatibility Score Matrix** | `results/final/final_score_matrix.csv` | v1.3.1-FREEZE | Computational engine | `src/asd_mcda/compatibility/matrix.py` | **FROZEN** |
-| **Final Polymer Ranking** | `results/final/final_polymer_ranking.csv` | v1.3.1-FREEZE | Computational engine (PCA-AHP-TOPSIS) | `src/asd_mcda/mcda/topsis.py` | **FROZEN** |
-| **Final Monte Carlo UQ Results** | `results/final/final_monte_carlo_summary.json` | v1.3.1-FREEZE | Stochastic simulation ($N=10,000$, seed=42) | `src/asd_mcda/uncertainty/monte_carlo.py` | **FROZEN** |
-| **Final Computational Decision Report** | `results/final/final_computational_report.md` | v1.3.1-FREEZE | Synthesized decision artifact | Pipeline output | **FROZEN** |
-| **Frozen Baseline Record** | `results/reports/v1.3.1_freeze_baseline_record.json` | v1.3.1-FREEZE | Export script | Frozen baseline lock | **FROZEN** |
+| **Final Compatibility Score Matrix** | `results/final/final_score_matrix.csv` | v1.4.0-CORRECTED-FREEZE | Computational engine | `src/asd_mcda/compatibility/matrix.py` | **FROZEN** |
+| **Final Polymer Ranking** | `results/final/final_polymer_ranking.csv` | v1.4.0-CORRECTED-FREEZE | Computational engine (PCA-AHP-TOPSIS) | `src/asd_mcda/mcda/topsis.py` | **FROZEN** |
+| **Final Monte Carlo UQ Results** | `results/final/final_monte_carlo_summary.json` | v1.4.0-CORRECTED-FREEZE | Stochastic simulation ($N=10,000$, seed=42) | `src/asd_mcda/uncertainty/monte_carlo.py` | **FROZEN** |
+| **Final Computational Decision Report** | `results/reports/decision_report.md` | v1.4.0-CORRECTED-FREEZE | Synthesized decision artifact | Pipeline output | **FROZEN** |
+| **Frozen Baseline Record** | `results/final/final_monte_carlo_summary.json` | v1.4.0-CORRECTED-FREEZE | Export script | Frozen baseline lock | **FROZEN** |
 | **Reproduction Environment** | `pyproject.toml`, `requirements.txt` | Python $\ge 3.11$ | Dependency specification | Package config | **FROZEN** |
+
 
 ---
 

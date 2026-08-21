@@ -80,36 +80,37 @@ The computational screening engine integrates an 11-step pipeline:
 
 ---
 
-## 6. Frozen Deterministic Ranking Results
+## 6. Frozen Deterministic Ranking Results (v1.4.0-CORRECTED-FREEZE)
 
 | Rank | Candidate Polymer | TOPSIS $C_L$ | Scientific Classification |
 | :---: | :--- | :---: | :--- |
-| **1** | **Soluplus** (`POL-005-2026`) | **0.736338** | **Top-Ranked Computational Candidate** |
-| 2 | Hydroxypropyl Methylcellulose E5 (`POL-006-2026`) | 0.684063 | High-Affinity Alternative |
-| 3 | PVP-Vinyl Acetate 64 (`POL-002-2026`) | 0.504982 | Intermediate Miscibility Candidate |
-| 4 | Polyvinylpyrrolidone K30 (`POL-001-2026`) | 0.442917 | Moderate Affinity Candidate |
-| 5 | Eudragit E PO (`POL-007-2026`) | 0.000000 | Boundary Anti-Ideal Candidate |
+| **1** | **Hydroxypropyl Methylcellulose E5** (`POL-006-2026`) | **0.835911** | **Top-Ranked Computational Candidate** |
+| 2 | Soluplus (`POL-005-2026`) | 0.694342 | High-Affinity Miscibility Candidate |
+| 3 | Polyvinylpyrrolidone K30 (`POL-001-2026`) | 0.549368 | High-Tg Alternative Candidate |
+| 4 | PVP-Vinyl Acetate 64 (`POL-002-2026`) | 0.470256 | Intermediate Affinity Candidate |
+| 5 | Eudragit E PO (`POL-007-2026`) | 0.090501 | Boundary Anti-Ideal Candidate |
 
 ---
 
-## 7. Monte Carlo Top-1 Selection Probabilities ($N=10{,}000$)
+## 7. Monte Carlo Top-1 Selection Probabilities ($N=10{,}000$, Seed = 42)
 
 Simultaneous joint perturbation of 7 input parameters (HSP $\pm 1.5\text{ MPa}^{0.5}$, $\chi \pm 25\%$, $\text{Log}P \pm 0.7$, $T_{g,\text{drug}} \pm 10\text{ K}$, $T_{g,\text{poly}} \pm 3\text{ K}$, density $\pm 0.05\text{ g/cm}^3$, AHP weights $\pm 20\%$) yields:
 
-- **Soluplus**: $P(\text{top-1}) = \mathbf{43.2\%}$
-- **HPMC E5**: $P(\text{top-1}) = \mathbf{31.0\%}$
-- **PVP K30**: $P(\text{top-1}) = \mathbf{14.4\%}$
-- **PVP-VA 64**: $P(\text{top-1}) = \mathbf{5.8\%}$
-- **Eudragit E PO**: $P(\text{top-1}) = \mathbf{5.6\%}$
+- **HPMC E5**: $P(\text{top-1}) = \mathbf{42.4\%}$
+- **Soluplus**: $P(\text{top-1}) = \mathbf{35.0\%}$
+- **PVP K30**: $P(\text{top-1}) = \mathbf{13.3\%}$
+- **Eudragit E PO**: $P(\text{top-1}) = \mathbf{6.1\%}$
+- **PVP-VA 64**: $P(\text{top-1}) = \mathbf{3.2\%}$
 - **Confidence Classification**: **Moderate Confidence** ($0.40 \le P(\text{top-1}) < 0.70$)
 
 ---
 
 ## 8. Scientific Interpretation of Probabilities
 
-- **Soluplus** is the **top-ranked computational candidate**, favored by high cohesive energy matching with indomethacin and low estimated Flory–Huggins interaction parameter ($\chi = 0.2265$).
-- **HPMC E5** provides strong competition ($P(\text{top-1}) = 31.0\%$) due to superior glass transition anti-plasticization ($T_{g,\text{mix}} = 404.9\text{ K}$).
+- **HPMC E5** is the **top-ranked computational candidate** ($C_L = 0.8359, P(\text{top-1}) = 42.4\%$), combining favorable enthalpy of mixing ($\chi = 0.2598$) with superior glass transition anti-plasticization ($T_{g,\text{mix}} = 404.9\text{ K}, s_{\text{GT}} = 0.9731$).
+- **Soluplus** is the **second-ranked candidate** ($C_L = 0.6943, P(\text{top-1}) = 35.0\%$), exhibiting the highest individual cohesive energy matching ($s_{\text{HSP}} = 0.7972, s_\chi = 0.8261$) but lower $T_g$ elevation ($T_{g,\text{mix}} = 334.5\text{ K}$).
 - **Monte Carlo Top-1 Selection Probability** represents computational model stability under assumed input parameter uncertainty; it is **NOT** a probability of clinical or experimental manufacturing success.
+
 
 ---
 

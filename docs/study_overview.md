@@ -38,24 +38,25 @@ The active candidate set comprises five compendial polymers spanning vinylic, ce
 
 ## 4. Frozen Computational Baseline Findings
 
-### Deterministic TOPSIS Ranking
+### Deterministic TOPSIS Ranking (v1.4.0-CORRECTED-FREEZE)
 
 | Rank | Candidate Polymer | TOPSIS $C_L$ | Model Designation |
 | :---: | :--- | :---: | :--- |
-| **1** | **Soluplus** | **0.736338** | **Top-Ranked Computational Candidate** |
-| 2 | Hydroxypropyl Methylcellulose E5 | 0.684063 | High-Affinity Alternative |
-| 3 | PVP-Vinyl Acetate 64 | 0.504982 | Intermediate Miscibility Candidate |
-| 4 | Polyvinylpyrrolidone K30 | 0.442917 | Moderate Affinity Candidate |
-| 5 | Eudragit E PO | 0.000000 | Boundary Anti-Ideal Candidate |
+| **1** | **Hydroxypropyl Methylcellulose E5** | **0.835911** | **Top-Ranked Computational Candidate** |
+| 2 | Soluplus | 0.694342 | High-Affinity Miscibility Candidate |
+| 3 | Polyvinylpyrrolidone K30 | 0.549368 | High-Tg Alternative Candidate |
+| 4 | PVP-Vinyl Acetate 64 | 0.470256 | Intermediate Affinity Candidate |
+| 5 | Eudragit E PO | 0.090501 | Boundary Anti-Ideal Candidate |
 
 ### Monte Carlo Uncertainty Quantification ($N=10{,}000$, Seed = 42)
 
-- **Soluplus $P(\text{top-1})$**: **43.2%**
-- **HPMC E5 $P(\text{top-1})$**: **31.0%**
-- **PVP K30 $P(\text{top-1})$**: **14.4%**
-- **PVP-VA 64 $P(\text{top-1})$**: **5.8%**
-- **Eudragit E PO $P(\text{top-1})$**: **5.6%**
+- **HPMC E5 $P(\text{top-1})$**: **42.4%**
+- **Soluplus $P(\text{top-1})$**: **35.0%**
+- **PVP K30 $P(\text{top-1})$**: **13.3%**
+- **Eudragit E PO $P(\text{top-1})$**: **6.1%**
+- **PVP-VA 64 $P(\text{top-1})$**: **3.2%**
 - **UQ Confidence Tier**: **Moderate Confidence** ($0.40 \le P(\text{top-1}) < 0.70$)
+
 
 ---
 

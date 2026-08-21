@@ -37,12 +37,12 @@ def test_api_reproduces_cli_indomethacin_screening():
 
     data = response.json()
 
-    # 1. Top selection check
-    assert data["selected_polymer_id"] == "POL-005-2026"
-    assert "Soluplus" in data["selected_polymer"]
+    # 1. Top selection check (HPMC E5 #1 under corrected Lindvig model)
+    assert data["selected_polymer_id"] == "POL-006-2026"
+    assert "Hydroxypropyl Methylcellulose E5" in data["selected_polymer"]
 
-    # 2. TOPSIS CL numerical tolerance check (CLI 5-polymer benchmark: 0.736338)
-    assert abs(data["topsis_cl"] - 0.736338) < 1e-3
+    # 2. TOPSIS CL numerical tolerance check (CLI 5-polymer corrected benchmark: 0.8359)
+    assert abs(data["topsis_cl"] - 0.8359) < 1e-3
 
     # 3. Gate checks
     assert data["gate1_passed"] is True
@@ -55,7 +55,9 @@ def test_api_reproduces_cli_indomethacin_screening():
 
     # 5. Ranking order check
     ranks = {row["polymer_id"]: row["rank"] for row in data["ranking"]}
-    assert ranks["POL-005-2026"] == 1  # Soluplus #1
+    assert ranks["POL-006-2026"] == 1  # HPMC E5 #1
+    assert ranks["POL-005-2026"] == 2  # Soluplus #2
+
 
 
 def test_polymer_name_resolution_and_display():

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr, kendalltau
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from asd_mcda.validation.baseline import BaselineComparison, BaselineResult
 

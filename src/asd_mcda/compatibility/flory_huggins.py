@@ -9,7 +9,7 @@ from typing import Dict, List
 
 from asd_mcda.drug.drug_profile import Drug
 from asd_mcda.polymer.polymer_library import Polymer, PolymerLibrary
-from asd_mcda.utils.constants import GAS_CONSTANT_R, LINDVIG_WEIGHTS
+from asd_mcda.utils.constants import GAS_CONSTANT_R, LINDVIG_ALPHA, LINDVIG_SUBWEIGHTS
 
 
 class FloryHugginsModel:
@@ -29,10 +29,11 @@ class FloryHugginsModel:
 
     def compute_chi(self, polymer: Polymer) -> float:
         """
-        Compute Flory-Huggins chi via Lindvig conversion (Equation 5, Lindvig et al. 2002).
-        chi = (V_m / (R * T)) * [ 0.60*(dd)^2 + 0.25*(dp)^2 + 0.25*(dh)^2 ]
+        Compute Flory-Huggins chi via Lindvig conversion (Lindvig et al. 2002, Fluid Phase Equilibria 203, 247-260).
+        chi = alpha * (V_m / (R * T)) * [ 1.0*(dd)^2 + 0.25*(dp)^2 + 0.25*(dh)^2 ]
+        where alpha = 0.60 is the global multiplicative correction factor on the bracketed sum.
         """
-        w_d, w_p, w_h = LINDVIG_WEIGHTS
+        w_d, w_p, w_h = LINDVIG_SUBWEIGHTS
         dd = self.drug.hsp_delta_d - polymer.hsp_delta_d
         dp = self.drug.hsp_delta_p - polymer.hsp_delta_p
         dh = self.drug.hsp_delta_h - polymer.hsp_delta_h
@@ -43,26 +44,27 @@ class FloryHugginsModel:
         # Sum of weighted energy density differences in Pa (1 MPa^0.5 = 1e3 Pa^0.5)
         energy_diff = (w_d * (dd**2) + w_p * (dp**2) + w_h * (dh**2)) * 1e6  # J/m^3
 
-        chi = (v_m / rt) * energy_diff
+        chi = LINDVIG_ALPHA * (v_m / rt) * energy_diff
         return float(chi)
 
     def compute_chi_critical(self, polymer: Polymer) -> float:
         """
         Compute classical binary Flory-Huggins critical interaction parameter chi_c for phase separation.
-        chi_c = 0.5 * (1/sqrt(r1) + 1/sqrt(r2))^2
+        chi_c = 0.5 * (1 + 1/sqrt(r2))^2
         where:
-          - r1 = 1.0 (small-molecule drug reference component)
+          - r1 = 1.0 for small-molecule drug is already absorbed into the leading 1 term
           - r2 = V_polymer / V_drug (relative molar volume ratio)
           - V_polymer is derived from number-average molecular weight Mn and density rho.
         Note: chi_c is a secondary phase-boundary/criticality diagnostic and is NOT used as an MCDA ranking score.
         """
-        r1 = 1.0
         v_drug = self.drug.molar_volume_cm3_mol
         v_poly = polymer.mn_da / polymer.density_g_cm3 if polymer.density_g_cm3 > 0 else 1000.0
         r2 = v_poly / v_drug if v_drug > 0 else 10.0
 
-        chi_c = 0.5 * (1.0 / np.sqrt(r1) + 1.0 / np.sqrt(r2)) ** 2
+        # r1 = 1.0 for small-molecule drug is absorbed into the leading 1.0 term
+        chi_c = 0.5 * (1.0 + 1.0 / np.sqrt(r2)) ** 2
         return float(chi_c)
+
 
 
     def compute_s_chi(self, polymer: Polymer) -> float:

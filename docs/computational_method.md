@@ -46,10 +46,13 @@ $$s_{\text{HSP}} = \max\left(0,\; 1 - \frac{\text{RED}}{2}\right)$$
 
 ### Equation 4 — Lindvig Conversion for $\chi$
 
-$$\chi = \frac{V_m}{RT}\left[0.60(\delta_{D,\text{drug}} - \delta_{D,\text{polymer}})^2 + 0.25(\delta_{P,\text{drug}} - \delta_{P,\text{polymer}})^2 + 0.25(\delta_{H,\text{drug}} - \delta_{H,\text{polymer}})^2\right]$$
+$$\chi = \alpha \cdot \frac{V_m}{RT}\left[(\delta_{D,\text{drug}} - \delta_{D,\text{polymer}})^2 + 0.25(\delta_{P,\text{drug}} - \delta_{P,\text{polymer}})^2 + 0.25(\delta_{H,\text{drug}} - \delta_{H,\text{polymer}})^2\right]$$
+
+where $\alpha = 0.60$ is the global multiplicative correction factor applied to the bracketed sum (Lindvig et al. 2002).
 
 | Variable | Definition | Unit | Value / Constant |
 | :--- | :--- | :---: | :---: |
+| $\alpha$ | Global Lindvig multiplicative correction factor | Dimensionless | 0.60 |
 | $V_m$ | Drug molar volume | $\text{cm}^3/\text{mol}$ | 273.0 (Indomethacin) |
 | $R$ | Universal gas constant | $\text{J}/(\text{mol}\cdot\text{K})$ | 8.314463 |
 | $T$ | System reference temperature | $\text{K}$ | 298.15 |
@@ -59,12 +62,13 @@ $$\chi = \frac{V_m}{RT}\left[0.60(\delta_{D,\text{drug}} - \delta_{D,\text{polym
 
 ### Equation 5 — Binary Critical Interaction Parameter ($\chi_c$)
 
-$$\chi_c = \frac{1}{2}\left(\frac{1}{\sqrt{r_1}} + \frac{1}{\sqrt{r_2}}\right)^2$$
+$$\chi_c = \frac{1}{2}\left(1 + \frac{1}{\sqrt{r_2}}\right)^2$$
 
 where:
-- $r_1 = 1.0$ (small-molecule drug reference component)
+- $r_1 = 1.0$ (small-molecule drug reference component, absorbed into the leading 1 term)
 - $r_2 = V_{\text{polymer}} / V_{\text{drug}}$ (relative molar volume ratio)
 - $V_{\text{polymer}} = M_n / \rho_{\text{polymer}}$ (derived from number-average molecular weight $M_n$ and density $\rho$)
+
 
 **Scientific Diagnostic Role**: $\chi_c$ is used as a secondary thermodynamic phase-boundary diagnostic and is **NOT** included in the MCDA score matrix $\mathbf{S}$.
 

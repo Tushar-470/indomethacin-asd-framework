@@ -5,7 +5,7 @@ Aligned with SAS V1.0 Section 6.1 and DAS V1.0 Section 4.
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 import pandas as pd
 
 from asd_mcda.drug.drug_profile import Drug

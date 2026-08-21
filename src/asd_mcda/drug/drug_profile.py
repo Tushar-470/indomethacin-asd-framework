@@ -6,7 +6,7 @@ Aligned with SAS V1.0 Section 6.1.
 from dataclasses import dataclass, field
 import json
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 from asd_mcda.utils.constants import BOYER_BEAMAN_FACTOR
 from asd_mcda.utils.helpers import generate_sha256

@@ -37,5 +37,10 @@ DEFAULT_DESC_SUBWEIGHTS = {
     "aromatic": 0.20,
 }
 
-# Lindvig Conversion Parameters (Lindvig et al. 2002)
-LINDVIG_WEIGHTS = (0.60, 0.25, 0.25)  # (Dispersion, Polar, H-bonding)
+# Lindvig Conversion Parameters (Lindvig et al. 2002, Fluid Phase Equilibria 203, 247-260)
+# alpha is a GLOBAL multiplicative correction factor on the whole bracket,
+# not a per-term weight. Dispersive term is unweighted (implicit coefficient 1);
+# polar and H-bonding terms each carry the literature 0.25 sub-weight.
+LINDVIG_ALPHA = 0.60
+LINDVIG_SUBWEIGHTS = (1.0, 0.25, 0.25)  # (Dispersion, Polar, H-bonding)
+

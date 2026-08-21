@@ -93,15 +93,15 @@ Execution of `scripts/validate_final_dataset.py` confirmed **49/49 checks passed
 
 ## 9. Clean Reproduction & Verification Results
 
-### Final Frozen Ranking Invariants
+### Final Frozen Ranking Invariants (v1.4.0-CORRECTED-FREEZE)
 
 | Rank | Polymer ID | Canonical Name | TOPSIS $C_L$ | Monte Carlo $P(\text{top-1})$ |
 | :---: | :--- | :--- | :---: | :---: |
-| **1** | `POL-005-2026` | **Soluplus** | **0.736338** | **43.2%** |
-| **2** | `POL-006-2026` | Hydroxypropyl Methylcellulose E5 | 0.684063 | 31.0% |
-| **3** | `POL-002-2026` | PVP-Vinyl Acetate 64 | 0.504982 | 5.8% |
-| **4** | `POL-001-2026` | Polyvinylpyrrolidone K30 | 0.442917 | 14.4% |
-| **5** | `POL-007-2026` | Eudragit E PO | 0.000000 | 5.6% |
+| **1** | `POL-006-2026` | **Hydroxypropyl Methylcellulose E5** | **0.835911** | **42.4%** |
+| **2** | `POL-005-2026` | Soluplus | 0.694342 | 35.0% |
+| **3** | `POL-001-2026` | Polyvinylpyrrolidone K30 | 0.549368 | 13.3% |
+| **4** | `POL-002-2026` | PVP-Vinyl Acetate 64 | 0.470256 | 3.2% |
+| **5** | `POL-007-2026` | Eudragit E PO | 0.090501 | 6.1% |
 
 ---
 
@@ -110,9 +110,10 @@ Execution of `scripts/validate_final_dataset.py` confirmed **49/49 checks passed
 | # | Reviewer Question | Self-Contained Repository Answer | Authoritative Source Document |
 | :--- | :--- | :--- | :--- |
 | **1** | What is the project? | QbD-driven computational-experimental framework for polymer selection in spray-dried indomethacin ASD tablets. | [`README.md`](README.md), [`docs/study_overview.md`](docs/study_overview.md) |
-| **2** | What is the final computational baseline? | Release `v1.3.1-FREEZE` (Git commit: `2220c44`). | [`FINAL_COMPUTATIONAL_BASELINE_MANIFEST.yaml`](FINAL_COMPUTATIONAL_BASELINE_MANIFEST.yaml) |
+| **2** | What is the final computational baseline? | Release `v1.4.0-CORRECTED-FREEZE`. | [`FINAL_COMPUTATIONAL_BASELINE_MANIFEST.yaml`](FINAL_COMPUTATIONAL_BASELINE_MANIFEST.yaml) |
 | **3** | Which five polymers are active? | PVP K30, PVP-VA 64, Soluplus, HPMC E5, Eudragit E PO. | [`config/polymers/polymer_library_v3_five_polymers.csv`](config/polymers/polymer_library_v3_five_polymers.csv) |
-| **4** | Which polymer is rank #1? | Soluplus (`POL-005-2026`). | [`results/final/final_polymer_ranking.csv`](results/final/final_polymer_ranking.csv) |
+| **4** | Which polymer is rank #1? | Hydroxypropyl Methylcellulose E5 (`POL-006-2026`). | [`results/final/final_polymer_ranking.csv`](results/final/final_polymer_ranking.csv) |
+
 | **5** | Why is it rank #1? | Highest cohesive energy matching ($s_{\text{HSP}} = 0.7972$) and lowest estimated Flory–Huggins interaction ($\chi = 0.2265, s_\chi = 0.7735$). | [`results/final/final_computational_report.md`](results/final/final_computational_report.md) |
 | **6** | What does Monte Carlo $P(\text{top-1})$ mean? | Ranking stability under assumed $\pm$ parameter variance ($N=10{,}000$); not experimental success probability. | [`docs/computational_method.md`](docs/computational_method.md), [`docs/limitations.md`](docs/limitations.md) |
 | **7** | Are HSP values calculated or experimental? | Calculated via Hoftyzer–Van Krevelen (H-V-K) group contribution method from SMILES. | [`docs/data_provenance.md`](docs/data_provenance.md), [`docs/limitations.md`](docs/limitations.md) |

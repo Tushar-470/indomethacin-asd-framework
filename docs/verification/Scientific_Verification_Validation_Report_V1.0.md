@@ -2,26 +2,26 @@
 
 **Document Identifier:** V&V-REPORT-2026-ASD-001  
 **Target Manuscript:** *AAPS PharmSciTech* (Primary) / *International Journal of Pharmaceutics* (Secondary)  
-**Evaluated Package:** `asd_mcda` v1.0.0 (Python 3.11+)  
+**Evaluated Package:** `asd_mcda` (Python 3.11+)  
 **Underlying Protocol:** Master Research Framework Version 2.0 (Frozen), Software Architecture Specification (SAS) V1.0, Database Architecture Specification (DAS) V1.0  
-**Audit Body:** Independent Scientific Verification and Validation Committee  
+**Audit Type:** Internal Code Quality & Scientific Self-Audit  
 **Date of Audit:** August 2026  
 
 ---
 
 ## EXECUTIVE SUMMARY & AUDIT DECLARATION
 
-This report presents the formal Independent Scientific Verification and Validation (V&V) audit of the `asd_mcda` computational polymer-screening framework for spray-dried amorphous solid dispersions (SD-ASDs), demonstrated using Indomethacin as a BCS Class II model drug.
+This report presents the formal Verification and Validation (V&V) audit and code-quality review of the `asd_mcda` computational polymer-screening framework for spray-dried amorphous solid dispersions (SD-ASDs), demonstrated using Indomethacin as a BCS Class II model drug.
 
 > [!IMPORTANT]
-> **Audit Scope & Stance**: The V&V Committee operates strictly independently from software development. We assume no implementation is correct until mathematically, algorithmically, and scientifically verified against peer-reviewed physical chemistry literature and analytical standards. Passing unit/integration tests is necessary but insufficient to establish scientific validity.
+> **Audit Stance**: This document reflects an internal code-quality and scientific verification pass. Implementations are audited and verified against peer-reviewed physical chemistry literature and analytical standards.
 
 ### Key Audit Findings
 
-1. **Architectural Compliance (100%)**: The software architecture strictly enforces the 8-layer separation of concerns defined in Framework V2.0, mandates PCA pre-processing before Composite Compatibility Index (CCI) computation, implements multi-expert AHP with geometric-mean aggregation, and operationalizes Failure Boundary Mapping (FBM) via logistic regression.
-2. **Numerical Accuracy (100%)**: Independent manual recalculation of Hansen Solubility Parameter distance ($R_a$), Relative Energy Difference ($RED$), Lindvig Flory-Huggins interaction parameter ($\chi$), Gordon-Taylor glass transition temperature ($T_{g,\text{mix}}$), PCA eigenvector decomposition, AHP consistency ratio ($CR$), and TOPSIS closeness coefficient ($CL$) confirmed bit-for-bit mathematical identity with software outputs (relative error $< 0.01\%$).
-3. **Reproducibility (100%)**: Bit-for-bit deterministic reproducibility was verified under fixed random seed (`42`), producing identical outputs across independent execution environments with SHA-256 checksum tracking.
-4. **Validation Scope (TRL 4)**: The framework successfully reproduces retrospective literature rankings for Indomethacin (Soluplus #1, PVP-VA 64 #2, PVP K30 #3, HPMCAS-L #4, HPMC E5 #5, Eudragit L100 #6). However, in accordance with Framework V2.0 explicit positioning, all $n=6$ rank correlation metrics ($\rho = 0.83$) are classified as **exploratory**; confirmatory validation requires $n \ge 20$ polymers.
+1. **Architectural Compliance (100%)**: The software architecture enforces the 8-layer separation of concerns defined in Framework V2.0, mandates PCA pre-processing before Composite Compatibility Index (CCI) computation, implements multi-expert AHP with geometric-mean aggregation, and operationalizes Failure Boundary Mapping (FBM) via logistic regression.
+2. **Numerical Accuracy**: Manual recalculation of Hansen Solubility Parameter distance ($R_a$), Relative Energy Difference ($RED$), corrected Lindvig Flory-Huggins interaction parameter ($\chi$), Gordon-Taylor glass transition temperature ($T_{g,\text{mix}}$), PCA eigenvector decomposition, AHP consistency ratio ($CR$), and TOPSIS closeness coefficient ($CL$) confirmed mathematical consistency with software outputs.
+3. **Reproducibility**: Deterministic reproducibility was verified under fixed random seed (`42`), producing identical outputs with SHA-256 checksum tracking.
+4. **Validation Scope (TRL 4)**: All rank correlation metrics are classified as **exploratory**; confirmatory validation requires prospective experimental testing.
 
 ---
 
@@ -68,7 +68,8 @@ flowchart TD
 | **Eq 2** | RED Number (Hansen 2007) | $RED = R_a / R_o$ | Dimensionless $\ge 0$ | **VERIFIED** |
 | **Eq 3** | Group Contribution (Hoftyzer-Van Krevelen 1990) | $\delta_D = \sum F_{dI}/V, \delta_P = \sqrt{\sum F_{pI}^2}/V, \delta_H = \sqrt{\sum E_{hI}/V}$ | $\text{MPa}^{0.5}$ | **VERIFIED** |
 | **Eq 4** | FH Free Energy of Mixing (Flory 1953, Huggins 1942) | $\Delta G_m / (R T) = \phi_1 \ln \phi_1 + (\phi_2/r) \ln \phi_2 + \chi \phi_1 \phi_2$ | Dimensionless | **VERIFIED** |
-| **Eq 5** | Lindvig $\chi$ Conversion (Lindvig et al. 2002) | $\chi = \frac{V_m}{R T} \left[ 0.60(\Delta \delta_D)^2 + 0.25(\Delta \delta_P)^2 + 0.25(\Delta \delta_H)^2 \right]$ | Dimensionless $\ge 0$ | **VERIFIED** |
+| **Eq 5** | Lindvig $\chi$ Conversion (Lindvig et al. 2002) | $\chi = 0.60 \cdot \frac{V_m}{R T} \left[ 1.0(\Delta \delta_D)^2 + 0.25(\Delta \delta_P)^2 + 0.25(\Delta \delta_H)^2 \right]$ | Dimensionless $\ge 0$ | **VERIFIED** |
+
 | **Eq 6** | Gordon-Taylor $T_g$ (Gordon & Taylor 1952) | $T_{g,\text{mix}} = \frac{w_1 T_{g,1} + K w_2 T_{g,2}}{w_1 + K w_2}$ | Kelvin ($K > 0$) | **VERIFIED** |
 | **Eq 7** | Simha-Boyer $K$ (Simha & Boyer 1962) | $K = \frac{\rho_1 T_{g,1}}{\rho_2 T_{g,2}}$ | Dimensionless $> 0$ | **VERIFIED** |
 | **Eq 8** | AHP Eigenvector (Saaty 1980) | $A w = \lambda_{\max} w, \quad CI = \frac{\lambda_{\max}-n}{n-1}, \quad CR = \frac{CI}{RI(n)}$ | Dimensionless ($CR < 0.08$) | **VERIFIED** |
@@ -108,9 +109,9 @@ To verify numerical implementation correctness, the V&V Committee performed an *
 4. **Flory-Huggins Interaction Parameter $\chi$ (Lindvig)**:
    $$R T = 8.314462618 \times 298.15 = 2478.95698\text{ J/mol}$$
    $$V_m = 273.0 \times 10^{-6}\text{ m}^3\text{/mol}$$
-   $$\text{Energy Diff} = \left[ 0.60(1.2)^2 + 0.25(-0.6)^2 + 0.25(-2.1)^2 \right] \times 10^6 = 2.0565 \times 10^6\text{ J/m}^3$$
-   $$\chi = \frac{273.0 \times 10^{-6}}{2478.95698} \times 2.0565 \times 10^6 = 0.226476$$
-   - **Software Output**: `0.226476`
+   $$\text{Energy Diff} = \left[ 1.0(1.2)^2 + 0.25(-0.6)^2 + 0.25(-2.1)^2 \right] \times 10^6 = 2.6325 \times 10^6\text{ J/m}^3$$
+   $$\chi = 0.60 \times \frac{273.0 \times 10^{-6}}{2478.95698} \times 2.6325 \times 10^6 = 0.173946$$
+   - **Software Output**: `0.173946`
    - **Absolute Error**: $0.000000$ | **Relative Error**: $0.00\%$
 
 5. **Simha-Boyer $K$ & Gordon-Taylor $T_{g,\text{mix}}$**:
@@ -128,7 +129,7 @@ To verify numerical implementation correctness, the V&V Committee performed an *
 | HSP Distance Ra (MPa^0.5)| 3.244996          | 3.244996        | 0.0000%          |
 | RED Number               | 0.405625          | 0.405625        | 0.0000%          |
 | s_HSP Score              | 0.797188          | 0.797188        | 0.0000%          |
-| Flory-Huggins Chi        | 0.226476          | 0.226476        | 0.0000%          |
+| Flory-Huggins Chi        | 0.173946          | 0.173946        | 0.0000%          |
 | Simha-Boyer K            | 0.974732          | 0.974732        | 0.0000%          |
 | Gordon-Taylor Tg (K)     | 334.460 K         | 334.460 K       | 0.0000%          |
 +--------------------------+-------------------+-----------------+------------------+
@@ -337,11 +338,29 @@ The V&V Committee evaluated the readiness of the framework for peer-reviewed man
 
 ---
 
-## TASK 15: FINAL SCIENTIFIC VERDICT
+## TASK 15: CODE QUALITY PASS & KNOWN ISSUES FIXED
+
+### Known Issues Found and Corrected During Code Quality Review
+
+1. **Typing Import Fixes**:
+   - Fixed missing `Any` and `Optional` imports in `drug_profile.py`, `polymer_library.py`, and `validator.py` ensuring zero runtime `NameError` exceptions on import.
+2. **Flory-Huggins Critical Parameter ($\chi_c$) Formulation**:
+   - Corrected binary small-molecule/polymer $\chi_c = 0.5(1 + 1/\sqrt{r_2})^2$ eliminating redundant $+1$ term ($r_1=1$ is absorbed into the leading 1 term).
+   - Validated that for $r_2=10$, $\chi_c \approx 0.866$ and approaches $0.500$ as $r_2 \to \infty$.
+3. **Lindvig $\chi$ Interaction Parameter Weighting**:
+   - Corrected the formula to apply the global $\alpha = 0.60$ factor to the entire bracketed sum $\alpha \frac{V_m}{RT}[(\Delta\delta_D)^2 + 0.25(\Delta\delta_P)^2 + 0.25(\Delta\delta_H)^2]$ instead of per-component dispersive scaling.
+   - Re-verified benchmark calculation against Indomethacin + Soluplus ($\chi = 0.173946$).
+4. **Indomethacin Melting Point ($T_m$) Provenance**:
+   - Updated stable $\gamma$-form $T_m$ to $433.15\,\text{K}$ ($160.0^\circ\text{C}$), replacing the metastable $\alpha$-form value ($424.15\,\text{K}$).
+   - Confirmed that since explicit experimental $T_g = 315.15\,\text{K}$ is provided, $T_m$ does not affect active physics scores.
+
+---
+
+## TASK 16: AUDIT DECLARATION
 
 ```
 ===================================================================================
-                  FORMAL VERIFICATION & VALIDATION SIGN-OFF
+                  VERIFICATION & VALIDATION DECLARATION
 ===================================================================================
  VERIFIED:
   [X] Mathematical correctness of Equations 1-12.
@@ -354,15 +373,9 @@ The V&V Committee evaluated the readiness of the framework for peer-reviewed man
   [ ] Prospective Gordon-Taylor Tg RMSE <= 10 K (H2) on novel ASDs.
   [ ] Multi-pH dissolution superiority (H3) and 6-month stability retention (H4).
 
- VERDICT:
-  The computational framework `asd_mcda` v1.0.0 is SCIENTIFICALLY VALIDATED,
-  NUMERICALLY CORRECT, and APPROVED to proceed to Phase 3 experimental execution.
+ DECLARATION:
+  This document represents an internal scientific verification and validation self-audit
+  performed as part of the computational code-quality review.
 ===================================================================================
 ```
 
-**Signed by the Independent V&V Audit Committee:**
-- *Computational Pharmaceutics Scientist*
-- *Pharmaceutical Formulation Scientist*
-- *Senior Scientific Software Auditor*
-- *RDKit Core Developer*
-- *Pharmaceutical Statistician*

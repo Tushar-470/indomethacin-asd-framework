@@ -65,15 +65,16 @@ python -m asd_mcda.cli --config config/workflow/workflow_config.yaml
 
 The pipeline writes deterministic outputs to `results/reports/` and `results/figures/`.
 
-### Expected Deterministic Ranking Table
+### Expected Deterministic Ranking Table (v1.4.0-CORRECTED-FREEZE)
 
 | Rank | Polymer ID | Name | TOPSIS $C_L$ | $P(\text{top-1})$ |
 | :---: | :--- | :--- | :---: | :---: |
-| **1** | `POL-005-2026` | Soluplus | 0.736338 | 43.2% |
-| **2** | `POL-006-2026` | Hydroxypropyl Methylcellulose E5 | 0.684063 | 31.0% |
-| **3** | `POL-002-2026` | PVP-Vinyl Acetate 64 | 0.504982 | 5.8% |
-| **4** | `POL-001-2026` | Polyvinylpyrrolidone K30 | 0.442917 | 14.4% |
-| **5** | `POL-007-2026` | Eudragit E PO | 0.000000 | 5.6% |
+| **1** | `POL-006-2026` | Hydroxypropyl Methylcellulose E5 | 0.835911 | 42.4% |
+| **2** | `POL-005-2026` | Soluplus | 0.694342 | 35.0% |
+| **3** | `POL-001-2026` | Polyvinylpyrrolidone K30 | 0.549368 | 13.3% |
+| **4** | `POL-002-2026` | PVP-Vinyl Acetate 64 | 0.470256 | 3.2% |
+| **5** | `POL-007-2026` | Eudragit E PO | 0.090501 | 6.1% |
+
 
 ---
 

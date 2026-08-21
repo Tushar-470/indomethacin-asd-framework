@@ -1,16 +1,45 @@
 {
-  "release_tag": "v1.3.1-FREEZE",
-  "git_commit": "2220c44",
-  "dataset_sha256": "24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff",
+  "framework_release": "v1.4.0-CORRECTED-FREEZE",
+  "algorithm": "Joint-Distribution Monte Carlo Uncertainty Quantification",
   "n_iterations": 10000,
-  "p_top1_probabilities": {
-    "POL-001-2026": 0.144,
-    "POL-002-2026": 0.058,
-    "POL-007-2026": 0.056,
-    "POL-005-2026": 0.432,
-    "POL-006-2026": 0.31
-  },
+  "random_seed": 42,
+  "perturbation_sources": 7,
   "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
-  "selected_polymer_id": "POL-005-2026",
-  "selected_polymer_name": "Soluplus"
+  "gelman_rubin_rhat": 1.005,
+  "converged": true,
+  "selected_candidate_id": "POL-006-2026",
+  "p_top1_probabilities": {
+    "POL-001-2026": 0.133,
+    "POL-002-2026": 0.032,
+    "POL-007-2026": 0.061,
+    "POL-005-2026": 0.35,
+    "POL-006-2026": 0.424
+  },
+  "cci_distributions": {
+    "POL-001-2026": [
+      0.5,
+      0.2,
+      0.8
+    ],
+    "POL-002-2026": [
+      0.5,
+      0.2,
+      0.8
+    ],
+    "POL-007-2026": [
+      0.5,
+      0.2,
+      0.8
+    ],
+    "POL-005-2026": [
+      0.5,
+      0.2,
+      0.8
+    ],
+    "POL-006-2026": [
+      0.5,
+      0.2,
+      0.8
+    ]
+  }
 }

@@ -1,0 +1,44 @@
+{
+  "selected_polymer": "PVP-Vinyl Acetate 64",
+  "selected_polymer_id": "POL-002-2026",
+  "topsis_CL": 1.0,
+  "confidence_P_top1": 0.993,
+  "confidence_tier": "High Confidence (P(top-1) >= 0.70)",
+  "predicted_Tg_K": 358.1,
+  "Tg_prediction_interval": [
+    353.1,
+    363.1
+  ],
+  "predicted_chi": 0.391,
+  "chi_critical": 2.174,
+  "miscibility_class": "Miscible (Below Critical chi_c = 2.17)",
+  "stability_tier": "High Stability (Tg margin >= 50 K above 25\u00b0C); Medium-High (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Low",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Moderately",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 1.0,
+      "topsis_ideal_distance": 0.0,
+      "topsis_anti_ideal_distance": 1.414213562373095,
+      "confidence_p_top1": 0.993
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-PEG-50K-2026",
+      "polymer_name": "Poly(ethylene glycol) 50000",
+      "abbreviation": "PEG_50K",
+      "topsis_cl": 0.0,
+      "topsis_ideal_distance": 1.414213562373095,
+      "topsis_anti_ideal_distance": 0.0,
+      "confidence_p_top1": 0.007
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 1,
+    "pc1_explained_variance_pct": 100.0,
+    "is_effectively_one_dimensional": 

@@ -15,11 +15,12 @@ def test_no_hardcoded_figure_numbers_in_titles(tmp_path):
     fig_gen = FigureGenerator(tmp_path, dpi=100)
 
     df_ranking = pd.DataFrame({
-        "polymer_id": ["POL-005-2026", "POL-003-2026"],
-        "polymer_name": ["Soluplus", "HPMC Acetate Succinate Low"],
-        "topsis_cl": [0.7776, 0.7347],
+        "polymer_id": ["POL-005-2026", "POL-006-2026"],
+        "polymer_name": ["Soluplus", "Hydroxypropyl Methylcellulose E5"],
+        "topsis_cl": [0.7363, 0.6841],
         "topsis_rank": [1, 2],
     })
+
 
     # Test Figure 6 generation
     p6 = fig_gen.plot_figure_6_ranking(df_ranking)

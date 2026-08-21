@@ -59,8 +59,7 @@ Base URL: `http://127.0.0.1:8000/api`
   "polymer_ids": [
     "POL-001-2026",
     "POL-002-2026",
-    "POL-003-2026",
-    "POL-004-2026",
+    "POL-007-2026",
     "POL-005-2026",
     "POL-006-2026"
   ],
@@ -74,19 +73,22 @@ Base URL: `http://127.0.0.1:8000/api`
 
 ```json
 {
-  "analysis_id": "ANA-20260809-133500-a1b2c3",
+  "analysis_id": "ANA-20260821-140000-a1b2c3",
   "selected_polymer": "Soluplus",
   "selected_polymer_id": "POL-005-2026",
-  "topsis_cl": 0.777582,
-  "confidence_tier": "Low Confidence (P(top-1) < 0.40)",
-  "predicted_tg_k": 334.5,
-  "predicted_chi": 0.226,
-  "miscibility_class": "Miscible (Below Critical chi_c = 2.12)",
+  "topsis_cl": 0.736338,
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "predicted_tg_k": 334.75,
+  "predicted_chi": 0.2265,
+  "miscibility_class": "Miscible (Below Critical chi_c = 0.50)",
   "ranking": [
-    { "rank": 1, "polymer_id": "POL-005-2026", "abbreviation": "SOLUPLUS", "topsis_cl": 0.777582 },
-    { "rank": 2, "polymer_id": "POL-003-2026", "abbreviation": "HPMCAS_L", "topsis_cl": 0.543210 },
-    { "rank": 3, "polymer_id": "POL-002-2026", "abbreviation": "PVP_VA_64", "topsis_cl": 0.489123 }
+    { "rank": 1, "polymer_id": "POL-005-2026", "abbreviation": "SOLUPLUS", "topsis_cl": 0.736338 },
+    { "rank": 2, "polymer_id": "POL-006-2026", "abbreviation": "HPMC_E5", "topsis_cl": 0.684063 },
+    { "rank": 3, "polymer_id": "POL-002-2026", "abbreviation": "PVP_VA_64", "topsis_cl": 0.504982 },
+    { "rank": 4, "polymer_id": "POL-001-2026", "abbreviation": "PVP_K30", "topsis_cl": 0.442917 },
+    { "rank": 5, "polymer_id": "POL-007-2026", "abbreviation": "EDR_EPO", "topsis_cl": 0.000000 }
   ],
   "software_version": "1.0.0"
 }
 ```
+

@@ -57,14 +57,13 @@ def test_polymer_library_lookup_canonical_names():
     from pathlib import Path
     from asd_mcda.drug.drug_profile import Drug
     
-    csv_path = Path("config/polymers/polymer_library_v2.csv")
+    csv_path = Path("config/polymers/polymer_library_v3_five_polymers.csv")
     assert csv_path.exists()
     
     drug_data = {
         "drug_id": "IND-001-2026",
         "generic_name": "Indomethacin",
         "canonical_smiles": "CC1=C(C=C(C=C1)OC)C(=O)C2=CC=C(C=C2)Cl",
-
         "mw_da": 357.79,
         "tm_k": 434.0,
         "tg_k": 315.0,
@@ -79,9 +78,9 @@ def test_polymer_library_lookup_canonical_names():
     assert sol is not None
     assert sol.polymer_name == "Soluplus"
     
-    hpmcas = lib.get_by_id("POL-003-2026")
-    assert hpmcas is not None
-    assert hpmcas.polymer_name == "HPMC Acetate Succinate Low"
+    epo = lib.get_by_id("POL-007-2026")
+    assert epo is not None
+    assert epo.polymer_name == "Eudragit E PO"
     
     pvp_va = lib.get_by_id("POL-002-2026")
     assert pvp_va is not None
@@ -90,4 +89,9 @@ def test_polymer_library_lookup_canonical_names():
     pvp_k30 = lib.get_by_id("POL-001-2026")
     assert pvp_k30 is not None
     assert pvp_k30.polymer_name == "Polyvinylpyrrolidone K30"
+
+    hpmc_e5 = lib.get_by_id("POL-006-2026")
+    assert hpmc_e5 is not None
+    assert hpmc_e5.polymer_name == "Hydroxypropyl Methylcellulose E5"
+
 

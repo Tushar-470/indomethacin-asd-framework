@@ -1,0 +1,64 @@
+{
+  "selected_polymer": "Soluplus",
+  "selected_polymer_id": "POL-005-2026",
+  "topsis_CL": 0.8330942938307969,
+  "confidence_P_top1": 0.582,
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "predicted_Tg_K": 335.0,
+  "Tg_prediction_interval": [
+    330.0,
+    340.0
+  ],
+  "predicted_chi": 0.226,
+  "chi_critical": 0.559,
+  "miscibility_class": "Miscible (Below Critical chi_c = 0.56)",
+  "stability_tier": "Medium Stability (Tg margin 30-50 K above 25\u00b0C); Medium-Low (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Moderate",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Slightly",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-005-2026",
+      "polymer_name": "Soluplus",
+      "abbreviation": "SOLUPLUS",
+      "topsis_cl": 0.8330942938307969,
+      "topsis_ideal_distance": 0.1933242507234634,
+      "topsis_anti_ideal_distance": 0.9649599994715425,
+      "confidence_p_top1": 0.582
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-006-2026",
+      "polymer_name": "Hydroxypropyl Methylcellulose E5",
+      "abbreviation": "HPMC_E5",
+      "topsis_cl": 0.4740420746296819,
+      "topsis_ideal_distance": 0.6202405695500669,
+      "topsis_anti_ideal_distance": 0.5590183400164463,
+      "confidence_p_top1": 0.205
+    },
+    {
+      "rank": 3,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 0.35719167142550096,
+      "topsis_ideal_distance": 0.7084264579870613,
+      "topsis_anti_ideal_distance": 0.3936539390701423,
+      "confidence_p_top1": 0.027
+    },
+    {
+      "rank": 4,
+      "polymer_id": "POL-001-2026",
+      "polymer_name": "Polyvinylpyrrolidone K30",
+      "abbreviation": "PVP_K30",
+      "topsis_cl": 0.19797913016278762,
+      "topsis_ideal_distance": 0.9537920920204508,
+      "topsis_anti_ideal_distance": 0.23544390905024914,
+      "confidence_p_top1": 0.186
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 2,
+    "pc1_explained_variance_pct": 83.5,
+    "is_effectively_one_dimensional": 

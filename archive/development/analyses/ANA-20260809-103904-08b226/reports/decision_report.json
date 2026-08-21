@@ -1,0 +1,22 @@
+{
+  "selected_polymer": "HPMC Acetate Succinate Low",
+  "selected_polymer_id": "POL-003-2026",
+  "topsis_CL": 1.0,
+  "confidence_P_top1": 0.995,
+  "confidence_tier": "High Confidence (P(top-1) >= 0.70)",
+  "predicted_Tg_K": 341.7,
+  "Tg_prediction_interval": [
+    336.7,
+    346.7
+  ],
+  "predicted_chi": 0.219,
+  "chi_critical": 2.12,
+  "miscibility_class": "Miscible (Below Critical chi_c = 2.12)",
+  "stability_tier": "Medium Stability (Tg margin 30-50 K above 25\u00b0C); Medium-Low (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Moderate",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Slightly",
+  "pca_effective_dimensionality": {
+    "retained_components_k": 1,
+    "pc1_explained_variance_pct": 100.0,
+    "is_effectively_one_dimensional": 

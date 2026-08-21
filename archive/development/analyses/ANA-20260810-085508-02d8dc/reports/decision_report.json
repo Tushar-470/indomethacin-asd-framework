@@ -1,0 +1,101 @@
+{
+  "selected_polymer": "HPMC Acetate Succinate Low",
+  "selected_polymer_id": "POL-003-2026",
+  "topsis_CL": 0.9271583409638388,
+  "confidence_P_top1": 0.669,
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "predicted_Tg_K": 365.6,
+  "Tg_prediction_interval": [
+    360.6,
+    370.6
+  ],
+  "predicted_chi": 0.219,
+  "chi_critical": 2.12,
+  "miscibility_class": "Miscible (Below Critical chi_c = 2.12)",
+  "stability_tier": "High Stability (Tg margin >= 50 K above 25\u00b0C); Medium-High (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Low",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Slightly",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-003-2026",
+      "polymer_name": "HPMC Acetate Succinate Low",
+      "abbreviation": "HPMCAS_L",
+      "topsis_cl": 0.9271583409638388,
+      "topsis_ideal_distance": 0.07418922704543546,
+      "topsis_anti_ideal_distance": 0.9443107361226913,
+      "confidence_p_top1": 0.669
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 0.5395431609489445,
+      "topsis_ideal_distance": 0.5115869755337702,
+      "topsis_anti_ideal_distance": 0.5994552159300106,
+      "confidence_p_top1": 0.135
+    },
+    {
+      "rank": 3,
+      "polymer_id": "POL-006-2026",
+      "polymer_name": "Hydroxypropyl Methylcellulose E5",
+      "abbreviation": "HPMC_E5",
+      "topsis_cl": 0.44201988867465686,
+      "topsis_ideal_distance": 0.6275047215491475,
+      "topsis_anti_ideal_distance": 0.49709579523032316,
+      "confidence_p_top1": 0.1
+    },
+    {
+      "rank": 4,
+      "polymer_id": "POL-004-2026",
+      "polymer_name": "Eudragit L100",
+      "abbreviation": "EDR_L100",
+      "topsis_cl": 0.1691897526760337,
+      "topsis_ideal_distance": 0.9081881352317669,
+      "topsis_anti_ideal_distance": 0.1849473167646838,
+      "confidence_p_top1": 0.096
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 2,
+    "pc1_explained_variance_pct": 76.4,
+    "is_effectively_one_dimensional": false,
+    "interpretation": [
+      "PC1 (76.4% var): Dominated by s_chi loading.",
+      "PC2 (22.4% var): Dominated by s_HSP loading."
+    ]
+  },
+  "baseline_comparison_delta": {
+    "spearman_full_cci": 0.3946648814672956,
+    "spearman_hsp_only": 0.030358837035945815,
+    "spearman_equal_weight": -0.4553825555391872,
+    "delta_vs_hsp_only": 0.3643060444313498,
+    "delta_vs_equal_weight": 0.8500474370064828,
+    "outperforms_baselines": true
+  },
+  "fbm_boundary_logistic": {
+    "beta_coefficients": [
+      0.5428421753626089,
+      -0.08194869290120269,
+      0.3911530221696501,
+      0.1491570435416293
+    ],
+    "intercept": 4.030599266657369,
+    "auc_roc": 0.8899999999999999,
+    "is_actionable": true,
+    "region_classification": {
+      "Rank1_100C_30%Load_10%Conc": "Safe (P=0.03 < 0.30)",
+      "Rank1_120C_40%Load_15%Conc": "Safe (P=0.01 < 0.30)",
+      "Rank2_80C_40%Load_15%Conc": "Safe (P=0.22 < 0.30)"
+    }
+  },
+  "validation_summary": {
+    "spearman_rho": 0.3946648814672956,
+    "kendall_tau": 0.29814239699997197,
+    "rmse_tg_k": 4.2,
+    "top1_agreement": false,
+    "classification": "Exploratory (n=6 polymers; confirmatory requires n>=20)"
+  }
+}

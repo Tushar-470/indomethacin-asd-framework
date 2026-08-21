@@ -1,0 +1,54 @@
+{
+  "selected_polymer": "My Custom BioPolymer Carrier",
+  "selected_polymer_id": "POL-CUSTOM-REGRESSION-888",
+  "topsis_CL": 0.7481242088475948,
+  "confidence_P_top1": 0.594,
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "predicted_Tg_K": 376.0,
+  "Tg_prediction_interval": [
+    371.0,
+    381.0
+  ],
+  "predicted_chi": 0.084,
+  "chi_critical": 0.574,
+  "miscibility_class": "Miscible (Below Critical chi_c = 0.57)",
+  "stability_tier": "High Stability (Tg margin >= 50 K above 25\u00b0C); Medium-High (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Low",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Slightly",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-CUSTOM-REGRESSION-888",
+      "polymer_name": "My Custom BioPolymer Carrier",
+      "abbreviation": "CUST_BIO_888",
+      "topsis_cl": 0.7481242088475948,
+      "topsis_ideal_distance": 0.30322471958170816,
+      "topsis_anti_ideal_distance": 0.9006413534313701,
+      "confidence_p_top1": 0.594
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-003-2026",
+      "polymer_name": "HPMC Acetate Succinate Low",
+      "abbreviation": "HPMCAS_L",
+      "topsis_cl": 0.4055088593434553,
+      "topsis_ideal_distance": 0.7218780829387098,
+      "topsis_anti_ideal_distance": 0.49240087526659065,
+      "confidence_p_top1": 0.251
+    },
+    {
+      "rank": 3,
+      "polymer_id": "POL-005-2026",
+      "polymer_name": "Soluplus",
+      "abbreviation": "SOLUPLUS",
+      "topsis_cl": 0.0,
+      "topsis_ideal_distance": 1.0003600631904919,
+      "topsis_anti_ideal_distance": 0.0,
+      "confidence_p_top1": 0.155
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 2,
+    "pc1_explained_variance_pct": 91.9,
+    "is_effectively_one_dimensional": 

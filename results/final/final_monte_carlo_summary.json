@@ -1,0 +1,16 @@
+{
+  "release_tag": "v1.3.1-FREEZE",
+  "git_commit": "2220c44",
+  "dataset_sha256": "24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff",
+  "n_iterations": 10000,
+  "p_top1_probabilities": {
+    "POL-001-2026": 0.144,
+    "POL-002-2026": 0.058,
+    "POL-007-2026": 0.056,
+    "POL-005-2026": 0.432,
+    "POL-006-2026": 0.31
+  },
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "selected_polymer_id": "POL-005-2026",
+  "selected_polymer_name": "Soluplus"
+}

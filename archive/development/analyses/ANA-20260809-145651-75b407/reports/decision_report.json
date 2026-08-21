@@ -1,0 +1,91 @@
+{
+  "selected_polymer": "PVP-Vinyl Acetate 64",
+  "selected_polymer_id": "POL-002-2026",
+  "topsis_CL": 0.6979993477901324,
+  "confidence_P_top1": 0.685,
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "predicted_Tg_K": 358.1,
+  "Tg_prediction_interval": [
+    353.1,
+    363.1
+  ],
+  "predicted_chi": 0.391,
+  "chi_critical": 2.174,
+  "miscibility_class": "Miscible (Below Critical chi_c = 2.17)",
+  "stability_tier": "High Stability (Tg margin >= 50 K above 25\u00b0C); Medium-High (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Low",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Moderately",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 0.6979993477901324,
+      "topsis_ideal_distance": 0.40792121261191905,
+      "topsis_anti_ideal_distance": 0.942808362397226,
+      "confidence_p_top1": 0.685
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-004-2026",
+      "polymer_name": "Eudragit L100",
+      "abbreviation": "EDR_L100",
+      "topsis_cl": 0.5686590030731326,
+      "topsis_ideal_distance": 0.47253574054644276,
+      "topsis_anti_ideal_distance": 0.6229681506048076,
+      "confidence_p_top1": 0.259
+    },
+    {
+      "rank": 3,
+      "polymer_id": "POL-PEG-50K-2026",
+      "polymer_name": "Poly(ethylene glycol) 50000",
+      "abbreviation": "PEG_50K",
+      "topsis_cl": 0.0,
+      "topsis_ideal_distance": 1.0275312024713381,
+      "topsis_anti_ideal_distance": 0.0,
+      "confidence_p_top1": 0.056
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 2,
+    "pc1_explained_variance_pct": 69.6,
+    "is_effectively_one_dimensional": false,
+    "interpretation": [
+      "PC1 (69.6% var): Dominated by s_HSP loading.",
+      "PC2 (30.4% var): Dominated by s_GT loading."
+    ]
+  },
+  "baseline_comparison_delta": {
+    "spearman_full_cci": -0.06761234037828133,
+    "spearman_hsp_only": -0.06761234037828133,
+    "spearman_equal_weight": -0.3380617018914066,
+    "delta_vs_hsp_only": 0.0,
+    "delta_vs_equal_weight": 0.27044936151312526,
+    "outperforms_baselines": true
+  },
+  "fbm_boundary_logistic": {
+    "beta_coefficients": [
+      0.5428421753626089,
+      -0.08194869290120269,
+      0.3911530221696501,
+      0.1491570435416293
+    ],
+    "intercept": 4.030599266657369,
+    "auc_roc": 0.8899999999999999,
+    "is_actionable": true,
+    "region_classification": {
+      "Rank1_100C_30%Load_10%Conc": "Safe (P=0.03 < 0.30)",
+      "Rank1_120C_40%Load_15%Conc": "Safe (P=0.01 < 0.30)",
+      "Rank2_80C_40%Load_15%Conc": "Safe (P=0.22 < 0.30)"
+    }
+  },
+  "validation_summary": {
+    "spearman_rho": -0.06761234037828133,
+    "kendall_tau": -0.08606629658238703,
+    "rmse_tg_k": 4.2,
+    "top1_agreement": false,
+    "classification": "Exploratory (n=6 polymers; confirmatory requires n>=20)"
+  }
+}

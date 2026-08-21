@@ -1,0 +1,4 @@
+,polymer_id,abbreviation,topsis_ideal_distance,topsis_anti_ideal_distance,topsis_cl,topsis_rank,polymer_name
+0,POL-002-2026,PVP_VA_64,0.40792121261191905,0.942808362397226,0.6979993477901324,1,PVP-Vinyl Acetate 64
+1,POL-004-2026,EDR_L100,0.47253574054644276,0.6229681506048076,0.5686590030731326,2,Eudragit L100
+2,POL-PEG-50K-2026,PEG_50K,1.0275312024713381,0.0,0.0,3,Poly(ethylene glycol) 50000

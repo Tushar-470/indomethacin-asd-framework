@@ -1,0 +1,121 @@
+{
+  "drug_id": "IND-001-2026",
+  "drug_data": {
+    "drug_id": "IND-001-2026",
+    "generic_name": "Indomethacin",
+    "iupac_name": "2-{1-[(4-chlorophenyl)carbonyl]-5-methoxy-2-methyl-1H-indol-3-yl}acetic acid",
+    "canonical_smiles": "CC1=C(C=C(C=C1)OC)C2=C(C3=CC=CC=C3N2CC(=O)O)C(=O)C4=CC=C(C=C4)Cl",
+    "inchi_key": "CGIGDMFJXJATDK-UHFFFAOYSA-N",
+    "cas_number": "53-86-1",
+    "molecular_formula": "C19H16ClNO4",
+    "molecular_weight_g_mol": 357.79,
+    "bcs_class": "II",
+    "tm_k": 424.15,
+    "tg_k": 315.15,
+    "tg_k_estimated": 296.91,
+    "tg_source": "experimental",
+    "density_crystalline_g_cm3": 1.31,
+    "density_amorphous_g_cm3": 1.22,
+    "density_source": "literature",
+    "pka": 4.5,
+    "logp": 4.27,
+    "logd_ph74": 1.32,
+    "hbd": 2,
+    "hba": 4,
+    "tpsa_angstrom2": 68.5,
+    "rotatable_bonds": 4,
+    "aromatic_rings": 2,
+    "hsp_delta_d": 19.2,
+    "hsp_delta_p": 7.9,
+    "hsp_delta_h": 8.4,
+    "hsp_ro": 8.0,
+    "hsp_source": "literature",
+    "molar_volume_cm3_mol": 273.0,
+    "delta_h_fus_kj_mol": 34.5,
+    "aqueous_solubility_ph12_mg_ml": 0.005,
+    "aqueous_solubility_ph68_mg_ml": 0.1,
+    "polymorphs": [
+      "gamma",
+      "alpha"
+    ],
+    "ionisation_state": "neutral",
+    "reference_doi": "10.1016/j.xphs.2007.01.001",
+    "reference_source": "peer_reviewed",
+    "data_quality_score": 1.0,
+    "validation_status": "validated"
+  },
+  "polymer_ids": [
+    "POL-002-2026",
+    "POL-004-2026",
+    "POL-PEG-50K-2026"
+  ],
+  "mode": "exploratory",
+  "drug_loading_ww": 0.3,
+  "random_seed": 42,
+  "config": {
+    "workflow": {
+      "name": "indomethacin_polymer_screening",
+      "version": "1.0.0",
+      "random_seed": 42,
+      "execution_mode": "FULL"
+    },
+    "paths": {
+      "drug_profile": "config/drugs/indomethacin.json",
+      "polymer_library": "config/polymers/polymer_library_v2.csv",
+      "ahp_matrix_dir": "config/ahp",
+      "output_dir": "results",
+      "log_dir": "logs"
+    },
+    "gates": {
+      "gate1_hsp_red_threshold": 1.0,
+      "gate1_min_passing_polymers": 3,
+      "gate2_ahp_cr_max": 0.08,
+      "gate3_rmse_max_k": 10.0,
+      "gate3_spearman_rho_min": 0.7,
+      "gate3_baseline_delta_rho_min": 0.1,
+      "gate4_fbm_auc_min": 0.75,
+      "gate4_fbm_ci_width_max_percent": 20.0
+    },
+    "pca": {
+      "variance_threshold": 0.95
+    },
+    "uncertainty": {
+      "monte_carlo_iterations": 10000,
+      "gelman_rubin_rhat_threshold": 1.01,
+      "cov_threshold_percent": 5.0,
+      "magnitudes": {
+        "hsp_error_mpa": 1.5,
+        "chi_error_relative": 0.25,
+        "logp_error": 0.7,
+        "tg_drug_baird_error_k": 10.0,
+        "tg_polymer_lit_error_k": 3.0,
+        "density_error_g_cm3": 0.05,
+        "ahp_weight_relative": 0.2
+      }
+    },
+    "sensitivity": {
+      "oat_multipliers": [
+        0.5,
+        1.5
+      ],
+      "morris_trajectories": 10,
+      "morris_dominant_mu_threshold": 0.1,
+      "morris_interactive_sigma_threshold": 0.05
+    },
+    "prediction": {
+      "default_drug_loading_ww": 0.3,
+      "fbm_regularization_c": 1.0,
+      "fbm_safe_p_threshold": 0.3,
+      "fbm_failure_p_threshold": 0.7
+    },
+    "reporting": {
+      "export_formats": [
+        "json",
+        "xlsx",
+        "csv",
+        "md"
+      ],
+      "figure_dpi": 300
+    }
+  }
+}

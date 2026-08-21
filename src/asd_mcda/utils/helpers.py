@@ -36,3 +36,17 @@ def sanitize_filename(name: str) -> str:
     name = re.sub(r'[\\/*?:"<>|]', "_", name)
     name = re.sub(r"\s+", "_", name)
     return name.strip("_")
+
+
+def wilson_score_ci(p: float, n: int, confidence: float = 0.95) -> str:
+    """Compute Wilson score interval for binomial proportion."""
+    import math
+    from scipy import stats
+    z = stats.norm.ppf(1 - (1 - confidence) / 2)
+    denominator = 1 + (z**2) / n
+    center = (p + (z**2) / (2 * n)) / denominator
+    spread = (z * math.sqrt((p * (1 - p) / n) + (z**2) / (4 * (n**2)))) / denominator
+    lower = max(0.0, center - spread)
+    upper = min(1.0, center + spread)
+    return f"[{lower*100:.1f}%, {upper*100:.1f}%]"
+

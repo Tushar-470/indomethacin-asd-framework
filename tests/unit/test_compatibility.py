@@ -41,16 +41,17 @@ def test_setup():
 
     poly2 = Polymer.from_dict({
         "polymer_id": "EDR",
-        "polymer_name": "Eudragit L100",
-        "abbreviation": "EDR_L100",
-        "mn_da": 125000,
-        "tg_k": 438.0,
-        "density_g_cm3": 1.25,
-        "hsp_delta_d": 16.5,
-        "hsp_delta_p": 7.5,
-        "hsp_delta_h": 9.0,
-        "monomer_smiles": "CC(C)C(=O)OC(C)C",
+        "polymer_name": "Eudragit E PO",
+        "abbreviation": "EDR_EPO",
+        "mn_da": 39000,
+        "tg_k": 323.15,
+        "density_g_cm3": 1.125,
+        "hsp_delta_d": 16.8,
+        "hsp_delta_p": 5.2,
+        "hsp_delta_h": 6.5,
+        "monomer_smiles": "CCN(C)CCOC(=O)C(C)=C",
     })
+
 
     poly3 = Polymer.from_dict({
         "polymer_id": "PVP",

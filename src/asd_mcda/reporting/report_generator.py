@@ -99,7 +99,7 @@ class ReportGenerator:
         # 1. Save JSON
         json_path = self.output_dir / "decision_report.json"
         with open(json_path, "w", encoding="utf-8") as f:
-            json.dump(report_dict, f, indent=2)
+            json.dump(report_dict, f, indent=2, default=str)
 
         # 2. Save CSV ranking
         csv_path = self.output_dir / "ranking.csv"

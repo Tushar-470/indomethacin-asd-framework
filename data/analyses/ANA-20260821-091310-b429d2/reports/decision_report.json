@@ -1,0 +1,111 @@
+{
+  "selected_polymer": "Soluplus",
+  "selected_polymer_id": "POL-005-2026",
+  "topsis_CL": 0.7363379273379228,
+  "confidence_P_top1": 0.432,
+  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "predicted_Tg_K": 335.0,
+  "Tg_prediction_interval": [
+    330.0,
+    340.0
+  ],
+  "predicted_chi": 0.226,
+  "chi_critical": 0.559,
+  "miscibility_class": "Miscible (Below Critical chi_c = 0.56)",
+  "stability_tier": "Medium Stability (Tg margin 30-50 K above 25\u00b0C); Medium-Low (40\u00b0C/75%RH)",
+  "risk_recrystallization": "Moderate",
+  "risk_phase_separation": "Low",
+  "risk_hygroscopicity": "Slightly",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-005-2026",
+      "polymer_name": "Soluplus",
+      "abbreviation": "SOLUPLUS",
+      "topsis_cl": 0.7363379273379228,
+      "topsis_ideal_distance": 0.3235034398880975,
+      "topsis_anti_ideal_distance": 0.9034589237989848,
+      "confidence_p_top1": 0.432
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-006-2026",
+      "polymer_name": "Hydroxypropyl Methylcellulose E5",
+      "abbreviation": "HPMC_E5",
+      "topsis_cl": 0.6840632557494626,
+      "topsis_ideal_distance": 0.31156886957267355,
+      "topsis_anti_ideal_distance": 0.6746059747360333,
+      "confidence_p_top1": 0.31
+    },
+    {
+      "rank": 3,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 0.5049820844874975,
+      "topsis_ideal_distance": 0.484852953730242,
+      "topsis_anti_ideal_distance": 0.494612513147383,
+      "confidence_p_top1": 0.058
+    },
+    {
+      "rank": 4,
+      "polymer_id": "POL-001-2026",
+      "polymer_name": "Polyvinylpyrrolidone K30",
+      "abbreviation": "PVP_K30",
+      "topsis_cl": 0.4429166202841378,
+      "topsis_ideal_distance": 0.5774374955017395,
+      "topsis_anti_ideal_distance": 0.45909943330819697,
+      "confidence_p_top1": 0.144
+    },
+    {
+      "rank": 5,
+      "polymer_id": "POL-007-2026",
+      "polymer_name": "Eudragit E PO",
+      "abbreviation": "EDR_EPO",
+      "topsis_cl": 0.0,
+      "topsis_ideal_distance": 0.959686095962783,
+      "topsis_anti_ideal_distance": 0.0,
+      "confidence_p_top1": 0.056
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 2,
+    "pc1_explained_variance_pct": 65.1,
+    "is_effectively_one_dimensional": false,
+    "interpretation": [
+      "PC1 (65.1% var): Dominated by s_chi loading.",
+      "PC2 (33.7% var): Dominated by s_GT loading."
+    ]
+  },
+  "baseline_comparison_delta": {
+    "spearman_full_cci": 0.21251185925162072,
+    "spearman_hsp_only": 0.21251185925162072,
+    "spearman_equal_weight": -0.3946648814672956,
+    "delta_vs_hsp_only": 0.0,
+    "delta_vs_equal_weight": 0.6071767407189164,
+    "outperforms_baselines": true
+  },
+  "fbm_boundary_logistic": {
+    "beta_coefficients": [
+      0.5428421753626089,
+      -0.08194869290120269,
+      0.3911530221696501,
+      0.1491570435416293
+    ],
+    "intercept": 4.030599266657369,
+    "auc_roc": 0.8899999999999999,
+    "is_actionable": true,
+    "region_classification": {
+      "Rank1_100C_30%Load_10%Conc": "Safe (P=0.03 < 0.30)",
+      "Rank1_120C_40%Load_15%Conc": "Safe (P=0.01 < 0.30)",
+      "Rank2_80C_40%Load_15%Conc": "Safe (P=0.22 < 0.30)"
+    }
+  },
+  "validation_summary": {
+    "spearman_rho": 0.21251185925162072,
+    "kendall_tau": 0.14907119849998599,
+    "rmse_tg_k": 4.2,
+    "top1_agreement": true,
+    "classification": "Exploratory (n=6 polymers; confirmatory requires n>=20)"
+  }
+}

@@ -71,7 +71,7 @@ class PCAPreprocessor:
         var_explained = self.pca_model.explained_variance_ratio_
         cum_var_retained = np.cumsum(var_explained)
 
-        is_1d = (var_explained[0] >= 0.80) or (k == 1)
+        is_1d = bool((var_explained[0] >= 0.80) or (k == 1))
 
         # Generate interpretation text per PC
         interpretation = []

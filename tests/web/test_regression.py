@@ -104,7 +104,6 @@ def test_newly_added_polymer_displays_actual_name():
         "hsp_delta_h": 9.2,
         "functional_groups": "ether|hydroxyl",
         "monomer_smiles": "CCOCC",
-        "literature_evidence_score": 0.7,
         "validation_status": "draft"
     }
 

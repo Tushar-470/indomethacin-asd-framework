@@ -22,7 +22,7 @@ def test_active_matrix_filtering():
     comp = CompatibilityMatrix(drug, lib)
     df_active = comp.build_active_matrix()
     
-    assert list(df_active.columns) == ["s_HSP", "s_chi", "s_GT"]
+    assert list(df_active.columns) == ["s_HSP", "s_chi", "s_desc", "s_GT"]
     assert len(df_active) == 5
 
 def test_wilson_score_ci_bounds():

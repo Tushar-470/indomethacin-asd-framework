@@ -39,3 +39,11 @@ htmlcov/
 .idea/
 *.swp
 *.swo
+
+# Web and Frontend runtime
+node_modules/
+frontend/node_modules/
+frontend/dist/
+data/analyses/
+data/analysis_history.db
+logs/*.log

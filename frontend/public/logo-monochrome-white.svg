@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 64" width="380" height="64">
+  <!-- Symbol (Lattice Lens) -->
+  <g id="logo-symbol">
+    <line x1="36.0" y1="12.0" x2="36.0" y2="32.0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="53.32" y1="22.0" x2="36.0" y2="32.0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="53.32" y1="42.0" x2="36.0" y2="32.0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="36.0" y1="52.0" x2="36.0" y2="32.0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="18.68" y1="42.0" x2="36.0" y2="32.0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="18.68" y1="22.0" x2="36.0" y2="32.0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" />
+    <polygon points="36.0,12.0 53.32,22.0 53.32,42.0 36.0,52.0 18.68,42.0 18.68,22.0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="round" />
+    <circle cx="36.0" cy="12.0" r="2.6" fill="#FFFFFF" />
+    <circle cx="53.32" cy="22.0" r="2.6" fill="#FFFFFF" />
+    <circle cx="53.32" cy="42.0" r="2.6" fill="#FFFFFF" />
+    <circle cx="36.0" cy="52.0" r="2.6" fill="#FFFFFF" />
+    <circle cx="18.68" cy="42.0" r="2.6" fill="#FFFFFF" />
+    <circle cx="18.68" cy="22.0" r="2.6" fill="#FFFFFF" />
+    <circle cx="36.0" cy="32.0" r="9.0" fill="none" stroke="#FFFFFF" stroke-width="2.2" />
+    <circle cx="36.0" cy="32.0" r="5.0" fill="none" stroke="#FFFFFF" stroke-width="1.3" />
+    <circle cx="36.0" cy="32.0" r="1.8" fill="#FFFFFF" />
+  </g>
+
+  <!-- Wordmark -->
+  <text x="72" y="42" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="28" letter-spacing="-0.02em">
+    <tspan font-weight="600" fill="#FFFFFF">PharmaPoly</tspan><tspan font-weight="700" fill="#FFFFFF">SCOPE</tspan>
+  </text>
+</svg>

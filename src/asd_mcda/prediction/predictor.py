@@ -59,13 +59,13 @@ class FormulationPredictor:
         chi = self.fh_model.compute_chi(poly)
         chi_c = self.fh_model.compute_chi_critical(poly)
 
-        # Miscibility classification
+        # Phase-boundary diagnostic classification
         if chi < 0.0:
-            miscibility = "Miscible (Thermodynamically Favorable, chi < 0)"
-        elif chi <= chi_c:
-            miscibility = f"Miscible (Below Critical chi_c = {chi_c:.2f})"
+            miscibility = "Phase-boundary diagnostic favorable (chi < 0)"
+        elif chi < chi_c:
+            miscibility = f"Phase-boundary diagnostic favorable (chi = {chi:.3f} < critical chi_c = {chi_c:.3f})"
         else:
-            miscibility = f"Partially Miscible / Immiscible (Exceeds chi_c = {chi_c:.2f})"
+            miscibility = f"Phase-boundary diagnostic unfavorable (chi = {chi:.3f} >= critical chi_c = {chi_c:.3f})"
 
         # Stability Tiers
         margin_25c = tg_mix - 298.15
@@ -85,7 +85,7 @@ class FormulationPredictor:
         else:
             tier_40c = "Medium-Low (40°C/75%RH)"
 
-        risk_phase = "High" if chi > chi_c else "Low"
+        risk_phase = "High" if chi >= chi_c else "Low"
         risk_hygro = poly.hygroscopicity.capitalize()
 
         # Fit FBM on synthetic DoE

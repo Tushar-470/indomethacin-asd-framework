@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <line x1="24.0" y1="5.76" x2="24.0" y2="24.0" stroke="#147A8C" stroke-width="1.875" stroke-linecap="round" />
+  <line x1="39.8" y1="14.88" x2="24.0" y2="24.0" stroke="#147A8C" stroke-width="1.875" stroke-linecap="round" />
+  <line x1="39.8" y1="33.12" x2="24.0" y2="24.0" stroke="#147A8C" stroke-width="1.875" stroke-linecap="round" />
+  <line x1="24.0" y1="42.24" x2="24.0" y2="24.0" stroke="#147A8C" stroke-width="1.875" stroke-linecap="round" />
+  <line x1="8.2" y1="33.12" x2="24.0" y2="24.0" stroke="#147A8C" stroke-width="1.875" stroke-linecap="round" />
+  <line x1="8.2" y1="14.88" x2="24.0" y2="24.0" stroke="#147A8C" stroke-width="1.875" stroke-linecap="round" />
+  <polygon points="24.0,5.76 39.8,14.88 39.8,33.12 24.0,42.24 8.2,33.12 8.2,14.88" fill="none" stroke="#147A8C" stroke-width="2.5" stroke-linejoin="round" />
+  <circle cx="24.0" cy="5.76" r="2.5" fill="#147A8C" />
+  <circle cx="39.8" cy="14.88" r="2.5" fill="#147A8C" />
+  <circle cx="39.8" cy="33.12" r="2.5" fill="#147A8C" />
+  <circle cx="24.0" cy="42.24" r="2.5" fill="#147A8C" />
+  <circle cx="8.2" cy="33.12" r="2.5" fill="#147A8C" />
+  <circle cx="8.2" cy="14.88" r="2.5" fill="#147A8C" />
+  <circle cx="24.0" cy="24.0" r="7.68" fill="none" stroke="#147A8C" stroke-width="2.5" />
+  <circle cx="24.0" cy="24.0" r="2.5" fill="#147A8C" />
+</svg>

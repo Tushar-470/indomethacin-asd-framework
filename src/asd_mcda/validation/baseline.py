@@ -51,8 +51,8 @@ class BaselineComparison:
         y_hsp = np.array([hsp_ranks_map.get(p, 3) for p in polymers])
         rho_hsp, _ = spearmanr(y_hsp, y_exp)
 
-        # 3. Equal-weight averaging (simple mean of 5 raw scores)
-        score_cols = ["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]
+        # 3. Equal-weight averaging (simple mean of 4 raw computational scores)
+        score_cols = [c for c in ["s_HSP", "s_chi", "s_desc", "s_GT"] if c in raw_score_matrix_df.columns]
         df_eq = raw_score_matrix_df.copy()
         df_eq["equal_weight_mean"] = df_eq[score_cols].mean(axis=1)
         df_eq.sort_values(by="equal_weight_mean", ascending=False, inplace=True)

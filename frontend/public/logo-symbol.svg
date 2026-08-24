@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Lattice Spokes -->
+  <line x1="64.0" y1="15.36" x2="64.0" y2="64.0" stroke="#147A8C" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="106.12" y1="39.68" x2="64.0" y2="64.0" stroke="#147A8C" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="106.12" y1="88.32" x2="64.0" y2="64.0" stroke="#147A8C" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="64.0" y1="112.64" x2="64.0" y2="64.0" stroke="#147A8C" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="21.88" y1="88.32" x2="64.0" y2="64.0" stroke="#147A8C" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="21.88" y1="39.68" x2="64.0" y2="64.0" stroke="#147A8C" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Hexagonal Boundary -->
+  <polygon points="64.0,15.36 106.12,39.68 106.12,88.32 64.0,112.64 21.88,88.32 21.88,39.68" fill="none" stroke="#147A8C" stroke-width="3.5" stroke-linejoin="round" />
+  <!-- Vertex Nodes -->
+  <circle cx="64.0" cy="15.36" r="4.5" fill="#147A8C" />
+  <circle cx="106.12" cy="39.68" r="4.5" fill="#147A8C" />
+  <circle cx="106.12" cy="88.32" r="4.5" fill="#147A8C" />
+  <circle cx="64.0" cy="112.64" r="4.5" fill="#147A8C" />
+  <circle cx="21.88" cy="88.32" r="4.5" fill="#147A8C" />
+  <circle cx="21.88" cy="39.68" r="4.5" fill="#147A8C" />
+  <!-- Central Scope Lens -->
+  <circle cx="64.0" cy="64.0" r="21.0" fill="none" stroke="#147A8C" stroke-width="3.5" />
+  <circle cx="64.0" cy="64.0" r="11.5" fill="none" stroke="#147A8C" stroke-width="2.0" />
+  <!-- Focus Center -->
+  <circle cx="64.0" cy="64.0" r="3.5" fill="#147A8C" />
+</svg>

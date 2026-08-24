@@ -1,6 +1,11 @@
 """
 Joint-Distribution Monte Carlo Uncertainty Quantification (UQ) engine.
-Aligned with Master Research Framework V2.0 Section 10.
+Aligned with v1.5.0-FOUR-CRITERION-FREEZE baseline.
+
+Policy A Implementation:
+Propagates input measurement uncertainties through the established baseline PCA decision subspace
+(P_baseline, K_baseline), evaluating ranking robustness without basis-rotation instability or
+ad-hoc weight padding.
 """
 
 from dataclasses import dataclass
@@ -27,7 +32,7 @@ class UQResult:
 
 
 class MonteCarloUQ:
-    """Propagates 7 joint uncertainty sources via Monte Carlo sampling (N=10,000)."""
+    """Propagates joint uncertainty sources via Monte Carlo sampling (N=10,000) under 4-criterion model."""
 
     def __init__(
         self,
@@ -43,71 +48,65 @@ class MonteCarloUQ:
 
     def run(self, base_ahp_matrix: np.ndarray) -> UQResult:
         """
-        Execute Monte Carlo joint distribution propagation.
-        Simultaneously perturbs:
-        1. HSP values (+- 1.5 MPa^0.5)
-        2. Flory-Huggins chi (+- 25% relative)
-        3. LogP (+- 0.7)
-        4. Tg_drug (+- 10 K)
-        5. Tg_polymer (+- 3 K)
-        6. Density (+- 0.05 g/cm3)
-        7. AHP weights (+- 20% relative uniform)
+        Execute Monte Carlo joint distribution propagation across 4 active criteria.
+        Policy A: Projects perturbed candidate realization vectors onto the fixed baseline PCA
+        subspace (P_baseline), ensuring consistent component semantics and exact AHP weight alignment.
         """
         np.random.seed(self.random_seed)
         polymers = self.polymer_library.polymers
-        n_polymers = len(polymers)
         polymer_ids = [p.polymer_id for p in polymers]
+
+        # 1. Compute deterministic baseline Compatibility Matrix S (4 criteria)
+        comp_matrix = CompatibilityMatrix(self.drug, self.polymer_library)
+        df_S_base = comp_matrix.build_matrix()
+        score_cols = ["s_HSP", "s_chi", "s_desc", "s_GT"]
+
+        # 2. Fit baseline PCA to establish the canonical decision subspace
+        pca_base = PCAPreprocessor(variance_threshold=0.95)
+        pca_base_res = pca_base.fit_transform(df_S_base, score_cols=score_cols)
+        k_base = pca_base_res.n_components_retained
+
+        # 3. Derive baseline AHP weights for the k_base components
+        ahp_elicitor = AHPWeightElicitor()
+        ahp_weights, _, _, _ = ahp_elicitor.calculate_single_matrix_weights(base_ahp_matrix)
+        w_base = ahp_weights[:k_base] / np.sum(ahp_weights[:k_base])
 
         rank1_counts = {pid: 0 for pid in polymer_ids}
         cci_history = {pid: [] for pid in polymer_ids}
 
-        ahp_elicitor = AHPWeightElicitor()
-        base_w, _, _, _ = ahp_elicitor.calculate_single_matrix_weights(base_ahp_matrix)
+        raw_S = df_S_base[score_cols].values
+        n_sim = self.n_iterations
+        topsis = TOPSISRanker()
 
-        # Execute sampling loops
-        # Use fast vector sampling iterations for high performance
-        n_sim = min(self.n_iterations, 1000)
-
+        # 4. Sampling loop (Vectorized perturbation + Policy A baseline subspace projection)
         for _ in range(n_sim):
-            # Perturb AHP weights
-            w_pert = base_w * np.random.uniform(0.80, 1.20, size=len(base_w))
+            # Perturb AHP weights (+-20% relative uniform)
+            w_pert = w_base * np.random.uniform(0.80, 1.20, size=len(w_base))
             w_pert /= np.sum(w_pert)
 
-            # Build base matrix and add Gaussian noise
-            comp_matrix = CompatibilityMatrix(self.drug, self.polymer_library)
-            df_S = comp_matrix.build_matrix()
+            # Perturb 4 raw compatibility scores (+-5% normal noise, clipped to [0, 1])
+            noise = np.random.normal(0, 0.05, size=raw_S.shape)
+            S_pert = np.clip(raw_S + noise, 0.0, 1.0)
 
-            # Add noise to normalized scores
-            noise = np.random.normal(0, 0.05, size=df_S[["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]].shape)
-            df_S_pert = df_S.copy()
-            df_S_pert[["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]] = np.clip(
-                df_S[["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]].values + noise, 0.0, 1.0
+            # Project onto established baseline PCA model (Policy A)
+            scaled_pert = pca_base.scaler.transform(S_pert)
+            t_matrix_sim = scaled_pert @ pca_base.pca_model.components_.T
+            df_scores_t_sim = pd.DataFrame(
+                t_matrix_sim,
+                columns=[f"PC{i+1}" for i in range(k_base)],
+                index=polymer_ids,
             )
 
-            # PCA + TOPSIS
-            pca = PCAPreprocessor(variance_threshold=0.95)
-            pca_res = pca.fit_transform(df_S_pert)
+            # Evaluate TOPSIS ranking on projected subspace
+            top_sim = topsis.fit_predict(df_scores_t_sim, w_pert)
 
-            # Match w_pert length to pca_res.n_components_retained
-            k_ret = pca_res.n_components_retained
-            if len(w_pert) != k_ret:
-                if len(w_pert) < k_ret:
-                    w_pert = np.pad(w_pert, (0, k_ret - len(w_pert)), mode="constant", constant_values=0.1)
-                else:
-                    w_pert = w_pert[:k_ret]
-                w_pert /= np.sum(w_pert)
-
-            topsis = TOPSISRanker()
-            top_res = topsis.fit_predict(pca_res.scores_matrix_t, w_pert)
-
-            # Record ranks and scores
-            df_rank = top_res.ranking_table
-            top1_id = df_rank.sort_values(by="topsis_rank").iloc[0]["polymer_id"]
+            # Record top-1 selection
+            top1_id = top_sim.ranking_table.iloc[0]["polymer_id"]
             rank1_counts[top1_id] += 1
 
             for pid in polymer_ids:
-                if pid in top_res.ranking_table.index:
-                    cl_val = top_res.ranking_table.loc[pid, "topsis_cl"]
+                if pid in top_sim.ranking_table.index:
+                    cl_val = top_sim.ranking_table.loc[pid, "topsis_cl"]
                     cci_history[pid].append(float(cl_val))
 
         p_top1 = {pid: count / n_sim for pid, count in rank1_counts.items()}

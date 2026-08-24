@@ -1,6 +1,6 @@
 """
-CompatibilityMatrix assembler creating the normalized N x 5 score matrix S.
-Aligned with SAS V1.0 Section 6.2.
+CompatibilityMatrix assembler creating the normalized N x 4 score matrix S.
+Aligned with v1.5.0-FOUR-CRITERION-FREEZE baseline.
 """
 
 import numpy as np
@@ -17,7 +17,7 @@ from asd_mcda.utils.constants import DEFAULT_DESC_SUBWEIGHTS
 
 
 class CompatibilityMatrix:
-    """Assembles and validates the N x 5 normalized compatibility score matrix S."""
+    """Assembles and validates the N x 4 normalized computational compatibility score matrix S."""
 
     def __init__(
         self,
@@ -74,7 +74,7 @@ class CompatibilityMatrix:
         return float(np.clip(score, 0.0, 1.0))
 
     def build_matrix(self) -> pd.DataFrame:
-        """Build full N x 5 normalized compatibility matrix S."""
+        """Build full N x 4 normalized computational compatibility matrix S = [s_HSP, s_chi, s_desc, s_GT]."""
         df_hsp = self.hsp_model.build_hsp_scores()
         df_fh = self.fh_model.build_chi_scores()
         df_gt = self.gt_model.build_gt_scores(self.drug_loading_ww)
@@ -86,7 +86,6 @@ class CompatibilityMatrix:
             s_chi = float(df_fh.loc[df_fh["polymer_id"] == pid, "s_chi_score"].values[0])
             s_gt = float(df_gt.loc[df_gt["polymer_id"] == pid, "s_gt_score"].values[0])
             s_desc = self.compute_s_desc(pid)
-            s_lit = float(poly.literature_evidence_score)
 
             records.append({
                 "polymer_id": pid,
@@ -95,24 +94,19 @@ class CompatibilityMatrix:
                 "s_chi": s_chi,
                 "s_desc": s_desc,
                 "s_GT": s_gt,
-                "s_lit": s_lit,
             })
-
-
 
         df = pd.DataFrame(records)
         df.set_index("polymer_id", inplace=False)
         return df
 
     def build_active_matrix(self) -> pd.DataFrame:
-        """Build active N x 3 compatibility matrix S_active = [s_HSP, s_chi, s_GT], excluding zero-variance metadata columns."""
+        """Build active compatibility matrix excluding non-numeric metadata."""
         df_full = self.build_matrix()
-        return df_full[["s_HSP", "s_chi", "s_GT"]]
-
-
+        return df_full[["s_HSP", "s_chi", "s_desc", "s_GT"]]
 
     def get_correlation_matrix(self) -> pd.DataFrame:
-        """Return Spearman rank correlation matrix of the 5 raw compatibility scores."""
+        """Return Spearman rank correlation matrix of the 4 raw compatibility scores."""
         df = self.build_matrix()
-        score_cols = ["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]
+        score_cols = ["s_HSP", "s_chi", "s_desc", "s_GT"]
         return df[score_cols].corr(method="spearman")

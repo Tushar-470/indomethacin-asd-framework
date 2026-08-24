@@ -81,3 +81,22 @@ async def get_report(analysis_id: str, filename: str):
     ext = "." + filename.rsplit(".", 1)[-1] if "." in filename else ""
     media_type = media_types.get(ext, "application/octet-stream")
     return FileResponse(path, media_type=media_type, filename=filename)
+
+
+@router.get("/{analysis_id}/export-full-report")
+async def export_full_screening_report(analysis_id: str):
+    """Generate and download the comprehensive PDF screening report for a completed analysis."""
+    pdf_path = engine_adapter.generate_full_screening_pdf(analysis_id)
+    if pdf_path is None or not pdf_path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail=f"Unable to generate full report for analysis '{analysis_id}'.",
+        )
+
+    download_filename = pdf_path.name
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename=download_filename,
+    )
+

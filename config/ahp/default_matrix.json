@@ -1,17 +1,16 @@
 {
   "matrix_id": "DEFAULT_AHP_V2",
-  "description": "Default AHP Pairwise Comparison Matrix for Retained Principal Components (PC1: Cohesive Energy, PC2: Structural/Literature)",
+  "description": "Default AHP Pairwise Comparison Matrix for Retained Principal Components (PC1: Thermodynamic Affinity, PC2: Glass Stabilization)",
   "criteria": ["PC1", "PC2"],
   "pairwise_matrix": [
     [1.0, 2.0],
     [0.5, 1.0]
   ],
-  "raw_criteria": ["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"],
+  "raw_criteria": ["s_HSP", "s_chi", "s_desc", "s_GT"],
   "raw_pairwise_matrix": [
-    [1.0, 1.0, 2.0, 2.0, 2.0],
-    [1.0, 1.0, 3.0, 2.0, 2.0],
-    [0.5, 0.333, 1.0, 0.5, 1.0],
-    [0.5, 0.5, 2.0, 1.0, 2.0],
-    [0.5, 0.5, 1.0, 0.5, 1.0]
+    [1.0, 1.0, 2.0, 2.0],
+    [1.0, 1.0, 3.0, 2.0],
+    [0.5, 0.333, 1.0, 0.5],
+    [0.5, 0.5, 2.0, 1.0]
   ]
 }

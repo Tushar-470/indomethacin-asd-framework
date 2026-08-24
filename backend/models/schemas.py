@@ -117,7 +117,6 @@ class PolymerCreate(BaseModel):
     known_asd_applications: str = ""
     spray_drying_suitability: str = "good"
     hygroscopicity: str = "slightly"
-    literature_evidence_score: float = Field(0.5, ge=0, le=1)
     literature_dois: Optional[str] = None
     data_source: str = "user_entered"
     confidence_level: str = "moderate"
@@ -141,7 +140,7 @@ class PolymerResponse(BaseModel):
     hsp_delta_p: float = 0
     hsp_delta_h: float = 0
     hsp_total: float = 0
-    literature_evidence_score: float = 0.5
+    literature_evidence_score: Optional[float] = None
     spray_drying_suitability: str = ""
     hygroscopicity: str = ""
     validation_status: str = ""

@@ -11,11 +11,11 @@ from asd_mcda.integration.cci import CompositeCompatibilityIndex
 @pytest.fixture
 def sample_score_matrix():
     data = [
-        {"polymer_id": "P1", "s_HSP": 0.80, "s_chi": 0.72, "s_desc": 0.65, "s_GT": 0.42, "s_lit": 1.0},
-        {"polymer_id": "P2", "s_HSP": 0.76, "s_chi": 0.66, "s_desc": 0.70, "s_GT": 0.66, "s_lit": 1.0},
-        {"polymer_id": "P3", "s_HSP": 0.79, "s_chi": 0.70, "s_desc": 0.55, "s_GT": 0.71, "s_lit": 1.0},
-        {"polymer_id": "P4", "s_HSP": 0.66, "s_chi": 0.49, "s_desc": 0.60, "s_GT": 0.92, "s_lit": 0.5},
-        {"polymer_id": "P5", "s_HSP": 0.72, "s_chi": 0.60, "s_desc": 0.50, "s_GT": 0.91, "s_lit": 0.5},
+        {"polymer_id": "P1", "s_HSP": 0.80, "s_chi": 0.72, "s_desc": 0.65, "s_GT": 0.42},
+        {"polymer_id": "P2", "s_HSP": 0.76, "s_chi": 0.66, "s_desc": 0.70, "s_GT": 0.66},
+        {"polymer_id": "P3", "s_HSP": 0.79, "s_chi": 0.70, "s_desc": 0.55, "s_GT": 0.71},
+        {"polymer_id": "P4", "s_HSP": 0.66, "s_chi": 0.49, "s_desc": 0.60, "s_GT": 0.92},
+        {"polymer_id": "P5", "s_HSP": 0.72, "s_chi": 0.60, "s_desc": 0.50, "s_GT": 0.91},
     ]
     df = pd.DataFrame(data)
     df.set_index("polymer_id", inplace=False)

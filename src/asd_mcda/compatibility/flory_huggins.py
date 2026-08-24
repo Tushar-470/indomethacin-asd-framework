@@ -12,6 +12,20 @@ from asd_mcda.polymer.polymer_library import Polymer, PolymerLibrary
 from asd_mcda.utils.constants import GAS_CONSTANT_R, LINDVIG_ALPHA, LINDVIG_SUBWEIGHTS
 
 
+def evaluate_gate1_diagnostic(chi: float, chi_c: float) -> str:
+    """
+    Generic Gate 1 Phase-Boundary Diagnostic:
+    if chi < chi_c:
+        return 'PASS'
+    else:
+        return 'FAIL'
+    """
+    if chi < chi_c:
+        return "PASS"
+    else:
+        return "FAIL"
+
+
 class FloryHugginsModel:
     """Calculates Flory-Huggins chi interaction parameter, critical chi_c, and s_chi score."""
 
@@ -65,7 +79,32 @@ class FloryHugginsModel:
         chi_c = 0.5 * (1.0 + 1.0 / np.sqrt(r2)) ** 2
         return float(chi_c)
 
-
+    def evaluate_candidate_gate1(self, polymer: Polymer) -> Dict[str, Any]:
+        """
+        Generic Gate 1 Phase-Boundary Diagnostic evaluation for a candidate polymer.
+        Rule:
+            if chi < chi_c:
+                PASS
+            else:
+                FAIL
+        """
+        chi = self.compute_chi(polymer)
+        chi_c = self.compute_chi_critical(polymer)
+        status = evaluate_gate1_diagnostic(chi, chi_c)
+        passed = (status == "PASS")
+        if passed:
+            msg = "Phase-boundary diagnostic favorable (chi < chi_c)."
+        else:
+            msg = "Phase-boundary diagnostic unfavorable (chi >= chi_c) — phase-separation risk under the model diagnostic."
+        return {
+            "polymer_id": polymer.polymer_id,
+            "abbreviation": polymer.abbreviation,
+            "chi": chi,
+            "chi_critical": chi_c,
+            "gate1_status": status,
+            "passed": passed,
+            "message": msg,
+        }
 
     def compute_s_chi(self, polymer: Polymer) -> float:
         """
@@ -76,17 +115,21 @@ class FloryHugginsModel:
         return float(max(0.0, 1.0 - chi))
 
     def build_chi_scores(self) -> pd.DataFrame:
-        """Build DataFrame with chi, chi_c, and s_chi for all candidate polymers."""
+        """Build DataFrame with chi, chi_c, Gate 1 status, and s_chi for all candidate polymers."""
         records = []
         for polymer in self.polymer_library.polymers:
             chi = self.compute_chi(polymer)
             chi_c = self.compute_chi_critical(polymer)
             s_chi = self.compute_s_chi(polymer)
+            gate_eval = self.evaluate_candidate_gate1(polymer)
             records.append({
                 "polymer_id": polymer.polymer_id,
                 "abbreviation": polymer.abbreviation,
                 "flory_huggins_chi": chi,
                 "chi_critical": chi_c,
+                "gate1_status": gate_eval["gate1_status"],
+                "gate1_passed": gate_eval["passed"],
+                "gate1_message": gate_eval["message"],
                 "s_chi_score": s_chi,
             })
         df = pd.DataFrame(records)

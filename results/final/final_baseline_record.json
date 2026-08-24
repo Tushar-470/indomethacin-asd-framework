@@ -1,0 +1,88 @@
+{
+  "product_name": "PharmaPolySCOPE",
+  "formal_name": "Pharmaceutical Polymer Screening and Computational Optimization Platform",
+  "baseline_version": "v1.5.0-FOUR-CRITERION-FREEZE",
+  "description": "Four-Criterion Computational Baseline (s_lit permanently removed from decision model)",
+  "active_criteria": [
+    "s_HSP",
+    "s_chi",
+    "s_desc",
+    "s_GT"
+  ],
+  "removed_criteria": [
+    "s_lit"
+  ],
+  "removal_rationale": "Literature/source information is retained strictly as provenance metadata and is not a computational decision criterion.",
+  "k_handling_policy": "Policy A: Input Perturbation with Fixed Baseline Decision Subspace (P_baseline, K_baseline=2)",
+  "software_version": "1.5.0",
+  "polymer_library_sha256": "5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2",
+  "workflow_config_sha256": "33057685b3e9ae411d8526e98d7bb39e096359af7a4a07c3f52826adb697f0a7",
+  "random_seed": 42,
+  "monte_carlo_iterations": 10000,
+  "selected_polymer": "Hydroxypropyl Methylcellulose E5",
+  "selected_polymer_id": "POL-006-2026",
+  "topsis_cl": 0.8359112438004079,
+  "confidence_tier": "High Confidence (P(top-1) >= 0.70)",
+  "ranking": [
+    {
+      "rank": 1,
+      "polymer_id": "POL-006-2026",
+      "polymer_name": "Hydroxypropyl Methylcellulose E5",
+      "abbreviation": "HPMC_E5",
+      "topsis_cl": 0.8359112438004079,
+      "topsis_ideal_distance": 0.15617840250455678,
+      "topsis_anti_ideal_distance": 0.7956138233721912,
+      "confidence_p_top1": 0.7554
+    },
+    {
+      "rank": 2,
+      "polymer_id": "POL-005-2026",
+      "polymer_name": "Soluplus",
+      "abbreviation": "SOLUPLUS",
+      "topsis_cl": 0.6943422648258153,
+      "topsis_ideal_distance": 0.3822661559243256,
+      "topsis_anti_ideal_distance": 0.8683684982468969,
+      "confidence_p_top1": 0.2018
+    },
+    {
+      "rank": 3,
+      "polymer_id": "POL-001-2026",
+      "polymer_name": "Polyvinylpyrrolidone K30",
+      "abbreviation": "PVP_K30",
+      "topsis_cl": 0.5493675017870735,
+      "topsis_ideal_distance": 0.4592717296104521,
+      "topsis_anti_ideal_distance": 0.5598996160687572,
+      "confidence_p_top1": 0.0403
+    },
+    {
+      "rank": 4,
+      "polymer_id": "POL-002-2026",
+      "polymer_name": "PVP-Vinyl Acetate 64",
+      "abbreviation": "PVP_VA_64",
+      "topsis_cl": 0.47025629791164897,
+      "topsis_ideal_distance": 0.5062927873276735,
+      "topsis_anti_ideal_distance": 0.4494387963264038,
+      "confidence_p_top1": 0.0025
+    },
+    {
+      "rank": 5,
+      "polymer_id": "POL-007-2026",
+      "polymer_name": "Eudragit E PO",
+      "abbreviation": "EDR_EPO",
+      "topsis_cl": 0.09050149730028258,
+      "topsis_ideal_distance": 0.9158716125052487,
+      "topsis_anti_ideal_distance": 0.09113566654646343,
+      "confidence_p_top1": 0.0
+    }
+  ],
+  "pca_effective_dimensionality": {
+    "retained_components_k": 2,
+    "pc1_explained_variance_pct": 67.2,
+    "is_effectively_one_dimensional": false,
+    "interpretation": [
+      "PC1 (67.2% var): Dominated by s_chi loading.",
+      "PC2 (32.7% var): Dominated by s_GT loading."
+    ]
+  },
+  "validation_status": "FROZEN_VALIDATED"
+}

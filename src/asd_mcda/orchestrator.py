@@ -86,7 +86,7 @@ class WorkflowOrchestrator:
             drug_loading_ww=self.config["prediction"]["default_drug_loading_ww"],
         )
         df_S = comp_matrix_builder.build_matrix()
-        self.logger.info("Raw normalized 5-score matrix S constructed.")
+        self.logger.info("Raw normalized 4-score matrix S constructed.")
 
         # Step 7: PCA Pre-Processing & Evidence Integration
         self.logger.info("Stage 7: MANDATORY PCA pre-processing on score matrix S...")
@@ -111,14 +111,8 @@ class WorkflowOrchestrator:
         matrix_pc = np.array(ahp_raw["pairwise_matrix"])
 
         ahp_res = ahp_elicitor.aggregate_multi_expert_matrices([matrix_pc])
-        weights_k = ahp_res.weights
         k_retained = pca_result.n_components_retained
-        if len(weights_k) != k_retained:
-            if len(weights_k) < k_retained:
-                w_padded = np.pad(weights_k, (0, k_retained - len(weights_k)), mode='constant', constant_values=0.1)
-                weights_k = w_padded / np.sum(w_padded)
-            else:
-                weights_k = weights_k[:k_retained] / np.sum(weights_k[:k_retained])
+        weights_k = ahp_res.weights[:k_retained] / np.sum(ahp_res.weights[:k_retained])
 
         self.logger.info(f"AHP weights derived for {k_retained} PCs: {weights_k}, CR = {ahp_res.cr:.4f}")
 

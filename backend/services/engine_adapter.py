@@ -107,9 +107,9 @@ def delete_drug(drug_id: str) -> bool:
     for f in USER_DRUG_DIR.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fp:
             data = json.load(fp)
-            if data.get("drug_id") == drug_id:
-                f.unlink()
-                return True
+        if data.get("drug_id") == drug_id:
+            f.unlink()
+            return True
     return False
 
 
@@ -330,15 +330,8 @@ def run_screening(
     matrix_pc = np.array(ahp_raw["pairwise_matrix"])
 
     ahp_res = ahp_elicitor.aggregate_multi_expert_matrices([matrix_pc])
-    weights_k = ahp_res.weights
     k_retained = pca_result.n_components_retained
-    if len(weights_k) != k_retained:
-        if len(weights_k) < k_retained:
-            w_padded = np.pad(weights_k, (0, k_retained - len(weights_k)),
-                              mode="constant", constant_values=0.1)
-            weights_k = w_padded / np.sum(w_padded)
-        else:
-            weights_k = weights_k[:k_retained] / np.sum(weights_k[:k_retained])
+    weights_k = ahp_res.weights[:k_retained] / np.sum(ahp_res.weights[:k_retained])
 
     topsis = TOPSISRanker()
     topsis_res = topsis.fit_predict(pca_result.scores_matrix_t, weights_k)
@@ -535,6 +528,21 @@ def get_screening_result(analysis_id: str) -> Optional[Dict[str, Any]]:
                 record["chi_critical"] = report_data["chi_critical"]
             if "miscibility_class" in report_data:
                 record["miscibility_class"] = report_data["miscibility_class"]
+            if "pca_effective_dimensionality" in report_data:
+                pca_info = report_data["pca_effective_dimensionality"]
+                record["pca_retained_k"] = pca_info.get("retained_components_k", 2)
+                if "pc1_explained_variance_pct" in pca_info:
+                    pc1_pct = pca_info["pc1_explained_variance_pct"] / 100.0
+                    record["pca_variance_explained"] = [pc1_pct, round(1.0 - pc1_pct, 4)]
+                if "interpretation" in pca_info:
+                    record["pca_interpretation"] = pca_info["interpretation"]
+            if "confidence_P_top1" in report_data:
+                record["confidence_p_top1"] = report_data["confidence_P_top1"]
+            if "predicted_chi" in report_data and "chi_critical" in report_data:
+                record["gate1_passed"] = bool(report_data["predicted_chi"] < report_data["chi_critical"])
+            if "predicted_Tg_K" in report_data:
+                record["gate2_passed"] = bool(report_data["predicted_Tg_K"] > 328.15)
+
 
     # Fallback to reading ranking.csv if ranking is missing (e.g. older analysis runs)
     if "ranking" not in record or not record["ranking"]:
@@ -600,3 +608,24 @@ def get_report_path(analysis_id: str, filename: str) -> Optional[Path]:
     if path.exists() and path.is_file():
         return path
     return None
+
+
+def generate_full_screening_pdf(analysis_id: str) -> Optional[Path]:
+    """Generate or retrieve the comprehensive PDF screening report for a completed analysis."""
+    record = get_screening_result(analysis_id)
+    if record is None:
+        return None
+
+    analysis_dir = ANALYSES_DIR / analysis_id
+    output_pdf = analysis_dir / "reports" / f"Indomethacin_ASD_Screening_{analysis_id}.pdf"
+
+    from backend.services.pdf_report_generator import FullScreeningPDFReportGenerator
+    generator = FullScreeningPDFReportGenerator(
+        analysis_id=analysis_id,
+        analysis_dir=analysis_dir,
+        record=record,
+        output_pdf_path=output_pdf,
+    )
+    generator.generate()
+    return output_pdf
+

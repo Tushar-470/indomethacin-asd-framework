@@ -1,44 +1,61 @@
 # Changelog
 
-All notable computational and architectural milestones for the ASD Computational Polymer Screening Framework are documented in this file.
+All notable computational and architectural milestones for **PharmaPolySCOPE** (formerly ASD MCDA Framework) are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [v1.5.0-FOUR-CRITERION-FREEZE] — August 2026
+
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Developer**: Developed by Tushar Mathapati  
+**Status**: COMPUTATIONAL PHASE CLOSED & FROZEN; PRE-EXPERIMENTATION  
+
+### Four-Criterion Framework Baseline
+- **Permanent Removal of $s_{\text{lit}}$**: The subjective Literature Evidence Score ($s_{\text{lit}}$) was permanently removed from active multi-criteria decision ranking $\mathbf{S} = [s_{\text{HSP}}, s_\chi, s_{\text{desc}}, s_{\text{GT}}]$. Literature citations and supplier quality grades are preserved strictly as provenance metadata.
+- **Policy A Subspace Projection**: Established fixed baseline PCA decision subspace projection for Monte Carlo uncertainty quantification ($N=10,000$, seed=42) and global sensitivity analysis.
+- **Orthogonal Variance Distribution**:
+  - Retained Principal Components: $K=2$ ($100.0\%$ cumulative explained variance).
+  - PC1 ($67.2\%$ variance): Thermodynamic interaction affinity ($s_\chi, s_{\text{HSP}}$).
+  - PC2 ($32.8\%$ variance): Gordon–Taylor thermal anti-plasticization ($s_{\text{GT}}$).
+- **Authoritative Frozen Five-Polymer Ranking**:
+  1. **Hydroxypropyl Methylcellulose E5** (`POL-006-2026`): $C_L = 0.835911$, $P(\text{top-1}) = 75.54\%$ (High model-selection robustness).
+  2. **Soluplus** (`POL-005-2026`): $C_L = 0.694342$, $P(\text{top-1}) = 20.18\%$.
+  3. **Polyvinylpyrrolidone K30** (`POL-001-2026`): $C_L = 0.549368$, $P(\text{top-1}) = 4.03\%$.
+  4. **PVP-Vinyl Acetate 64** (`POL-002-2026`): $C_L = 0.470256$, $P(\text{top-1}) = 0.25\%$.
+  5. **Eudragit E PO** (`POL-007-2026`): $C_L = 0.090501$, $P(\text{top-1}) = 0.00\%$.
+- **Full Screening Technical PDF Report**:
+  - Publication-ready 14-page PDF generator dynamically bound to execution snapshots.
+  - Section-numbered layout mirroring the 7 analytical views of the platform.
+  - Strict candidate isolation and un-truncated configuration provenance dumps.
+  - Aligned Lattice Lens brand lockup.
+- **Software Suite & UI**:
+  - React 18 + TypeScript + Vite interactive research dashboard with 0 build errors.
+  - Full candidate isolation between exploratory and research runs.
+  - Comprehensive 76-test automated verification suite (100% pass rate).
+
+---
+
+## [v1.4.0-CORRECTED-FREEZE] — August 2026
+
+**Status**: HISTORICAL FROZEN BASELINE (Superseded by v1.5.0)
+
+### Physics Engine Corrections
+- **Indomethacin Melting Point Correction**: Updated $T_m$ from preliminary estimate ($424.15\text{ K}$) to experimental DSC exact value ($433.15\text{ K } / 160.0^\circ\text{C}$; Hancock et al., 2007).
+- **Flory–Huggins Lindvig Scaling Calibration**: Calibrated global Lindvig factor $\alpha = 0.60$ and standardized $\chi_c$ calculation on number-average molecular weight ($M_n$).
+- **Canonical AHP Eigenvector Priority**: Standardized AHP pairwise comparison matrix on $[PC_1:PC_2 = 2:1]$ with $\text{CR} = 0.000$.
+
+---
+
 ## [v1.3.1-FREEZE] — August 2026
 
-**Status**: FROZEN COMPUTATIONAL BASELINE; PRE-EXPERIMENTATION
+**Status**: HISTORICAL BASELINE (Superseded by v1.4.0)
 
 ### Final Baseline Architecture
 - **Active Polymer Library**: Frozen 5-polymer candidate library (`config/polymers/polymer_library_v3_five_polymers.csv`, SHA-256: `24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff`).
-- **Deterministic Ranking**:
-  1. Soluplus ($C_L = 0.736338$) — Top-Ranked Computational Candidate
-  2. Hydroxypropyl Methylcellulose E5 ($C_L = 0.684063$)
-  3. PVP-Vinyl Acetate 64 ($C_L = 0.504982$)
-  4. Polyvinylpyrrolidone K30 ($C_L = 0.442917$)
-  5. Eudragit E PO ($C_L = 0.000000$)
-- **Monte Carlo Uncertainty Quantification ($N=10{,}000$, seed=42)**:
-  - Soluplus: $P(\text{top-1}) = 43.2\%$
-  - HPMC E5: $P(\text{top-1}) = 31.0\%$
-  - PVP K30: $P(\text{top-1}) = 14.4\%$
-  - PVP-VA 64: $P(\text{top-1}) = 5.8\%$
-  - Eudragit E PO: $P(\text{top-1}) = 5.6\%$
-  - Confidence Tier: Moderate Confidence ($0.40 \le P(\text{top-1}) < 0.70$).
-- **Physics Engine**:
-  - H-V-K group contribution for polymer HSP.
-  - Lindvig conversion for Flory–Huggins $\chi$.
-  - Simha–Boyer $K$ and Gordon–Taylor for composite $T_{g,\text{mix}}$.
-  - PCA pre-processing ($k=2$ retained components, $95\%$ cumulative variance threshold).
-  - AHP geometric-mean weight elicitation and TOPSIS closeness coefficient ($C_L$).
-
-### Repository Curation
-- Moved legacy and superseded development scripts to `archive/development/`.
-- Moved legacy 6-polymer library and historical documentation to `archive/historical/`.
-- Moved superseded decision reports to `archive/superseded/`.
-- Created authoritative `results/final/` baseline artifact directory.
-- Created complete documentation suite (`source_of_truth.md`, `computational_method.md`, `data_provenance.md`, `data_dictionary.md`, `study_overview.md`, `reproducibility.md`, `limitations.md`, `repository_map.md`).
-- Added automated dataset integrity validator `scripts/validate_final_dataset.py`.
+- **Physics Engine**: H-V-K group contribution for polymer HSP, Lindvig conversion for $\chi$, Simha–Boyer Gordon–Taylor $T_{g,\text{mix}}$.
+- **Repository Curation**: Legacy scripts archived to `archive/development/`; superseded outputs moved to `archive/superseded/`.
 
 ---
 

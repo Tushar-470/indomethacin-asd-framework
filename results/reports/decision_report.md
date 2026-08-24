@@ -2,10 +2,10 @@
 
 - **Top-Ranked Polymer**: Hydroxypropyl Methylcellulose E5
 - **Closeness Coefficient (CL)**: 0.836
-- **Decision Confidence P(top-1)**: 0.42 (Moderate Confidence (0.40 <= P(top-1) < 0.70))
+- **Decision Confidence P(top-1)**: 0.76 (High Confidence (P(top-1) >= 0.70))
 - **Predicted Tg**: 393.8 K (95% CI: [388.8, 398.8])
 - **Flory-Huggins chi**: 0.260 (critical chi_c: 0.640)
-- **Miscibility**: Miscible (Below Critical chi_c = 0.64)
+- **Miscibility**: Phase-boundary diagnostic favorable (chi = 0.260 < critical chi_c = 0.640)
 
 ## Ranking Summary
 

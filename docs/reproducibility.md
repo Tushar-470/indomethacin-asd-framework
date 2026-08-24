@@ -1,15 +1,17 @@
 # Scientific Reproducibility Guide
 
-**Release**: v1.3.1-FREEZE  
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Release**: `v1.5.0-FOUR-CRITERION-FREEZE`  
 **Python Target**: $\ge 3.11$  
 **Random Seed**: 42  
-**Dataset SHA-256**: `24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff`  
+**Dataset SHA-256**: `5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2`  
+**Developer Attribution**: Developed by Tushar Mathapati  
 
 ---
 
 ## 1. Environment Setup
 
-Clone the repository and install the production package in editable mode:
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/Tushar-470/indomethacin-asd-framework.git
@@ -31,13 +33,12 @@ python scripts/validate_final_dataset.py
 Expected output:
 ```text
 ============================================================
-FINAL DATASET VALIDATION — v1.3.1-FREEZE
+FINAL DATASET VALIDATION — v1.5.0-FOUR-CRITERION-FREEZE
 ============================================================
   PASS: Library file exists: polymer_library_v3_five_polymers.csv
-  PASS: Library SHA-256 matches expected (24cd6c4092788cb7...)
+  PASS: Library SHA-256 matches expected (5497d606b64e081c...)
   PASS: Exactly 5 polymers (found 5)
   ...
-Results: 22 passed, 0 failed
 STATUS: PASS
 ```
 
@@ -48,16 +49,16 @@ STATUS: PASS
 Run the complete test suite across unit, integration, and API modules:
 
 ```bash
-pytest tests/
+py -3 -m pytest tests/ -v
 ```
 
-Expected result: Complete test pass across all computational engine, physics, MCDA, and integration pipelines.
+Expected result: 76 passed (100% pass rate).
 
 ---
 
 ## 4. Pipeline Execution & Deterministic Output Reproduction
 
-Execute the full 11-step computational screening pipeline via CLI:
+Execute the full computational screening pipeline via CLI:
 
 ```bash
 python -m asd_mcda.cli --config config/workflow/workflow_config.yaml
@@ -65,16 +66,15 @@ python -m asd_mcda.cli --config config/workflow/workflow_config.yaml
 
 The pipeline writes deterministic outputs to `results/reports/` and `results/figures/`.
 
-### Expected Deterministic Ranking Table (v1.4.0-CORRECTED-FREEZE)
+### Expected Deterministic Ranking Table (`v1.5.0-FOUR-CRITERION-FREEZE`)
 
-| Rank | Polymer ID | Name | TOPSIS $C_L$ | $P(\text{top-1})$ |
-| :---: | :--- | :--- | :---: | :---: |
-| **1** | `POL-006-2026` | Hydroxypropyl Methylcellulose E5 | 0.835911 | 42.4% |
-| **2** | `POL-005-2026` | Soluplus | 0.694342 | 35.0% |
-| **3** | `POL-001-2026` | Polyvinylpyrrolidone K30 | 0.549368 | 13.3% |
-| **4** | `POL-002-2026` | PVP-Vinyl Acetate 64 | 0.470256 | 3.2% |
-| **5** | `POL-007-2026` | Eudragit E PO | 0.090501 | 6.1% |
-
+| Rank | Polymer ID | Name | TOPSIS $C_L$ | $P(\text{top-1})$ | Model Selection Robustness Tier |
+| :---: | :--- | :--- | :---: | :---: | :--- |
+| **1** | `POL-006-2026` | Hydroxypropyl Methylcellulose E5 | 0.835911 | 75.54% | High Robustness ($P \ge 70\%$) |
+| **2** | `POL-005-2026` | Soluplus | 0.694342 | 20.18% | Low Robustness ($P < 40\%$) |
+| **3** | `POL-001-2026` | Polyvinylpyrrolidone K30 | 0.549368 | 4.03% | Low Robustness ($P < 40\%$) |
+| **4** | `POL-002-2026` | PVP-Vinyl Acetate 64 | 0.470256 | 0.25% | Low Robustness ($P < 40\%$) |
+| **5** | `POL-007-2026` | Eudragit E PO | 0.090501 | 0.00% | Low Robustness ($P < 40\%$) |
 
 ---
 

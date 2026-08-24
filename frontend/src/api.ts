@@ -29,3 +29,5 @@ export const fetchVersion = () => fetcher('/version');
 
 export const getFigureUrl = (analysisId: string, figureName: string) => `${API_BASE}/screening/${analysisId}/figures/${figureName}`;
 export const getReportUrl = (analysisId: string, filename: string) => `${API_BASE}/screening/${analysisId}/reports/${filename}`;
+export const getFullReportUrl = (analysisId: string) => `${API_BASE}/screening/${analysisId}/export-full-report`;
+

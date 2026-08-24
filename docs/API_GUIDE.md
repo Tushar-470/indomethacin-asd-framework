@@ -1,6 +1,6 @@
-# ASD Framework REST API Documentation
+# PharmaPolySCOPE REST API Documentation
 
-The FastAPI backend exposes REST endpoints wrapping the `asd_mcda` v1.0.0 engine.
+The FastAPI backend exposes REST endpoints wrapping the `asd_mcda` computational engine for PharmaPolySCOPE (Developed by **Tushar Mathapati**).
 
 Base URL: `http://127.0.0.1:8000/api`
 

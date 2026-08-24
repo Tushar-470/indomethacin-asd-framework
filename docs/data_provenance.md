@@ -1,6 +1,8 @@
 # Data Provenance and Parameter Lineage
 
-**Release**: v1.3.1-FREEZE  
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Release**: `v1.5.0-FOUR-CRITERION-FREEZE`  
+**Developer Attribution**: Developed by Tushar Mathapati  
 **Status**: Frozen Baseline  
 
 ---
@@ -15,7 +17,7 @@
 | **Generic Name** | Indomethacin | — | Reference | USP Monograph | Pure API |
 | **CAS Number** | 53-86-1 | — | Registry | Chemical Abstracts Service | Pure API |
 | **Molecular Weight ($M_w$)** | 357.79 | g/mol | Literature | USP Monograph / IUPAC | Pure API |
-| **Melting Temperature ($T_m$)** | 424.15 (151.0 °C) | K | Experimental DSC | Hancock et al., *J. Pharm. Sci.* 2007 | $\gamma$-Polymorph |
+| **Melting Temperature ($T_m$)** | 433.15 (160.0 °C) | K | Experimental DSC | Hancock et al., *J. Pharm. Sci.* 2007 | $\gamma$-Polymorph |
 | **Glass Transition ($T_g$)** | 315.15 (42.0 °C) | K | Experimental DSC | Hancock et al., *J. Pharm. Sci.* 2007 | Quenched Amorphous |
 | **Amorphous Density ($\rho_{\text{amorphous}}$)** | 1.22 | $\text{g/cm}^3$ | Experimental Pycnometry | Hancock et al., *J. Pharm. Sci.* 2007 | Amorphous |
 | **Crystalline Density ($\rho_{\text{crystalline}}$)** | 1.31 | $\text{g/cm}^3$ | Experimental | Yalkowsky et al., *Solubility Data* | $\gamma$-Form |
@@ -25,17 +27,20 @@
 | **Total HSP ($\delta_T$)** | 22.4 | $\text{MPa}^{0.5}$ | Calculated ($\sqrt{\delta_D^2+\delta_P^2+\delta_H^2}$) | Derived | Pure API |
 | **Interaction Radius ($R_0$)** | 8.0 | $\text{MPa}^{0.5}$ | Experimental Sphere | Hancock et al., *J. Pharm. Sci.* 2007 | Pure API |
 | **Molar Volume ($V_m$)** | 273.0 | $\text{cm}^3/\text{mol}$ | Calculated ($M_w/\rho_{\text{crystalline}}$) | Derived | Pure API |
+| **H-Bond Donors (HBD)** | 1 | Count | Canonical Structure | IUPAC / SMILES | Carboxylic acid -COOH donor |
 | **$\text{Log}P$** | 4.27 | — | Experimental | Hansch & Leo Literature Database | Pure API |
 | **BCS Class** | II | — | Regulatory Classification | FDA BCS Database | Poorly Soluble / Permeable |
+
+*Note: tg_k_estimated (296.91 K) is retained as fallback metadata and is not used when the experimental tg_k (315.15 K) value is available. validation_status: 'validated' denotes curated reference source verification.*
 
 ---
 
 ## 2. Active Polymer Carrier Library ($N=5$)
 
 **Primary Configuration File**: `config/polymers/polymer_library_v3_five_polymers.csv`  
-**Library SHA-256**: `24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff`  
+**Library SHA-256**: `5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2`  
 
-All polymer Hansen Solubility Parameters were computed using the **Hoftyzer–Van Krevelen (H-V-K) group contribution method** from repeat-unit monomer SMILES representations. These are **calculated group-contribution values**, not experimentally measured solubility spheres.
+All polymer Hansen Solubility Parameters were computed using the **Hoftyzer–Van Krevelen (H-V-K) group contribution method** from repeat-unit monomer SMILES representations.
 
 | Polymer ID | Canonical Polymer Name | Abbreviation | Family | Class | $M_n$ (Da) | $M_w$ (Da) | $T_g$ (K) | Density ($\text{g/cm}^3$) | HSP ($\delta_D/\delta_P/\delta_H$) | HSP Method |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -58,5 +63,5 @@ Both number-average molecular weight ($M_n$) and weight-average molecular weight
 ## 4. Multi-Expert AHP Comparison Matrices
 
 **Directory**: `config/ahp/`  
-- `default_matrix.json`: Baseline $2 \times 2$ pairwise comparison matrix for retained Principal Components ($PC_1:PC_2 = 2.0:1.0, CR = 0.00$).
+- `default_matrix.json`: Baseline $2 \times 2$ pairwise comparison matrix for retained Principal Components ($PC_1:PC_2 = 2.0:1.0, \text{CR} = 0.0000$).
 - `expert_001.json`, `expert_002.json`, `expert_003.json`: Elicited domain-expert matrices.

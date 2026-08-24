@@ -1,12 +1,12 @@
 """
 MANDATORY Principal Component Analysis (PCA) pre-processing module.
-Aligned with Master Research Framework V2.0 Section 4.3 and Equation 10 (revised).
+Aligned with v1.5.0-FOUR-CRITERION-FREEZE baseline.
 """
 
 from dataclasses import dataclass
 import numpy as np
 import pandas as pd
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
@@ -23,7 +23,7 @@ class PCAResult:
 
 
 class PCAPreprocessor:
-    """Applies StandardScaler and PCA to raw 5-score compatibility matrix S before CCI computation."""
+    """Applies StandardScaler and PCA to raw 4-score compatibility matrix S before MCDA evaluation."""
 
     def __init__(self, variance_threshold: float = 0.95):
         self.variance_threshold = variance_threshold
@@ -36,12 +36,11 @@ class PCAPreprocessor:
         Retains principal components until cumulative variance >= variance_threshold.
         """
         if score_cols is None:
-            score_cols = [c for c in score_matrix_df.columns if c in ["s_HSP", "s_chi", "s_desc", "s_GT", "s_lit"]]
+            score_cols = [c for c in score_matrix_df.columns if c in ["s_HSP", "s_chi", "s_desc", "s_GT"]]
             if not score_cols:
                 score_cols = list(score_matrix_df.columns)
         raw_values = score_matrix_df[score_cols].values
         polymer_ids = score_matrix_df["polymer_id"].tolist() if "polymer_id" in score_matrix_df.columns else score_matrix_df.index.tolist()
-
 
         # Center and scale
         scaled_values = self.scaler.fit_transform(raw_values)
@@ -52,7 +51,7 @@ class PCAPreprocessor:
         cum_var = np.cumsum(full_pca.explained_variance_ratio_)
         
         k = int(np.argmax(cum_var >= self.variance_threshold) + 1)
-        # Ensure k is bounded between 1 and min(N, 5)
+        # Ensure k is bounded between 1 and min(N, 4)
         k = max(1, min(k, len(score_cols)))
 
         # Refit PCA with k components
@@ -62,11 +61,9 @@ class PCAPreprocessor:
         pc_cols = [f"PC{i+1}" for i in range(k)]
         df_scores_t = pd.DataFrame(t_matrix, columns=pc_cols, index=polymer_ids)
 
-
         df_loadings_p = pd.DataFrame(
             self.pca_model.components_.T, index=score_cols, columns=pc_cols
         )
-
 
         var_explained = self.pca_model.explained_variance_ratio_
         cum_var_retained = np.cumsum(var_explained)

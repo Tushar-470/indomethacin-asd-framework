@@ -1,7 +1,9 @@
 # Known Methodological Limitations
 
-**Release**: v1.3.1-FREEZE  
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Release**: `v1.5.0-FOUR-CRITERION-FREEZE`  
 **Classification**: Pre-Laboratory Computational Prediction  
+**Developer Attribution**: Developed by Tushar Mathapati  
 
 ---
 
@@ -31,12 +33,18 @@ Gordon–Taylor composite $T_{g,\text{mix}}$ predictions employ the classical **
 
 ---
 
-## 4. Monte Carlo Uncertainty Sampling Boundaries
+## 4. 2D Molecular Descriptor Invariance
 
-The 7 joint parameter uncertainties sampled during Monte Carlo UQ ($N=10{,}000$) represent uniform and relative uniform heuristic ranges based on literature consensus. The resulting $P(\text{top-1})$ probability quantifies **computational model stability under input perturbation**, and must not be conflated with clinical or physical manufacturing success rates.
+The 2D descriptor score is invariant across the current five-polymer reference library ($s_{\text{desc}} = 0.2268$) due to functional-group matching, yielding zero empirical variance in this specific set. It remains structurally retained as an active computational decision criterion for future candidate library extensions.
 
 ---
 
-## 5. Excipient Scope and Specificity
+## 5. Monte Carlo Uncertainty Sampling Boundaries
+
+The 7 joint parameter uncertainties sampled during Monte Carlo UQ ($N=10{,}000$, Policy A) represent uniform and relative uniform heuristic ranges based on literature consensus. The resulting $P(\text{top-1})$ probability quantifies **computational model stability under input perturbation**, and must not be conflated with clinical or physical manufacturing success rates.
+
+---
+
+## 6. Excipient Scope and Specificity
 
 The frozen computational baseline is parameterized specifically for **indomethacin (BCS Class II)** as a model drug. Extrapolation of rankings to other drug molecules requires updating the drug profile and re-eliciting AHP criteria weights.

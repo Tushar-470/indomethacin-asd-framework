@@ -1,0 +1,1110 @@
+{
+  "s_lit": [
+    {
+      "file": "config\\ahp\\default_matrix.json",
+      "line": 9,
+      "text": "\"raw_criteria\": [\"s_HSP\", \"s_chi\", \"s_desc\", \"s_GT\", \"s_lit\"],"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 313,
+      "text": "|28|`literature_evidence_score`|Float|\u2208 {0.0, 0.5, 1.0}|\u2014|1.0 = published miscibility with drug; 0.5 = no data; 0.0 = published immiscibility (s_lit input)|FAIL|"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 431,
+      "text": "|17|`s_lit_score`|Float|\u2208 {0.0, 0.5, 1.0}|\u2014|Literature evidence score from polymer database|FAIL|"
+    },
+    {
+      "file": "docs\\specifications\\Software_Architecture_Specification_V1.0.md",
+      "line": 325,
+      "text": "- **Responsibility:** Calculates four normalised compatibility scores: s_HSP (from RED, max(0, 1\u2212RED/2)), s_chi (from Lindvig conversion, max(0, 1\u2212chi)), s_desc (weighted combination of HBD match, HBA match, TPSA proximity, aromatic ratio), and s_GT (from Gordon\u2013Taylor Tg, clipped to [0,1]). Also computes s_lit (literature evidence score). All scores are assembled into an N\u00d75 matrix."
+    },
+    {
+      "file": "docs\\specifications\\Software_Architecture_Specification_V1.0.md",
+      "line": 559,
+      "text": "- scores: pd.DataFrame \u2014 N\u00d75 DataFrame with columns [s_HSP, s_chi, s_desc, s_GT, s_lit]"
+    },
+    {
+      "file": "results\\final\\final_baseline_record.json",
+      "line": 3,
+      "text": "\"description\": \"Four-Criterion Computational Baseline (s_lit permanently removed from decision model)\","
+    },
+    {
+      "file": "results\\final\\final_baseline_record.json",
+      "line": 11,
+      "text": "\"s_lit\""
+    },
+    {
+      "file": "results\\reports\\v1.3.1_freeze_score_matrix.csv",
+      "line": 1,
+      "text": "polymer_id,abbreviation,s_HSP,s_chi,s_desc,s_GT,s_lit"
+    },
+    {
+      "file": "results\\reports\\v1.5.0_freeze_baseline_record.json",
+      "line": 3,
+      "text": "\"description\": \"Four-Criterion Computational Baseline (s_lit permanently removed from decision model)\","
+    },
+    {
+      "file": "results\\reports\\v1.5.0_freeze_baseline_record.json",
+      "line": 11,
+      "text": "\"s_lit\""
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 10,
+      "text": "\"s_lit\","
+    },
+    {
+      "file": "scripts\\regenerate_v150_baseline.py",
+      "line": 74,
+      "text": "\"description\": \"Four-Criterion Computational Baseline (s_lit permanently removed from decision model)\","
+    },
+    {
+      "file": "scripts\\regenerate_v150_baseline.py",
+      "line": 76,
+      "text": "\"removed_criteria\": [\"s_lit\"],"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 3,
+      "text": "Verifies complete removal of s_lit from active computation, Policy A K-handling,"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 47,
+      "text": "assert \"s_lit\" not in df_S.columns"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 51,
+      "text": "def test_2_s_lit_absent_from_pca(base_setup):"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 52,
+      "text": "\"\"\"Verify PCA preprocessor operates on exactly 4 active columns without s_lit.\"\"\""
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 61,
+      "text": "assert \"s_lit\" not in pca_res.loadings_matrix_p.index"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 66,
+      "text": "def test_3_s_lit_absent_from_ahp_topsis(base_setup):"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 89,
+      "text": "def test_4_s_lit_absent_from_monte_carlo(base_setup):"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 101,
+      "text": "def test_5_s_lit_absent_from_morris_sensitivity(base_setup):"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 112,
+      "text": "assert \"s_lit\" not in morris_res.feature_names"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 120,
+      "text": "assert \"s_lit\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 128,
+      "text": "assert \"s_lit\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 161,
+      "text": "assert \"s_lit\" not in df_S.columns"
+    },
+    {
+      "file": "tests\\unit\\test_validation.py",
+      "line": 26,
+      "text": "\"s_lit\": [1.0, 1.0, 1.0, 1.0, 0.5, 0.5],"
+    }
+  ],
+  "literature_evidence_score": [
+    {
+      "file": "backend\\models\\schemas.py",
+      "line": 143,
+      "text": "literature_evidence_score: Optional[float] = None"
+    },
+    {
+      "file": "backend\\services\\validation.py",
+      "line": 125,
+      "text": "lit = data.get(\"literature_evidence_score\")"
+    },
+    {
+      "file": "backend\\services\\validation.py",
+      "line": 128,
+      "text": "errors.append(\"literature_evidence_score must be between 0 and 1.\")"
+    },
+    {
+      "file": "config\\polymers\\polymer_library_v3_five_polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\user_polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-085221-2670c3\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-085321-51a009\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-085438-fdbb8e\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-091310-b429d2\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-091342-6a97a2\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-091409-95a1a1\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093127-40328f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093300-315b1e\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093456-9e8c82\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093739-16496f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093800-0f8132\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093821-2e3e86\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093951-7f69fa\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-094018-52eb43\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-094044-042ce7\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-101616-0c6573\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-101651-f1249f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-101737-69bde8\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-102008-d267e4\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-102054-085d2c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-102302-2171e7\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-104957-827145\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-105049-a5d48f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-105224-45dd25\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-060114-663d21\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-060203-861ca7\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-060311-b42b51\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-062324-d75d5e\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064202-2b7592\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064333-f26f8c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064515-36c29b\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064818-acdda2\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-093534-a77354\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-093656-fd6136\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-093754-8bcc99\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-095456-59b5a6\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-095602-060e5d\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-095713-8a67ec\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-103721-bb2f57\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-103802-99376b\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-103845-d7ce2f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105104-d5cbdc\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105807-a60c42\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105843-aa993d\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105919-6e07c9\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105954-0d9b21\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-110029-549f50\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-110106-466cbe\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-054954-2b1633\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055114-72108b\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055252-fd9ff6\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055353-37b71c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055435-08346d\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055515-895566\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-060908-f69765\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-060952-02070f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-061219-b19b5a\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-061418-f9f538\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-061656-53c5bd\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062245-237999\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062414-5418fa\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062609-9ff4b3\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062918-4940de\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062945-9a6e32\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-063024-0c2b9c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-094757-b81f56\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-094906-8361ec\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095014-55f941\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095208-fbe034\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095302-90cd2c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095350-2b4cef\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "docs\\data_dictionary.md",
+      "line": 41,
+      "text": "| `literature_evidence_score` | Float | \u2014 | Precedent evidence weight factor $[0.0, 1.0]$ |"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 313,
+      "text": "|28|`literature_evidence_score`|Float|\u2208 {0.0, 0.5, 1.0}|\u2014|1.0 = published miscibility with drug; 0.5 = no data; 0.0 = published immiscibility (s_lit input)|FAIL|"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 314,
+      "text": "|29|`literature_dois`|String (semicolon-delimited)|Non-null if literature_evidence_score \u2260 0.5|\u2014|Supporting references for miscibility/immiscibility claims|NULL if score = 0.5|"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 328,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,checksum_sha256,created_timestamp,modified_timestamp,modified_by"
+    },
+    {
+      "file": "results\\final\\final_polymer_library.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 11,
+      "text": "\"literature_evidence_score\","
+    },
+    {
+      "file": "src\\asd_mcda\\polymer\\polymer_library.py",
+      "line": 38,
+      "text": "literature_evidence_score: float = 0.5"
+    },
+    {
+      "file": "src\\asd_mcda\\polymer\\polymer_library.py",
+      "line": 90,
+      "text": "literature_evidence_score=float(data.get(\"literature_evidence_score\", 0.5)),"
+    },
+    {
+      "file": "src\\asd_mcda\\polymer\\polymer_library.py",
+      "line": 169,
+      "text": "\"literature_evidence_score\": p.literature_evidence_score,"
+    },
+    {
+      "file": "tests\\unit\\test_polymer.py",
+      "line": 25,
+      "text": "\"literature_evidence_score\": 1.0,"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 119,
+      "text": "assert \"literature_evidence_score\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 127,
+      "text": "assert \"literature_evidence_score\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 176,
+      "text": "# Test API endpoint polymer creation without literature_evidence_score"
+    }
+  ],
+  "literature score": [
+    {
+      "file": "docs\\v1.5.0_frozen_computational_baseline_record.md",
+      "line": 16,
+      "text": "The computational framework does not independently execute automated literature searches, bibliographic quality scoring, or evidence grading for newly entered polymers. In previous iterations ($v1.4.0$), user-supplied or default literature scores ($s_{\\text{lit}} = 1.0$) were incorporated directly into the multi-criteria score matrix $\\mathbf{S}$. This introduced a subjective, uncomputable ranking factor into an otherwise rigorous thermodynamic and molecular model."
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 12,
+      "text": "\"literature score\","
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 117,
+      "text": "\"\"\"Verify PolymerCreate Pydantic schema does not require or collect literature score.\"\"\""
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 125,
+      "text": "\"\"\"Verify DrugProfileCreate Pydantic schema does not require or collect literature score.\"\"\""
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 132,
+      "text": "\"\"\"Verify custom polymer without literature score runs smoothly through full 4-criterion pipeline.\"\"\""
+    }
+  ],
+  "evidence_score": [
+    {
+      "file": "backend\\models\\schemas.py",
+      "line": 143,
+      "text": "literature_evidence_score: Optional[float] = None"
+    },
+    {
+      "file": "backend\\services\\validation.py",
+      "line": 125,
+      "text": "lit = data.get(\"literature_evidence_score\")"
+    },
+    {
+      "file": "backend\\services\\validation.py",
+      "line": 128,
+      "text": "errors.append(\"literature_evidence_score must be between 0 and 1.\")"
+    },
+    {
+      "file": "config\\polymers\\polymer_library_v3_five_polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\user_polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-085221-2670c3\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-085321-51a009\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-085438-fdbb8e\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-091310-b429d2\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-091342-6a97a2\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-091409-95a1a1\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093127-40328f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093300-315b1e\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093456-9e8c82\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093739-16496f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093800-0f8132\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093821-2e3e86\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-093951-7f69fa\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-094018-52eb43\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-094044-042ce7\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-101616-0c6573\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-101651-f1249f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-101737-69bde8\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-102008-d267e4\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-102054-085d2c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-102302-2171e7\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-104957-827145\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-105049-a5d48f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260821-105224-45dd25\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-060114-663d21\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-060203-861ca7\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-060311-b42b51\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-062324-d75d5e\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064202-2b7592\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064333-f26f8c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064515-36c29b\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-064818-acdda2\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-093534-a77354\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-093656-fd6136\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-093754-8bcc99\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-095456-59b5a6\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-095602-060e5d\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-095713-8a67ec\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-103721-bb2f57\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-103802-99376b\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-103845-d7ce2f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105104-d5cbdc\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105807-a60c42\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105843-aa993d\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105919-6e07c9\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-105954-0d9b21\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-110029-549f50\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260822-110106-466cbe\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-054954-2b1633\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055114-72108b\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055252-fd9ff6\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055353-37b71c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055435-08346d\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-055515-895566\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-060908-f69765\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-060952-02070f\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-061219-b19b5a\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-061418-f9f538\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-061656-53c5bd\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062245-237999\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062414-5418fa\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062609-9ff4b3\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062918-4940de\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-062945-9a6e32\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-063024-0c2b9c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-094757-b81f56\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-094906-8361ec\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095014-55f941\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095208-fbe034\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095302-90cd2c\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,copolymer_mole_fractions"
+    },
+    {
+      "file": "data\\analyses\\ANA-20260823-095350-2b4cef\\polymers.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "docs\\data_dictionary.md",
+      "line": 41,
+      "text": "| `literature_evidence_score` | Float | \u2014 | Precedent evidence weight factor $[0.0, 1.0]$ |"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 313,
+      "text": "|28|`literature_evidence_score`|Float|\u2208 {0.0, 0.5, 1.0}|\u2014|1.0 = published miscibility with drug; 0.5 = no data; 0.0 = published immiscibility (s_lit input)|FAIL|"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 314,
+      "text": "|29|`literature_dois`|String (semicolon-delimited)|Non-null if literature_evidence_score \u2260 0.5|\u2014|Supporting references for miscibility/immiscibility claims|NULL if score = 0.5|"
+    },
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 328,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status,checksum_sha256,created_timestamp,modified_timestamp,modified_by"
+    },
+    {
+      "file": "results\\final\\final_polymer_library.csv",
+      "line": 1,
+      "text": "polymer_id,polymer_name,abbreviation,polymer_family,polymer_class,regulatory_status,supplier,catalog_number,batch_number,mn_da,mw_da,pdi,tg_k,tg_source,density_g_cm3,density_source,hsp_delta_d,hsp_delta_p,hsp_delta_h,hsp_total,hsp_source,functional_groups,monomer_smiles,copolymer_mole_fractions,known_asd_applications,spray_drying_suitability,hygroscopicity,literature_evidence_score,literature_dois,data_source,confidence_level,validation_status"
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 11,
+      "text": "\"literature_evidence_score\","
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 13,
+      "text": "\"evidence_score\","
+    },
+    {
+      "file": "src\\asd_mcda\\polymer\\polymer_library.py",
+      "line": 38,
+      "text": "literature_evidence_score: float = 0.5"
+    },
+    {
+      "file": "src\\asd_mcda\\polymer\\polymer_library.py",
+      "line": 90,
+      "text": "literature_evidence_score=float(data.get(\"literature_evidence_score\", 0.5)),"
+    },
+    {
+      "file": "src\\asd_mcda\\polymer\\polymer_library.py",
+      "line": 169,
+      "text": "\"literature_evidence_score\": p.literature_evidence_score,"
+    },
+    {
+      "file": "tests\\unit\\test_polymer.py",
+      "line": 25,
+      "text": "\"literature_evidence_score\": 1.0,"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 119,
+      "text": "assert \"literature_evidence_score\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 121,
+      "text": "assert \"evidence_score\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 127,
+      "text": "assert \"literature_evidence_score\" not in fields"
+    },
+    {
+      "file": "tests\\unit\\test_v150_four_criterion.py",
+      "line": 176,
+      "text": "# Test API endpoint polymer creation without literature_evidence_score"
+    }
+  ],
+  "lit_score": [
+    {
+      "file": "docs\\specifications\\Database_Architecture_Specification_V1.0.md",
+      "line": 431,
+      "text": "|17|`s_lit_score`|Float|\u2208 {0.0, 0.5, 1.0}|\u2014|Literature evidence score from polymer database|FAIL|"
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 14,
+      "text": "\"lit_score\","
+    }
+  ],
+  "five criteria": [
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 15,
+      "text": "\"five criteria\","
+    }
+  ],
+  "5-dimensional": [
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 16,
+      "text": "\"5-dimensional\","
+    },
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 17,
+      "text": "\"5-dimensional compatibility\","
+    }
+  ],
+  "5-dimensional compatibility": [
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 17,
+      "text": "\"5-dimensional compatibility\","
+    }
+  ],
+  "literature precedence": [
+    {
+      "file": "scripts\\audit_stale_terms.py",
+      "line": 18,
+      "text": "\"literature precedence\","
+    }
+  ]
+}

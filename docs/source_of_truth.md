@@ -1,8 +1,10 @@
 # Source of Truth — Authoritative File Map
 
-**Release**: v1.4.0-CORRECTED-FREEZE  
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Scientific Baseline**: `v1.5.0-FOUR-CRITERION-FREEZE`  
+**Developer Attribution**: Developed by Tushar Mathapati  
 **Date**: August 2026  
-**Status**: FROZEN COMPUTATIONAL BASELINE (CORRECTED)  
+**Status**: COMPUTATIONAL PHASE CLOSED & FROZEN  
 
 ---
 
@@ -10,30 +12,32 @@ This document establishes the single, unambiguous authoritative file mapping for
 
 ## Authoritative File Map
 
-| Scientific Object | Authoritative File | Version | Source | Generating Code | Status |
-| :--- | :--- | :---: | :--- | :--- | :---: |
-| **Final Polymer Library** | `config/polymers/polymer_library_v3_five_polymers.csv` | v3 (5 polymers) | Curated supplier CoA + H-V-K group contribution | Manual curation / Verification | **FROZEN** |
-| **Final Workflow Configuration** | `config/workflow/workflow_config.yaml` | v1.0.0 | Master Research Framework V2.0 | Framework configuration | **FROZEN** |
-| **Final Drug Profile (Indomethacin)** | `config/drugs/indomethacin.json` | IND-001-2026 | Hancock et al. (*J. Pharm. Sci.* 2007) | Literature curation | **FROZEN** |
-| **Final AHP Matrices** | `config/ahp/default_matrix.json` | DEFAULT_AHP_V2 | Expert consensus pairwise comparisons | Multi-expert elicitation | **FROZEN** |
-| **Final HSP Calculation Inputs** | `config/polymers/polymer_library_v3_five_polymers.csv` | H-V-K Group Contribution | Hoftyzer–Van Krevelen method | `src/asd_mcda/compatibility/hsp_model.py` | **FROZEN** |
-| **Final Compatibility Score Matrix** | `results/final/final_score_matrix.csv` | v1.4.0-CORRECTED-FREEZE | Computational engine | `src/asd_mcda/compatibility/matrix.py` | **FROZEN** |
-| **Final Polymer Ranking** | `results/final/final_polymer_ranking.csv` | v1.4.0-CORRECTED-FREEZE | Computational engine (PCA-AHP-TOPSIS) | `src/asd_mcda/mcda/topsis.py` | **FROZEN** |
-| **Final Monte Carlo UQ Results** | `results/final/final_monte_carlo_summary.json` | v1.4.0-CORRECTED-FREEZE | Stochastic simulation ($N=10,000$, seed=42) | `src/asd_mcda/uncertainty/monte_carlo.py` | **FROZEN** |
-| **Final Computational Decision Report** | `results/reports/decision_report.md` | v1.4.0-CORRECTED-FREEZE | Synthesized decision artifact | Pipeline output | **FROZEN** |
-| **Frozen Baseline Record** | `results/final/final_monte_carlo_summary.json` | v1.4.0-CORRECTED-FREEZE | Export script | Frozen baseline lock | **FROZEN** |
-| **Reproduction Environment** | `pyproject.toml`, `requirements.txt` | Python $\ge 3.11$ | Dependency specification | Package config | **FROZEN** |
-
+| Scientific Object | Authoritative File | Version / Baseline | Generating Module / Source | Computational Status |
+| :--- | :--- | :---: | :--- | :---: |
+| **Model Drug Profile (Indomethacin)** | `config/drugs/indomethacin.json` | IND-001-2026 | Hancock et al. (*J. Pharm. Sci.* 2007) / Curated | **FROZEN** |
+| **Active Polymer Library (5 Candidates)** | `config/polymers/polymer_library_v3_five_polymers.csv` | v3 (5 polymers) | Curated supplier CoA + H-V-K group contribution | **FROZEN** |
+| **Workflow Configuration** | `config/workflow/workflow_config.yaml` | v1.0.0 | Master Research Framework V2.0 | **FROZEN** |
+| **AHP Expert Matrix** | `config/ahp/default_matrix.json` | DEFAULT_AHP_V2 | Expert consensus pairwise comparisons (PC1:PC2 = 2:1) | **FROZEN** |
+| **Polymer HSP Inputs** | `config/polymers/polymer_library_v3_five_polymers.csv` | H-V-K Calculated | Hoftyzer–Van Krevelen method | **FROZEN** |
+| **Compatibility Score Matrix ($\mathbf{S}$)** | `results/final/final_score_matrix.csv` | `v1.5.0-FOUR-CRITERION-FREEZE` | `src/asd_mcda/compatibility/matrix.py` | **FROZEN** |
+| **Polymer Ranking Table** | `results/final/final_polymer_ranking.csv` | `v1.5.0-FOUR-CRITERION-FREEZE` | `src/asd_mcda/mcda/topsis.py` | **FROZEN** |
+| **Monte Carlo UQ Summary** | `results/final/final_monte_carlo_summary.json` | `v1.5.0-FOUR-CRITERION-FREEZE` | `src/asd_mcda/uncertainty/monte_carlo.py` ($N=10\text{k}$, seed=42) | **FROZEN** |
+| **Frozen Baseline Record (JSON)** | `results/reports/v1.5.0_freeze_baseline_record.json` | `v1.5.0-FOUR-CRITERION-FREEZE` | `results/final/final_baseline_record.json` | **FROZEN** |
+| **Frozen Baseline Record (Doc)** | `docs/v1.5.0_frozen_computational_baseline_record.md` | `v1.5.0-FOUR-CRITERION-FREEZE` | Research documentation record | **FROZEN** |
+| **Baseline Release Manifest** | `FINAL_COMPUTATIONAL_BASELINE_MANIFEST.yaml` | `v1.5.0-FOUR-CRITERION-FREEZE` | Framework release manifest | **FROZEN** |
+| **Full PDF Screening Report** | `backend/services/pdf_report_generator.py` | `v1.5.0-FOUR-CRITERION-FREEZE` | Dynamic 14-page ReportLab PDF export generator | **FROZEN** |
+| **Automated Test Suite** | `tests/` (76 test functions) | pytest $\ge 9.0$ | Automated integrity, unit, integration & web tests | **FROZEN** |
+| **Reproduction Environment** | `pyproject.toml`, `requirements.txt` | Python $\ge 3.11$ | Framework dependency specification | **FROZEN** |
 
 ---
 
 ## Active Polymer Library Integrity
 
 - **Filename**: `config/polymers/polymer_library_v3_five_polymers.csv`
-- **SHA-256 Checksum**: `24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff`
+- **SHA-256 Checksum**: `5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2`
 - **Candidate Count**: Exactly 5 polymers
 
-| Polymer ID | Canonical Name | Abbreviation | Polymer Family | Polymer Class | Regulatory Status |
+| Polymer ID | Canonical Name | Abbreviation | Polymer Family | Polymer Class | Compendial Status |
 | :--- | :--- | :---: | :---: | :---: | :---: |
 | `POL-001-2026` | Polyvinylpyrrolidone K30 | PVP_K30 | vinylic | neutral | FDA_IID |
 | `POL-002-2026` | PVP-Vinyl Acetate 64 | PVP_VA_64 | vinylic | neutral | FDA_IID |
@@ -45,7 +49,18 @@ This document establishes the single, unambiguous authoritative file mapping for
 
 ## Excluded Historical Candidates
 
-| Polymer ID | Canonical Name | Status | Justification |
+| Polymer ID | Canonical Name | Historical Status | Archival Location & Justification |
 | :--- | :--- | :---: | :--- |
 | `POL-003-2026` | HPMCAS-L | EXCLUDED | Retired from 6-polymer screening; preserved in `archive/historical/` |
 | `POL-004-2026` | Eudragit L100 | EXCLUDED | Retired from 6-polymer screening; preserved in `archive/historical/` |
+
+---
+
+## Historical vs. Active Version Lineage
+
+| Version / Release | Decision Criteria ($\mathbf{S}$) | Candidate Library | Status | Key Distinction |
+| :--- | :--- | :--- | :---: | :--- |
+| **v1.0 – v1.2** | 3–5 criteria | 6 polymers | HISTORICAL | Early development prototypes |
+| **v1.3.1-FREEZE** | 5 criteria ($s_{\text{HSP}}, s_\chi, s_{\text{desc}}, s_{\text{GT}}, s_{\text{lit}}$) | 5 polymers | HISTORICAL | Included uncalibrated $T_m$ and legacy $s_{\text{lit}}$ |
+| **v1.4.0-CORRECTED-FREEZE** | 5 criteria ($s_{\text{HSP}}, s_\chi, s_{\text{desc}}, s_{\text{GT}}, s_{\text{lit}}$) | 5 polymers | HISTORICAL | Corrected $T_m = 433.15\text{ K}$ and Lindvig scaling |
+| **v1.5.0-FOUR-CRITERION-FREEZE** | **4 criteria ($s_{\text{HSP}}, s_\chi, s_{\text{desc}}, s_{\text{GT}}$)** | **5 polymers** | **AUTHORITATIVE ACTIVE** | **$s_{\text{lit}}$ removed from MCDA; Policy A fixed-subspace UQ** |

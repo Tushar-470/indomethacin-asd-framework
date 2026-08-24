@@ -1,6 +1,8 @@
 # Repository Directory and Architectural Map
 
-**Release**: v1.3.1-FREEZE  
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Release**: `v1.5.0-FOUR-CRITERION-FREEZE`  
+**Developer Attribution**: Developed by Tushar Mathapati  
 
 ---
 
@@ -48,20 +50,32 @@ asd_framework/
 │   │   ├── final_score_matrix.csv             # Authoritative compatibility scores
 │   │   ├── final_polymer_ranking.csv          # Authoritative TOPSIS ranking & probabilities
 │   │   ├── final_monte_carlo_summary.json     # Authoritative UQ summary ($N=10,000$)
+│   │   ├── final_baseline_record.json         # Authoritative frozen JSON snapshot
 │   │   └── final_computational_report.md      # Final synthesized decision report
 │   ├── reports/                               # Generated pipeline reports & baseline record
 │   └── figures/                               # Generated 300 DPI publication plots
 │
 ├── scripts/                                   # Quality Assurance & Verification Scripts
-│   └── validate_final_dataset.py              # Automated dataset validator & SHA-256 checker
+│   ├── validate_final_dataset.py              # Automated dataset validator & SHA-256 checker
+│   ├── regenerate_v150_baseline.py            # Authoritative baseline exporter
+│   ├── audit_stale_terms.py                   # Terminology compliance auditor
+│   └── classify_stale_terms.py                # Terminology classifier
 │
-├── tests/                                     # Automated Verification Suite
+├── tests/                                     # Automated Verification Suite (76 tests)
 │   ├── unit/                                  # Physics, MCDA, & component unit tests
 │   ├── integration/                           # Full 11-step pipeline test
-│   └── web/                                   # FastAPI REST endpoints & regression tests
+│   ├── web/                                   # FastAPI REST endpoints & regression tests
+│   ├── test_full_screening_pdf_report.py      # PDF generator functional test
+│   └── test_report_generator_integrity.py     # 17-point PDF scientific integrity suite
 │
 ├── backend/                                   # FastAPI REST Application Backend
+│   ├── api/                                   # API routing endpoints
+│   ├── models/                                # Pydantic schemas
+│   └── services/                              # Engine adapter & PDF report generator
+│
 ├── frontend/                                  # React 18 + TypeScript + Vite Dashboard
+│   ├── src/                                   # Application source (components, pages, api)
+│   └── dist/                                  # Production compiled bundle
 │
 ├── docs/                                      # Framework Documentation Suite
 │   ├── source_of_truth.md                     # Single authoritative file map
@@ -71,8 +85,9 @@ asd_framework/
 │   ├── study_overview.md                      # Research objective & lifecycle context
 │   ├── reproducibility.md                     # Reproduction instructions & benchmarks
 │   ├── limitations.md                         # Methodological & theoretical limitations
-│   ├── repository_map.md                      # This directory architectural guide
-│   ├── pre_cleanup_dependency_audit.md        # Pre-cleanup safety & dependency audit
+│   ├── repository_map.md                      # Directory architectural guide
+│   ├── v1.5.0_frozen_computational_baseline_record.md # Immutable scientific baseline
+│   ├── brand/                                 # Brand assets & guidelines
 │   ├── specifications/                        # Architecture specifications & master framework
 │   └── verification/                          # Verification and validation audit reports
 │

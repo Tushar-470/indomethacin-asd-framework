@@ -2,8 +2,8 @@
   "selected_polymer": "Hydroxypropyl Methylcellulose E5",
   "selected_polymer_id": "POL-006-2026",
   "topsis_CL": 0.8359112438004079,
-  "confidence_P_top1": 0.424,
-  "confidence_tier": "Moderate Confidence (0.40 <= P(top-1) < 0.70)",
+  "confidence_P_top1": 0.7554,
+  "confidence_tier": "High Confidence (P(top-1) >= 0.70)",
   "predicted_Tg_K": 393.8,
   "Tg_prediction_interval": [
     388.8,
@@ -11,7 +11,7 @@
   ],
   "predicted_chi": 0.26,
   "chi_critical": 0.64,
-  "miscibility_class": "Miscible (Below Critical chi_c = 0.64)",
+  "miscibility_class": "Phase-boundary diagnostic favorable (chi = 0.260 < critical chi_c = 0.640)",
   "stability_tier": "High Stability (Tg margin >= 50 K above 25\u00b0C); Medium-High (40\u00b0C/75%RH)",
   "risk_recrystallization": "Low",
   "risk_phase_separation": "Low",
@@ -25,7 +25,7 @@
       "topsis_cl": 0.8359112438004079,
       "topsis_ideal_distance": 0.15617840250455678,
       "topsis_anti_ideal_distance": 0.7956138233721912,
-      "confidence_p_top1": 0.424
+      "confidence_p_top1": 0.7554
     },
     {
       "rank": 2,
@@ -35,7 +35,7 @@
       "topsis_cl": 0.6943422648258153,
       "topsis_ideal_distance": 0.3822661559243256,
       "topsis_anti_ideal_distance": 0.8683684982468969,
-      "confidence_p_top1": 0.35
+      "confidence_p_top1": 0.2018
     },
     {
       "rank": 3,
@@ -45,7 +45,7 @@
       "topsis_cl": 0.5493675017870735,
       "topsis_ideal_distance": 0.4592717296104521,
       "topsis_anti_ideal_distance": 0.5598996160687572,
-      "confidence_p_top1": 0.133
+      "confidence_p_top1": 0.0403
     },
     {
       "rank": 4,
@@ -55,7 +55,7 @@
       "topsis_cl": 0.47025629791164897,
       "topsis_ideal_distance": 0.5062927873276735,
       "topsis_anti_ideal_distance": 0.4494387963264038,
-      "confidence_p_top1": 0.032
+      "confidence_p_top1": 0.0025
     },
     {
       "rank": 5,
@@ -65,7 +65,7 @@
       "topsis_cl": 0.09050149730028258,
       "topsis_ideal_distance": 0.9158716125052487,
       "topsis_anti_ideal_distance": 0.09113566654646343,
-      "confidence_p_top1": 0.061
+      "confidence_p_top1": 0.0
     }
   ],
   "pca_effective_dimensionality": {

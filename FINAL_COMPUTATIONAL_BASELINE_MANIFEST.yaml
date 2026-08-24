@@ -1,89 +1,196 @@
 # FINAL COMPUTATIONAL BASELINE MANIFEST
-# Release: v1.4.0-CORRECTED-FREEZE
-# Generated: August 2026
-# Status: PRE-EXPERIMENTATION
+# Project: PharmaPolySCOPE
+# Software: Pharmaceutical Polymer Screening and Computational Optimization Platform
+# Release: v1.5.0-FOUR-CRITERION-FREEZE
+# Developer: Developed by Tushar Mathapati
+# Date: August 2026
+# Status: COMPUTATIONAL PHASE CLOSED & IMMUTABLE
 
-project_title: >-
-  Quality by Design-Driven Development of Indomethacin Immediate-Release
-  Tablets from Spray-Dried Amorphous Solid Dispersions: A Computational-
-  Experimental Framework for Polymer Selection, Predictive Formulation
-  Design, and Failure Boundary Mapping
+project_name: PharmaPolySCOPE
+software_name: PharmaPolySCOPE
+formal_name: Pharmaceutical Polymer Screening and Computational Optimization Platform
+developer: Tushar Mathapati
+scientific_release: v1.5.0-FOUR-CRITERION-FREEZE
+closure_status: COMPUTATIONAL PHASE CLOSED
 
-release: v1.4.0-CORRECTED-FREEZE
-polymer_library_file: config/polymers/polymer_library_v3_five_polymers.csv
-polymer_library_hash: "24cd6c4092788cb7266d2ea34e82b6dfe193b5cfb91e22c0dff66b0abc9088ff"
+repository:
+  url: "https://github.com/Tushar-470/indomethacin-asd-framework.git"
+  default_branch: main
+  active_branch: feature/web-interface
+  recommended_tag: v1.5.0-FOUR-CRITERION-FREEZE
 
-active_polymers:
-  - id: POL-001-2026
-    name: Polyvinylpyrrolidone K30
-    abbreviation: PVP_K30
-  - id: POL-002-2026
-    name: PVP-Vinyl Acetate 64
-    abbreviation: PVP_VA_64
-  - id: POL-005-2026
-    name: Soluplus
-    abbreviation: SOLUPLUS
-  - id: POL-006-2026
-    name: Hydroxypropyl Methylcellulose E5
-    abbreviation: HPMC_E5
-  - id: POL-007-2026
-    name: Eudragit E PO
-    abbreviation: EDR_EPO
+model_drug:
+  id: IND-001-2026
+  generic_name: Indomethacin
+  target_loading_ww: 0.30
+  molecular_weight_g_mol: 357.79
+  tm_k: 433.15
+  tg_k: 315.15
+  crystalline_density_g_cm3: 1.31
+  hsp_delta_d: 19.2
+  hsp_delta_p: 7.9
+  hsp_delta_h: 8.4
+  hsp_ro: 8.0
+  molar_volume_cm3_mol: 273.0
 
-final_ranking:
+polymer_library:
+  file: config/polymers/polymer_library_v3_five_polymers.csv
+  dataset_hash_sha256: "5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2"
+  candidate_count: 5
+  candidates:
+    - id: POL-001-2026
+      name: Polyvinylpyrrolidone K30
+      abbreviation: PVP_K30
+      mn_da: 40000
+      tg_k: 441.15
+      density_g_cm3: 1.20
+    - id: POL-002-2026
+      name: PVP-Vinyl Acetate 64
+      abbreviation: PVP_VA_64
+      mn_da: 45000
+      tg_k: 378.15
+      density_g_cm3: 1.20
+    - id: POL-005-2026
+      name: Soluplus
+      abbreviation: SOLUPLUS
+      mn_da: 90000
+      tg_k: 343.15
+      density_g_cm3: 1.08
+    - id: POL-006-2026
+      name: Hydroxypropyl Methylcellulose E5
+      abbreviation: HPMC_E5
+      mn_da: 20000
+      tg_k: 443.15
+      density_g_cm3: 1.27
+    - id: POL-007-2026
+      name: Eudragit E PO
+      abbreviation: EDR_EPO
+      mn_da: 39000
+      tg_k: 323.15
+      density_g_cm3: 1.125
+
+active_decision_criteria:
+  - symbol: s_HSP
+    name: Hansen Solubility Parameter Distance Affinity Score
+    bounds: [0.0, 1.0]
+  - symbol: s_chi
+    name: Flory-Huggins Interaction Compatibility Score
+    bounds: [0.0, 1.0]
+  - symbol: s_desc
+    name: 2D Molecular Descriptor Complementarity Score
+    bounds: [0.0, 1.0]
+  - symbol: s_GT
+    name: Gordon-Taylor Glass Transition Elevation Score
+    bounds: [0.0, 1.0]
+
+excluded_decision_criteria:
+  - symbol: s_lit
+    status: PERMANENTLY REMOVED from MCDA; retained strictly as provenance metadata.
+
+pca_configuration:
+  standardization: StandardScaler
+  variance_threshold: 0.95
+  retained_components_k: 2
+  pc1_explained_variance_pct: 67.2
+  pc2_explained_variance_pct: 32.8
+  cumulative_explained_variance_pct: 100.0
+  factor_loadings:
+    s_HSP: { PC1: 0.697, PC2: -0.137 }
+    s_chi: { PC1: 0.702, PC2: -0.068 }
+    s_desc: { PC1: 0.000, PC2: 0.000 }
+    s_GT: { PC1: 0.145, PC2: 0.988 }
+
+ahp_configuration:
+  pairwise_matrix: [[1.0, 2.0], [0.5, 1.0]]
+  weights: [0.6667, 0.3333]
+  consistency_ratio: 0.0000
+  cr_max_threshold: 0.0800
+  diagnostic_3_status: PASS
+
+topsis_configuration:
+  normalization: vector
+  distance_metric: Euclidean
+  ideal_solutions:
+    benefit_criteria: positive_ideal_max
+    cost_criteria: negative_ideal_min
+
+monte_carlo_configuration:
+  n_iterations: 10000
+  random_seed: 42
+  policy: Policy_A_fixed_baseline_decision_subspace
+  uncertainty_distributions:
+    hsp_error_mpa: 1.5
+    chi_error_relative: 0.25
+    logp_error: 0.7
+    tg_drug_error_k: 10.0
+    tg_polymer_error_k: 3.0
+    density_error_g_cm3: 0.05
+    ahp_weight_relative: 0.20
+
+final_authoritative_ranking:
   - rank: 1
     polymer_id: POL-006-2026
     polymer_name: Hydroxypropyl Methylcellulose E5
-    topsis_cl: 0.8359
-    p_top1_percent: 42.4
+    abbreviation: HPMC_E5
+    topsis_cl: 0.835911
+    d_plus: 0.156178
+    d_minus: 0.795614
+    p_top1_percent: 75.54
+    selection_robustness_tier: "High model-selection robustness (P >= 70%)"
+    diagnostic_1_hsp_red: PASS (RED = 0.496)
+    diagnostic_2_phase_boundary: PASS (chi = 0.260 < chi_c = 0.640)
   - rank: 2
     polymer_id: POL-005-2026
     polymer_name: Soluplus
-    topsis_cl: 0.6943
-    p_top1_percent: 35.0
+    abbreviation: SOLUPLUS
+    topsis_cl: 0.694342
+    d_plus: 0.382266
+    d_minus: 0.868368
+    p_top1_percent: 20.18
+    selection_robustness_tier: "Low model-selection robustness (P < 40%)"
+    diagnostic_1_hsp_red: PASS (RED = 0.406)
+    diagnostic_2_phase_boundary: PASS (chi = 0.174 < chi_c = 0.559)
   - rank: 3
     polymer_id: POL-001-2026
     polymer_name: Polyvinylpyrrolidone K30
-    topsis_cl: 0.5494
-    p_top1_percent: 13.3
+    abbreviation: PVP_K30
+    topsis_cl: 0.549368
+    d_plus: 0.459272
+    d_minus: 0.559900
+    p_top1_percent: 4.03
+    selection_robustness_tier: "Low model-selection robustness (P < 40%)"
+    diagnostic_1_hsp_red: PASS (RED = 0.612)
+    diagnostic_2_phase_boundary: PASS (chi = 0.395 < chi_c = 0.595)
   - rank: 4
     polymer_id: POL-002-2026
     polymer_name: PVP-Vinyl Acetate 64
-    topsis_cl: 0.4703
-    p_top1_percent: 3.2
+    abbreviation: PVP_VA_64
+    topsis_cl: 0.470256
+    d_plus: 0.506293
+    d_minus: 0.449439
+    p_top1_percent: 0.25
+    selection_robustness_tier: "Low model-selection robustness (P < 40%)"
+    diagnostic_1_hsp_red: PASS (RED = 0.585)
+    diagnostic_2_phase_boundary: PASS (chi = 0.362 < chi_c = 0.589)
   - rank: 5
     polymer_id: POL-007-2026
     polymer_name: Eudragit E PO
-    topsis_cl: 0.0905
-    p_top1_percent: 6.1
+    abbreviation: EDR_EPO
+    topsis_cl: 0.090501
+    d_plus: 0.915872
+    d_minus: 0.091136
+    p_top1_percent: 0.00
+    selection_robustness_tier: "Low model-selection robustness (P < 40%)"
+    diagnostic_1_hsp_red: PASS (RED = 0.728)
+    diagnostic_2_phase_boundary: PASS (chi = 0.561 < chi_c = 0.593)
 
+morris_sensitivity:
+  pc1_weight: { mu: 0.180, mu_star: 0.190, sigma: 0.060, classification: "Dominant & Interactive Factor" }
+  pc2_weight: { mu: 0.080, mu_star: 0.090, sigma: 0.020, classification: "Moderate Factor" }
 
-monte_carlo:
-  n_iterations: 10000
-  random_seed: 42
-  confidence_tier: "Moderate Confidence (0.40 <= P(top-1) < 0.70)"
-  top1_probabilities:
-    POL-005-2026: 0.432
-    POL-006-2026: 0.310
-    POL-001-2026: 0.144
-    POL-002-2026: 0.058
-    POL-007-2026: 0.056
-
-hsp_method: hoftyzer_van_krevelen
-chi_method: lindvig_conversion
-tg_method: gordon_taylor_simha_boyer
-ranking_method: PCA_AHP_TOPSIS
-uncertainty_method: joint_distribution_monte_carlo
-
-uncertainty_parameters:
-  hsp_error_mpa: 1.5
-  chi_error_relative: 0.25
-  logp_error: 0.7
-  tg_drug_error_k: 10.0
-  tg_polymer_error_k: 3.0
-  density_error_g_cm3: 0.05
-  ahp_weight_relative: 0.20
-
-test_status: "41/41 passed"
-reproduction_command: "python -m asd_mcda.cli --config config/workflow/workflow_config.yaml"
-status: PRE-EXPERIMENTATION
+quality_assurance:
+  test_suite_count: 76
+  test_suite_status: "76 passed, 0 failed (100%)"
+  frontend_build_status: "0 errors, 0 warnings (Vite + React 18 production bundle)"
+  reproduction_command: "python -m asd_mcda.cli --config config/workflow/workflow_config.yaml"
+  configuration_hash_sha256: "33057685b3e9ae411d8526e98d7bb39e096359af7a4a07c3f52826adb697f0a7"

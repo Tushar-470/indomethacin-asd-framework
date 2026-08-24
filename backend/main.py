@@ -29,13 +29,13 @@ from backend.api import drugs, polymers, screening, history
 from backend.services.engine_adapter import get_engine_version
 
 app = FastAPI(
-    title="ASD Computational Polymer Screening Framework",
+    title="PharmaPolySCOPE API",
     description=(
-        "Web interface for the Quality by Design-Driven Indomethacin ASD "
-        "computational polymer screening and failure mapping framework. "
-        "All scientific computations performed by asd_mcda v" + get_engine_version()
+        "Pharmaceutical Polymer Screening and Computational Optimization Platform API. "
+        "A Four-Criterion Computational Framework for Rational Polymer Selection in Amorphous Solid Dispersions. "
+        "Computational engine powered by asd_mcda v" + get_engine_version()
     ),
-    version="1.0.0",
+    version="1.5.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
 )

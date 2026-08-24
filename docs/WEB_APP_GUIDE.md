@@ -1,6 +1,6 @@
-# ASD Framework Web Application User Guide
+# PharmaPolySCOPE Web Application User Guide
 
-The ASD Computational Polymer Screening Framework includes a local-first web application built on top of the frozen `asd_mcda` v1.0.0 scientific engine.
+PharmaPolySCOPE (**Pharmaceutical Polymer Screening and Computational Optimization Platform**) was developed by **Tushar Mathapati**. It includes a local-first web application built on top of the frozen `asd_mcda` scientific engine.
 
 ---
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Unified launcher for the ASD Framework Web Application.
+Unified launcher for the PharmaPolySCOPE Web Application.
 Compatible with Python 2.7+ and Python 3.x.
 """
 
@@ -26,7 +26,8 @@ PROJECT_ROOT = Path(__file__).parent.resolve()
 
 def main():
     print("=" * 60)
-    print("ASD Framework Web Application Launcher")
+    print("PharmaPolySCOPE Web Application Launcher")
+    print("Developed by Tushar Mathapati")
     print("=" * 60)
 
     # Ensure project root and src are on Python path

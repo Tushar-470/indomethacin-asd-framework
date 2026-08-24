@@ -1,7 +1,9 @@
 # Data Dictionary
 
-**Release**: v1.3.1-FREEZE  
+**Platform**: PharmaPolySCOPE (Pharmaceutical Polymer Screening and Computational Optimization Platform)  
+**Release**: `v1.5.0-FOUR-CRITERION-FREEZE`  
 **Framework**: Master Research Framework V2.0  
+**Developer Attribution**: Developed by Tushar Mathapati  
 
 ---
 
@@ -38,11 +40,11 @@
 | `known_asd_applications` | String | — | Semicolon-delimited list of precedent ASD drug compounds |
 | `spray_drying_suitability` | String | — | Qualitative technical suitability for spray drying |
 | `hygroscopicity` | String | — | Compendial hygroscopicity classification |
-| `literature_evidence_score` | Float | — | Precedent evidence weight factor $[0.0, 1.0]$ |
+| `literature_evidence_score` | Float | — | Precedent evidence weight factor (preserved as provenance metadata; excluded from MCDA) |
 | `literature_dois` | String | — | Reference DOIs for peer-reviewed studies |
 | `data_source` | String | — | Primary source classification (`supplier_coA`, `literature`) |
 | `confidence_level` | String | — | Quality assurance tier (`high`, `moderate`) |
-| `validation_status` | String | — | Dataset validation status flag (`validated`) |
+| `validation_status` | String | — | Curated reference source verification status (`validated`) |
 
 ---
 
@@ -54,7 +56,8 @@
 | :--- | :---: | :---: | :--- |
 | `polymer_id` | String | — | Unique polymer identifier |
 | `s_HSP` | Float | — | Normalized Hansen solubility score $[0.0, 1.0]$ |
-| `s_chi` | Float | — | Normalized Flory–Huggins interaction score $[0.0, 1.0]$ |
+| `s_chi` | Float | — | Normalized Flory–Huggins interaction compatibility score $[0.0, 1.0]$ |
+| `s_desc` | Float | — | Normalized 2D molecular descriptor complementarity score $[0.0, 1.0]$ |
 | `s_GT` | Float | — | Normalized Gordon–Taylor anti-plasticization score $[0.0, 1.0]$ |
 
 ---

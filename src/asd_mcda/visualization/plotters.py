@@ -164,12 +164,12 @@ class FigureGenerator:
         x_pos = np.arange(len(polys))
         ax.bar(x_pos, probs, color="#5cb85c", edgecolor="black", width=0.5)
 
-        ax.axhline(0.70, color="#d9534f", linestyle="--", linewidth=1.5, label="High-Confidence Threshold (0.70)")
+        ax.axhline(0.70, color="#d9534f", linestyle="--", linewidth=1.5, label="Selection-Robustness Threshold (0.70)")
         ax.set_xticks(x_pos)
         ax.set_xticklabels(tick_labels, rotation=20, ha="right", fontsize=9)
-        ax.set_ylabel("Decision Confidence Metric P(top-1)")
+        ax.set_ylabel("Model-Selection Probability, P(top-1)")
         ax.set_ylim(0.0, 1.0)
-        ax.set_title(f"Joint-Distribution Monte Carlo UQ ({uq_res.confidence_tier})", fontweight="bold")
+        ax.set_title("Joint-Distribution Monte Carlo UQ", fontweight="bold")
         ax.legend()
 
         plt.tight_layout()

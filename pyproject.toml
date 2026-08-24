@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Integrated Computational Polymer Screening and QbD Failure Mapping Framework for SD-ASDs"
 readme = "README.md"
 authors = [
-    { name = "Interdisciplinary Computational Pharmaceutics Team" }
+    { name = "Tushar Mathapati" }
 ]
 license = { text = "MIT" }
 requires-python = ">=3.11"

@@ -2,7 +2,7 @@
   "drug_id": "IND-001-2026",
   "generic_name": "Indomethacin",
   "iupac_name": "2-{1-[(4-chlorophenyl)carbonyl]-5-methoxy-2-methyl-1H-indol-3-yl}acetic acid",
-  "canonical_smiles": "CC1=C(C=C(C=C1)OC)C2=C(C3=CC=CC=C3N2CC(=O)O)C(=O)C4=CC=C(C=C4)Cl",
+  "canonical_smiles": "COc1ccc2c(c1)c(CC(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1",
   "inchi_key": "CGIGDMFJXJATDK-UHFFFAOYSA-N",
   "cas_number": "53-86-1",
   "molecular_formula": "C19H16ClNO4",

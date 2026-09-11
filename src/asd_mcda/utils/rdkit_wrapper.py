@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # Attempt to import RDKit
 try:
     from rdkit import Chem
-    from rdkit.Chem import Descriptors, Inchi, rdMolDescriptors
+    from rdkit.Chem import Descriptors, inchi, rdMolDescriptors
     RDKIT_AVAILABLE = True
 except ImportError:
     RDKIT_AVAILABLE = False
@@ -43,7 +43,7 @@ def get_inchi_key(smiles: str) -> str:
     if RDKIT_AVAILABLE:
         mol = Chem.MolFromSmiles(smiles)
         if mol is not None:
-            return Inchi.MolToInchiKey(mol)
+            return inchi.MolToInchiKey(mol)
     return "UNKNOWN_INCHI_KEY"
 
 

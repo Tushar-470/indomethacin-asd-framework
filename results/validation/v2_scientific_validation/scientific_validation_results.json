@@ -1,0 +1,1240 @@
+{
+  "metadata": {
+    "study_name": "PHARMAPOLYSCOPE V2.0 SCIENTIFIC VALIDATION STUDY",
+    "methodology_version": "2.0.0-SP-PRP-TOPSIS",
+    "engine_version": "2.0.0-draft",
+    "python_version": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+    "numpy_version": "2.4.6",
+    "criteria": [
+      "s_HSP",
+      "s_chi",
+      "s_desc",
+      "s_GT"
+    ]
+  },
+  "cohorts": {
+    "IND-001-2026": {
+      "status": "VALID",
+      "generic_name": "Indomethacin",
+      "canonical_smiles": "COc1ccc2c(c1)c(CC(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1",
+      "inchi_key": "CGIGDMFJXJATDK-UHFFFAOYSA-N",
+      "molecular_weight": 357.793,
+      "logp": 3.9273200000000026,
+      "tpsa": 68.53,
+      "hbd": 1,
+      "hba": 3,
+      "rotatable_bonds": 4,
+      "aromatic_rings": 3,
+      "density_crystalline": 1.31,
+      "density_amorphous": 1.22,
+      "molar_volume": 273.0,
+      "tg_k": 315.15,
+      "tm_k": 433.15,
+      "hsp": [
+        19.2,
+        7.9,
+        8.4,
+        8.0
+      ],
+      "analysis_id": "VAL-IND-001-2026",
+      "analysis_fingerprint": "32d6354fe09cfd82764ff03ea89e638c4887f3aca04b37fa8d1794f8518ad21f",
+      "k": 3,
+      "eigenvalues": [
+        2.0908657741533783,
+        1.1678952418522826,
+        0.7397747065453792,
+        0.0014642774489659338
+      ],
+      "variance_explained": [
+        0.5227164435383438,
+        0.2919738104630702,
+        0.18494367663634453,
+        0.0003660693622414829
+      ],
+      "cumulative_variance": 0.99963393063776,
+      "boundary_eigengap": 0.7383104290964133,
+      "subspace_stability_status": "STABLE",
+      "ahp": {
+        "weights": [
+          0.40767478396983764,
+          0.32443340865551623,
+          0.09216133794843878,
+          0.17573046942620724
+        ],
+        "lambda_max": 4.131937073898666,
+        "consistency_index": 0.04397902463288853,
+        "consistency_ratio": 0.04941463441897588,
+        "governance_status": "ACCEPTED"
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "polymer_id": "POL-005-2026",
+          "polymer_name": "Soluplus",
+          "abbreviation": "SOLUPLUS",
+          "topsis_cl": 0.6864350839750771,
+          "distance_ideal_d_plus": 4.18260400161078,
+          "distance_anti_ideal_d_minus": 9.156273493466944,
+          "mc_p_top1": 0.5551162790697675,
+          "mc_expected_rank": 1.5091860465116278,
+          "mc_median_rank": 1,
+          "s_HSP": 0.7971877407551506,
+          "s_chi": 0.8260544677222139,
+          "s_desc": 0.325973,
+          "s_GT": 0.0
+        },
+        {
+          "rank": 2,
+          "polymer_id": "POL-006-2026",
+          "polymer_name": "Hydroxypropyl Methylcellulose E5",
+          "abbreviation": "HPMC_E5",
+          "topsis_cl": 0.6731464918436223,
+          "distance_ideal_d_plus": 4.196083764580734,
+          "distance_anti_ideal_d_minus": 8.641727853990561,
+          "mc_p_top1": 0.42,
+          "mc_expected_rank": 1.683953488372093,
+          "mc_median_rank": 2,
+          "s_HSP": 0.7521183498118508,
+          "s_chi": 0.7401554394368874,
+          "s_desc": 0.39415,
+          "s_GT": 0.973122720135076
+        },
+        {
+          "rank": 3,
+          "polymer_id": "POL-002-2026",
+          "polymer_name": "PVP-Vinyl Acetate 64",
+          "abbreviation": "PVP_VA_64",
+          "topsis_cl": 0.606246890331839,
+          "distance_ideal_d_plus": 5.082373875664344,
+          "distance_anti_ideal_d_minus": 7.825140378502591,
+          "mc_p_top1": 0.01383720930232558,
+          "mc_expected_rank": 3.356511627906977,
+          "mc_median_rank": 3,
+          "s_HSP": 0.7073157631507977,
+          "s_chi": 0.6377373672505366,
+          "s_desc": 0.294176,
+          "s_GT": 0.23675635702531736
+        },
+        {
+          "rank": 4,
+          "polymer_id": "POL-001-2026",
+          "polymer_name": "Polyvinylpyrrolidone K30",
+          "abbreviation": "PVP_K30",
+          "topsis_cl": 0.587583904310203,
+          "distance_ideal_d_plus": 5.344023390153163,
+          "distance_anti_ideal_d_minus": 7.613820510713223,
+          "mc_p_top1": 0.005581395348837209,
+          "mc_expected_rank": 3.8040697674418604,
+          "mc_median_rank": 4,
+          "s_HSP": 0.6941967544318732,
+          "s_chi": 0.6045340890094775,
+          "s_desc": 0.25178,
+          "s_GT": 0.9848222546401791
+        },
+        {
+          "rank": 5,
+          "polymer_id": "POL-007-2026",
+          "polymer_name": "Eudragit E PO",
+          "abbreviation": "EDR_EPO",
+          "topsis_cl": 0.5456162037572858,
+          "distance_ideal_d_plus": 5.671239168807834,
+          "distance_anti_ideal_d_minus": 6.809925907286733,
+          "mc_p_top1": 0.005465116279069767,
+          "mc_expected_rank": 4.646279069767441,
+          "mc_median_rank": 5,
+          "s_HSP": 0.6358872084092624,
+          "s_chi": 0.4393436499992346,
+          "s_desc": 0.40939000000000003,
+          "s_GT": 0.0
+        }
+      ],
+      "monte_carlo": {
+        "num_replicates": 10000,
+        "num_valid_replicates": 8600,
+        "valid_ratio": 0.86,
+        "num_blocked_replicates": 1400,
+        "block_reasons": {
+          "INVALID_INPUT_SCORE": 0,
+          "ZERO_VARIANCE": 0,
+          "EIGENGAP_BLOCKED": 4,
+          "AHP_CR_BLOCKED": 1396,
+          "NON_PD_METRIC": 0,
+          "REFERENCE_COINCIDENCE": 0,
+          "INVALID_SMILES": 0,
+          "RDKIT_PARSE_FAILURE": 0,
+          "RDKIT_SANITIZATION_FAILURE": 0,
+          "RDKIT_UNAVAILABLE": 0,
+          "FALLBACK_PROHIBITED": 0
+        },
+        "k_distribution": {
+          "1": 0.0,
+          "2": 0.02116279069767442,
+          "3": 0.9077906976744186,
+          "4": 0.07104651162790698
+        },
+        "governance_distribution": {
+          "VALID": 0.86,
+          "BLOCKED": 0.14
+        },
+        "stability_distribution": {
+          "STABLE": 0.8555,
+          "WARNING": 0.0045,
+          "BLOCKED": 0.0004
+        }
+      },
+      "morris": {
+        "num_factors": 26,
+        "trajectories_attempted": 31,
+        "trajectories_valid": 10,
+        "trajectories_discarded": 21,
+        "discard_reasons": {
+          "INVALID_INPUT_SCORE": 0,
+          "ZERO_VARIANCE": 0,
+          "EIGENGAP_BLOCKED": 0,
+          "AHP_CR_BLOCKED": 21,
+          "NON_PD_METRIC": 0,
+          "REFERENCE_COINCIDENCE": 0,
+          "INVALID_SMILES": 0,
+          "RDKIT_PARSE_FAILURE": 0,
+          "RDKIT_SANITIZATION_FAILURE": 0,
+          "RDKIT_UNAVAILABLE": 0,
+          "FALLBACK_PROHIBITED": 0
+        },
+        "cl_sensitivity": [
+          {
+            "factor_name": "score_POL-005-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.14438139446805962,
+            "mu": 0.059013207608948556,
+            "sigma": 0.18295089223501712,
+            "rank_mu_star": 1.95
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.10011742206120326,
+            "mu": -0.019213898015641016,
+            "sigma": 0.1627799006498983,
+            "rank_mu_star": 0.9
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.09194185994486055,
+            "mu": -0.057686782756358725,
+            "sigma": 0.10798695169880125,
+            "rank_mu_star": 1.05
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.09100078574751178,
+            "mu": 0.07734656736291798,
+            "sigma": 0.08302544761493395,
+            "rank_mu_star": 1.95
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.07650254691387734,
+            "mu": 0.07276946804383556,
+            "sigma": 0.06465414900071545,
+            "rank_mu_star": 0.45
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.07445850505325245,
+            "mu": 0.014052486730223124,
+            "sigma": 0.10585347833295114,
+            "rank_mu_star": 0.45
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.0719428044122987,
+            "mu": -0.04947118827309368,
+            "sigma": 0.09493800376659295,
+            "rank_mu_star": 0.9
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.06647453122169694,
+            "mu": -0.041741141534203864,
+            "sigma": 0.1276043376900582,
+            "rank_mu_star": 0.45
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.0594361591442316,
+            "mu": 0.049493451815550635,
+            "sigma": 0.08604564049589533,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.058555975965537174,
+            "mu": -0.033758741122093275,
+            "sigma": 0.06692737475078699,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.058219375321913194,
+            "mu": 0.0060446392743851215,
+            "sigma": 0.08080445700397539,
+            "rank_mu_star": 0.6
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.05796302809016677,
+            "mu": 0.02878582831695616,
+            "sigma": 0.06967817456413279,
+            "rank_mu_star": 0.75
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.03776485025990102,
+            "mu": 0.029468647429051115,
+            "sigma": 0.03685428843809086,
+            "rank_mu_star": 0.6
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.028274850189798622,
+            "mu": 0.014561582598379858,
+            "sigma": 0.03862337417314836,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.016236238891604797,
+            "mu": 0.013037938912421837,
+            "sigma": 0.0186723668315883,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.009930122763043453,
+            "mu": 0.009930122763043453,
+            "sigma": 0.01733115908276405,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_desc",
+            "factor_type": "ahp",
+            "mu_star": 0.009878041042780015,
+            "mu": 0.009878041042780015,
+            "sigma": 0.008710804715565873,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_chi_s_desc",
+            "factor_type": "ahp",
+            "mu_star": 0.009877713137566224,
+            "mu": 0.00905310444158267,
+            "sigma": 0.010378075791087843,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.009711689070053953,
+            "mu": -0.002606370515222456,
+            "sigma": 0.013359557209812504,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_chi",
+            "factor_type": "ahp",
+            "mu_star": 0.00926082275179071,
+            "mu": 0.008145525540911391,
+            "sigma": 0.008152501718848031,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.0073514522751781134,
+            "mu": 0.0005459948132529729,
+            "sigma": 0.010733685819784303,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.0072898661768234065,
+            "mu": 0.007171817036797151,
+            "sigma": 0.005552441680993363,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_chi_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.005769435782217627,
+            "mu": 0.004129235492470721,
+            "sigma": 0.004971771486283974,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.003915921963447605,
+            "mu": 0.0019450955121963543,
+            "sigma": 0.004448756533452729,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_desc_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.0029431059459191834,
+            "mu": -0.00202389161386069,
+            "sigma": 0.00392801079944349,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.001822638387935152,
+            "mu": 0.0002802664637853142,
+            "sigma": 0.00236421571512131,
+            "rank_mu_star": 0.15
+          }
+        ],
+        "dominant_factor": "score_POL-005-2026_s_desc"
+      }
+    },
+    "DRG-0001": {
+      "status": "VALID",
+      "generic_name": "Ibuprofen",
+      "canonical_smiles": "CC(C)Cc1ccc(C(C)C(=O)O)cc1",
+      "inchi_key": "HEFNNWSXXWATRW-UHFFFAOYSA-N",
+      "molecular_weight": 206.28499999999997,
+      "logp": 3.073200000000001,
+      "tpsa": 37.3,
+      "hbd": 1,
+      "hba": 1,
+      "rotatable_bonds": 4,
+      "aromatic_rings": 1,
+      "density_crystalline": 1.055,
+      "density_amorphous": 1.03,
+      "molar_volume": 195.53,
+      "tg_k": 244.15,
+      "tm_k": 349.15,
+      "hsp": [
+        17.86,
+        2.21,
+        7.16,
+        7.5
+      ],
+      "analysis_id": "VAL-DRG-0001",
+      "analysis_fingerprint": "f4fd3927ccd9c74f91bf6e00f66f2b52558eacfd1ed5833181551a2bc987b82b",
+      "k": 2,
+      "eigenvalues": [
+        2.87398798926013,
+        0.9700420251784886,
+        0.15316444976364665,
+        0.0028055357977325624
+      ],
+      "variance_explained": [
+        0.7184969973150329,
+        0.24251050629462229,
+        0.038291112440911684,
+        0.000701383949433141
+      ],
+      "cumulative_variance": 0.9610075036096546,
+      "boundary_eigengap": 0.816877575414842,
+      "subspace_stability_status": "STABLE",
+      "ahp": {
+        "weights": [
+          0.40767478396983764,
+          0.32443340865551623,
+          0.09216133794843878,
+          0.17573046942620724
+        ],
+        "lambda_max": 4.131937073898666,
+        "consistency_index": 0.04397902463288853,
+        "consistency_ratio": 0.04941463441897588,
+        "governance_status": "ACCEPTED"
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "polymer_id": "POL-007-2026",
+          "polymer_name": "Eudragit E PO",
+          "abbreviation": "EDR_EPO",
+          "topsis_cl": 0.5502644874972997,
+          "distance_ideal_d_plus": 3.016836300897616,
+          "distance_anti_ideal_d_minus": 3.691187008423553,
+          "mc_p_top1": 0.9765706958853013,
+          "mc_expected_rank": 1.0291409255157944,
+          "mc_median_rank": 1,
+          "s_HSP": 0.7517161123051098,
+          "s_chi": 0.8358974790205435,
+          "s_desc": 0.31062,
+          "s_GT": 0.3755714015253329
+        },
+        {
+          "rank": 2,
+          "polymer_id": "POL-002-2026",
+          "polymer_name": "PVP-Vinyl Acetate 64",
+          "abbreviation": "PVP_VA_64",
+          "topsis_cl": 0.4167810028577484,
+          "distance_ideal_d_plus": 3.4792443343938158,
+          "distance_anti_ideal_d_minus": 2.48634380906853,
+          "mc_p_top1": 0.014220771651707658,
+          "mc_expected_rank": 2.5743093600652758,
+          "mc_median_rank": 2,
+          "s_HSP": 0.555037579614238,
+          "s_chi": 0.47293418830109846,
+          "s_desc": 0.3996917142857144,
+          "s_GT": 0.911266234343475
+        },
+        {
+          "rank": 3,
+          "polymer_id": "POL-001-2026",
+          "polymer_name": "Polyvinylpyrrolidone K30",
+          "abbreviation": "PVP_K30",
+          "topsis_cl": 0.40797616516392965,
+          "distance_ideal_d_plus": 3.624645292478117,
+          "distance_anti_ideal_d_minus": 2.497819850300755,
+          "mc_p_top1": 0.005128802890779811,
+          "mc_expected_rank": 2.969110618953258,
+          "mc_median_rank": 3,
+          "s_HSP": 0.4951871633961752,
+          "s_chi": 0.3216107484320817,
+          "s_desc": 0.48301,
+          "s_GT": 1.0
+        },
+        {
+          "rank": 4,
+          "polymer_id": "POL-005-2026",
+          "polymer_name": "Soluplus",
+          "abbreviation": "SOLUPLUS",
+          "topsis_cl": 0.4031354530991938,
+          "distance_ideal_d_plus": 3.5639352388285523,
+          "distance_anti_ideal_d_minus": 2.407160309288914,
+          "mc_p_top1": 0.0036134747639585034,
+          "mc_expected_rank": 3.5101993239305282,
+          "mc_median_rank": 4,
+          "s_HSP": 0.5248480944652192,
+          "s_chi": 0.398988019483166,
+          "s_desc": 0.36367358823529417,
+          "s_GT": 0.6135382464740861
+        },
+        {
+          "rank": 5,
+          "polymer_id": "POL-006-2026",
+          "polymer_name": "Hydroxypropyl Methylcellulose E5",
+          "abbreviation": "HPMC_E5",
+          "topsis_cl": 0.2461432449415062,
+          "distance_ideal_d_plus": 4.5530610504386875,
+          "distance_anti_ideal_d_minus": 1.486628877239155,
+          "mc_p_top1": 0.0004662548082527101,
+          "mc_expected_rank": 4.917239771535144,
+          "mc_median_rank": 5,
+          "s_HSP": 0.44826697277276084,
+          "s_chi": 0.1896434577128464,
+          "s_desc": 0.26292,
+          "s_GT": 1.0
+        }
+      ],
+      "monte_carlo": {
+        "num_replicates": 10000,
+        "num_valid_replicates": 8579,
+        "valid_ratio": 0.8579,
+        "num_blocked_replicates": 1421,
+        "block_reasons": {
+          "INVALID_INPUT_SCORE": 0,
+          "ZERO_VARIANCE": 0,
+          "EIGENGAP_BLOCKED": 27,
+          "AHP_CR_BLOCKED": 1394,
+          "NON_PD_METRIC": 0,
+          "REFERENCE_COINCIDENCE": 0,
+          "INVALID_SMILES": 0,
+          "RDKIT_PARSE_FAILURE": 0,
+          "RDKIT_SANITIZATION_FAILURE": 0,
+          "RDKIT_UNAVAILABLE": 0,
+          "FALLBACK_PROHIBITED": 0
+        },
+        "k_distribution": {
+          "1": 0.0,
+          "2": 0.5015736099778529,
+          "3": 0.49807669891595757,
+          "4": 0.0003496911061895326
+        },
+        "governance_distribution": {
+          "VALID": 0.8579,
+          "BLOCKED": 0.1421
+        },
+        "stability_distribution": {
+          "STABLE": 0.8363,
+          "WARNING": 0.0216,
+          "BLOCKED": 0.0027
+        }
+      },
+      "morris": {
+        "num_factors": 26,
+        "trajectories_attempted": 31,
+        "trajectories_valid": 10,
+        "trajectories_discarded": 21,
+        "discard_reasons": {
+          "INVALID_INPUT_SCORE": 0,
+          "ZERO_VARIANCE": 0,
+          "EIGENGAP_BLOCKED": 0,
+          "AHP_CR_BLOCKED": 21,
+          "NON_PD_METRIC": 0,
+          "REFERENCE_COINCIDENCE": 0,
+          "INVALID_SMILES": 0,
+          "RDKIT_PARSE_FAILURE": 0,
+          "RDKIT_SANITIZATION_FAILURE": 0,
+          "RDKIT_UNAVAILABLE": 0,
+          "FALLBACK_PROHIBITED": 0
+        },
+        "cl_sensitivity": [
+          {
+            "factor_name": "score_POL-001-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.08495290380977773,
+            "mu": 0.08495290380977773,
+            "sigma": 0.05961481109882722,
+            "rank_mu_star": 1.2
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.07116223687569292,
+            "mu": 0.0636264764277051,
+            "sigma": 0.07418306830640548,
+            "rank_mu_star": 1.2
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.06844131138780112,
+            "mu": 0.03125068299804988,
+            "sigma": 0.11914841878847564,
+            "rank_mu_star": 0.75
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.06454330642320609,
+            "mu": 0.06454330642320609,
+            "sigma": 0.047157103360077425,
+            "rank_mu_star": 0.6
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.05261194271582217,
+            "mu": -0.03908874763736345,
+            "sigma": 0.058465190602485985,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.04035737449032282,
+            "mu": 0.04035737449032282,
+            "sigma": 0.022042908533103173,
+            "rank_mu_star": 0.75
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.04020076233523707,
+            "mu": 0.013266128978282757,
+            "sigma": 0.05075864954785439,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.037233582572645155,
+            "mu": 0.016781701012686175,
+            "sigma": 0.050247932036821395,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.036899917077856226,
+            "mu": -0.036899917077856226,
+            "sigma": 0.027897006744620288,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.029642591477352064,
+            "mu": 0.001215001326300244,
+            "sigma": 0.04897852685344235,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.024061245523554375,
+            "mu": 0.007628608662400627,
+            "sigma": 0.02940740055903384,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.02318503091598928,
+            "mu": -0.01048380332359201,
+            "sigma": 0.03185108007306212,
+            "rank_mu_star": 1.5
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.02106959955129439,
+            "mu": 0.01998768786600977,
+            "sigma": 0.014701596374068619,
+            "rank_mu_star": 0.6
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.020455772078701216,
+            "mu": 0.01769680288509017,
+            "sigma": 0.022395472269977842,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.017134938570948083,
+            "mu": 0.00683015329060484,
+            "sigma": 0.02013946189993287,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.015060732806877785,
+            "mu": 0.010976186130333443,
+            "sigma": 0.014453994483144314,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.014088862163819113,
+            "mu": 0.010359886962654432,
+            "sigma": 0.018061406648362626,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_desc",
+            "factor_type": "ahp",
+            "mu_star": 0.013532638224598359,
+            "mu": 0.013532638224598359,
+            "sigma": 0.005763658149577015,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.012452853836755973,
+            "mu": 0.006809451102925556,
+            "sigma": 0.013406714436607802,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_chi_s_desc",
+            "factor_type": "ahp",
+            "mu_star": 0.010904725407658883,
+            "mu": 0.010904725407658883,
+            "sigma": 0.004596778192320432,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.008721121682846902,
+            "mu": 0.007843417180160165,
+            "sigma": 0.014593537607568216,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.00863394922976162,
+            "mu": 0.00863394922976162,
+            "sigma": 0.003610031618530001,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_chi_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.008016619972907651,
+            "mu": 0.006994583177931152,
+            "sigma": 0.005732799089762718,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.006043649428566186,
+            "mu": 0.004881431659347959,
+            "sigma": 0.006507190154415644,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_chi",
+            "factor_type": "ahp",
+            "mu_star": 0.0044005810994254355,
+            "mu": 0.0033423719709467976,
+            "sigma": 0.0043810812850250775,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_desc_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.002574024269812161,
+            "mu": -0.0011413145122931817,
+            "sigma": 0.0030634956074384527,
+            "rank_mu_star": 0.0
+          }
+        ],
+        "dominant_factor": "score_POL-001-2026_s_desc"
+      }
+    },
+    "DRG-0002": {
+      "status": "BLOCKED",
+      "file": "data\\user_drugs\\drg-0002.json",
+      "requested_drug": "Fenofibrate",
+      "stored_drug_name": "Indomethacin",
+      "stored_smiles": "COc1ccc2c(c1)c(CC(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1",
+      "reason": "FATAL_METADATA_MISMATCH: Requested as Fenofibrate, but file contains Indomethacin (SMILES: COc1ccc2c(c1)c(CC(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1). Superseded redundant profile with unphysical corrupted crystalline density (1.781 g/cm3 vs authoritative 1.31 g/cm3) and unphysical molar volume (200.89 cm3/mol vs authoritative 273.0 cm3/mol). Formally quarantined in blocked_cohorts_audit.csv."
+    },
+    "ITR-001-2026": {
+      "status": "VALID",
+      "generic_name": "Itraconazole",
+      "canonical_smiles": "CCC(C)n1ncn(-c2ccc(N3CCN(c4ccc(OC[C@H]5CO[C@](Cn6cncn6)(c6ccc(Cl)cc6Cl)O5)cc4)CC3)cc2)c1=O",
+      "inchi_key": "VHVPQPYKVGDNFY-ZPGVKDDISA-N",
+      "molecular_weight": 705.6470000000002,
+      "logp": 5.5773000000000055,
+      "tpsa": 104.70000000000002,
+      "hbd": 0,
+      "hba": 9,
+      "rotatable_bonds": 11,
+      "aromatic_rings": 5,
+      "density_crystalline": 1.27,
+      "density_amorphous": 1.22,
+      "molar_volume": 555.59,
+      "tg_k": 330.65,
+      "tm_k": 438.15,
+      "hsp": [
+        18.5,
+        11.2,
+        10.5,
+        8.0
+      ],
+      "analysis_id": "VAL-ITR-001-2026",
+      "analysis_fingerprint": "ac58bb2ceb3995c0860742ef62301bbbef517b966f3ebabb2b73b1e234a835e4",
+      "k": 2,
+      "eigenvalues": [
+        3.0741949648760354,
+        0.7735480892592678,
+        0.12317630456736986,
+        0.02908064129732203
+      ],
+      "variance_explained": [
+        0.7685487412190097,
+        0.1933870223148172,
+        0.030794076141842503,
+        0.007270160324330516
+      ],
+      "cumulative_variance": 0.9619357635338258,
+      "boundary_eigengap": 0.6503717846918979,
+      "subspace_stability_status": "STABLE",
+      "ahp": {
+        "weights": [
+          0.40767478396983764,
+          0.32443340865551623,
+          0.09216133794843878,
+          0.17573046942620724
+        ],
+        "lambda_max": 4.131937073898666,
+        "consistency_index": 0.04397902463288853,
+        "consistency_ratio": 0.04941463441897588,
+        "governance_status": "ACCEPTED"
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "polymer_id": "POL-005-2026",
+          "polymer_name": "Soluplus",
+          "abbreviation": "SOLUPLUS",
+          "topsis_cl": 0.6105950177667027,
+          "distance_ideal_d_plus": 2.440991548124298,
+          "distance_anti_ideal_d_minus": 3.8275249308504624,
+          "mc_p_top1": 0.5900360842742405,
+          "mc_expected_rank": 1.7535793272028868,
+          "mc_median_rank": 1,
+          "s_HSP": 0.8200477493889005,
+          "s_chi": 0.7213036947544244,
+          "s_desc": 0.4764696666666666,
+          "s_GT": 0.0
+        },
+        {
+          "rank": 2,
+          "polymer_id": "POL-002-2026",
+          "polymer_name": "PVP-Vinyl Acetate 64",
+          "abbreviation": "PVP_VA_64",
+          "topsis_cl": 0.5685680192192762,
+          "distance_ideal_d_plus": 2.4447867563118346,
+          "distance_anti_ideal_d_minus": 3.2218927325098408,
+          "mc_p_top1": 0.07298335467349552,
+          "mc_expected_rank": 3.3061343266208825,
+          "mc_median_rank": 4,
+          "s_HSP": 0.7240782493169486,
+          "s_chi": 0.3447779265094968,
+          "s_desc": 0.4646726666666667,
+          "s_GT": 0.040980912959837495
+        },
+        {
+          "rank": 3,
+          "polymer_id": "POL-007-2026",
+          "polymer_name": "Eudragit E PO",
+          "abbreviation": "EDR_EPO",
+          "topsis_cl": 0.5339103782887508,
+          "distance_ideal_d_plus": 2.662120498832046,
+          "distance_anti_ideal_d_minus": 3.049485970880932,
+          "mc_p_top1": 0.07216854848096846,
+          "mc_expected_rank": 4.473635199627517,
+          "mc_median_rank": 5,
+          "s_HSP": 0.5017217143001313,
+          "s_chi": 0.0,
+          "s_desc": 0.5065533333333333,
+          "s_GT": 0.0
+        },
+        {
+          "rank": 4,
+          "polymer_id": "POL-006-2026",
+          "polymer_name": "Hydroxypropyl Methylcellulose E5",
+          "abbreviation": "HPMC_E5",
+          "topsis_cl": 0.4675810015433876,
+          "distance_ideal_d_plus": 3.5599481682053775,
+          "distance_anti_ideal_d_minus": 3.1264176048512407,
+          "mc_p_top1": 0.10895122802933302,
+          "mc_expected_rank": 2.6249563496682575,
+          "mc_median_rank": 3,
+          "s_HSP": 0.8231128537739387,
+          "s_chi": 0.7307168389605476,
+          "s_desc": 0.39468000000000003,
+          "s_GT": 0.8080729208509706
+        },
+        {
+          "rank": 5,
+          "polymer_id": "POL-001-2026",
+          "polymer_name": "Polyvinylpyrrolidone K30",
+          "abbreviation": "PVP_K30",
+          "topsis_cl": 0.4661816513962696,
+          "distance_ideal_d_plus": 3.154593505724517,
+          "distance_anti_ideal_d_minus": 2.7548952070103603,
+          "mc_p_top1": 0.15586078454196253,
+          "mc_expected_rank": 2.8416947968804562,
+          "mc_median_rank": 3,
+          "s_HSP": 0.7556897464288491,
+          "s_chi": 0.4863112733229914,
+          "s_desc": 0.4489433333333333,
+          "s_GT": 0.8144705093575522
+        }
+      ],
+      "monte_carlo": {
+        "num_replicates": 10000,
+        "num_valid_replicates": 8591,
+        "valid_ratio": 0.8591,
+        "num_blocked_replicates": 1409,
+        "block_reasons": {
+          "INVALID_INPUT_SCORE": 0,
+          "ZERO_VARIANCE": 0,
+          "EIGENGAP_BLOCKED": 19,
+          "AHP_CR_BLOCKED": 1390,
+          "NON_PD_METRIC": 0,
+          "REFERENCE_COINCIDENCE": 0,
+          "INVALID_SMILES": 0,
+          "RDKIT_PARSE_FAILURE": 0,
+          "RDKIT_SANITIZATION_FAILURE": 0,
+          "RDKIT_UNAVAILABLE": 0,
+          "FALLBACK_PROHIBITED": 0
+        },
+        "k_distribution": {
+          "1": 0.0,
+          "2": 0.32522407170294493,
+          "3": 0.6701198929111861,
+          "4": 0.0046560353858689325
+        },
+        "governance_distribution": {
+          "VALID": 0.8591,
+          "BLOCKED": 0.1409
+        },
+        "stability_distribution": {
+          "STABLE": 0.8415,
+          "WARNING": 0.0176,
+          "BLOCKED": 0.0019
+        }
+      },
+      "morris": {
+        "num_factors": 26,
+        "trajectories_attempted": 31,
+        "trajectories_valid": 10,
+        "trajectories_discarded": 21,
+        "discard_reasons": {
+          "INVALID_INPUT_SCORE": 0,
+          "ZERO_VARIANCE": 0,
+          "EIGENGAP_BLOCKED": 0,
+          "AHP_CR_BLOCKED": 21,
+          "NON_PD_METRIC": 0,
+          "REFERENCE_COINCIDENCE": 0,
+          "INVALID_SMILES": 0,
+          "RDKIT_PARSE_FAILURE": 0,
+          "RDKIT_SANITIZATION_FAILURE": 0,
+          "RDKIT_UNAVAILABLE": 0,
+          "FALLBACK_PROHIBITED": 0
+        },
+        "cl_sensitivity": [
+          {
+            "factor_name": "score_POL-005-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.1353176847686146,
+            "mu": 0.1353176847686146,
+            "sigma": 0.08482475089342911,
+            "rank_mu_star": 1.2
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.09219833964921292,
+            "mu": 0.02355169671063322,
+            "sigma": 0.12401133951584387,
+            "rank_mu_star": 0.6
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.08847930476862895,
+            "mu": 0.08847930476862895,
+            "sigma": 0.06336855046337155,
+            "rank_mu_star": 0.9
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.07321714913104829,
+            "mu": 0.07262808720835719,
+            "sigma": 0.053165840251163485,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.054845550465379866,
+            "mu": -0.04660095816292763,
+            "sigma": 0.05366614971452463,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.053181586884946806,
+            "mu": -0.0021442785812069098,
+            "sigma": 0.09327190322617912,
+            "rank_mu_star": 0.75
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.046633196071069825,
+            "mu": 0.014875053190719556,
+            "sigma": 0.05747319484635336,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.04567908103156811,
+            "mu": -0.020839409817034405,
+            "sigma": 0.061217264792978766,
+            "rank_mu_star": 0.6
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_desc",
+            "factor_type": "score",
+            "mu_star": 0.03511806358632632,
+            "mu": 0.019603205359676724,
+            "sigma": 0.055132635203831167,
+            "rank_mu_star": 0.9
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.028824181941513573,
+            "mu": 0.028824181941513573,
+            "sigma": 0.014673896996512574,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_HSP",
+            "factor_type": "score",
+            "mu_star": 0.02439453317658285,
+            "mu": -0.0023411099490738855,
+            "sigma": 0.04008183392384959,
+            "rank_mu_star": 0.45
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.022987452666259754,
+            "mu": 0.022987452666259754,
+            "sigma": 0.03163970620619826,
+            "rank_mu_star": 0.45
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.014362649074837775,
+            "mu": -0.013004621516938375,
+            "sigma": 0.01360575808789344,
+            "rank_mu_star": 0.45
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.013065853897271584,
+            "mu": 0.013065853897271584,
+            "sigma": 0.009634510763530356,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-001-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.012477132261083972,
+            "mu": -0.00505044129123125,
+            "sigma": 0.016613663540680983,
+            "rank_mu_star": 0.3
+          },
+          {
+            "factor_name": "score_POL-006-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.009986427605730564,
+            "mu": 0.009642097498194935,
+            "sigma": 0.006969972300541558,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_desc",
+            "factor_type": "ahp",
+            "mu_star": 0.00956111352458024,
+            "mu": 0.009326054663371757,
+            "sigma": 0.00850079211207891,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_chi",
+            "factor_type": "score",
+            "mu_star": 0.008720062140830728,
+            "mu": 0.0056285134519380746,
+            "sigma": 0.01058452339941338,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.008612564696778785,
+            "mu": 0.008524264428532375,
+            "sigma": 0.007366963266398359,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_chi_s_desc",
+            "factor_type": "ahp",
+            "mu_star": 0.00825699404912536,
+            "mu": 0.008071724268239317,
+            "sigma": 0.005877780899715717,
+            "rank_mu_star": 0.15
+          },
+          {
+            "factor_name": "ahp_s_HSP_s_chi",
+            "factor_type": "ahp",
+            "mu_star": 0.007325856466807926,
+            "mu": 0.007053315972272281,
+            "sigma": 0.0068149007853892715,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-005-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.007046404756472893,
+            "mu": 0.006432148723325268,
+            "sigma": 0.0071382108985424166,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_chi_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.005722109784120943,
+            "mu": 0.005722109784120943,
+            "sigma": 0.00492735118303382,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-007-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.0047507162873037636,
+            "mu": -0.0009215894166868133,
+            "sigma": 0.005667659322221296,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "score_POL-002-2026_s_GT",
+            "factor_type": "score",
+            "mu_star": 0.0038749333929044504,
+            "mu": -0.0038724958691042145,
+            "sigma": 0.0028640681726206387,
+            "rank_mu_star": 0.0
+          },
+          {
+            "factor_name": "ahp_s_desc_s_GT",
+            "factor_type": "ahp",
+            "mu_star": 0.0018404511254181022,
+            "mu": 0.0009408967090495934,
+            "sigma": 0.002435616491959225,
+            "rank_mu_star": 0.0
+          }
+        ],
+        "dominant_factor": "score_POL-005-2026_s_desc"
+      }
+    }
+  },
+  "reproducibility_test": {
+    "test_drug": "IND-001-2026",
+    "checks": {
+      "identical_k": true,
+      "identical_eigenvalues": true,
+      "identical_eigenvectors": true,
+      "identical_ahp_weights": true,
+      "identical_ahp_cr": true,
+      "identical_closeness": true,
+      "identical_ranks": true,
+      "identical_fingerprint": true
+    },
+    "all_passed": true
+  },
+  "sanity_checks": {}
+}

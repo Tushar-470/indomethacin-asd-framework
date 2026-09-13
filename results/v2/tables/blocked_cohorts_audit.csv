@@ -1,0 +1,19 @@
+drug_id,generic_name,status,file,block_reason
+DRG-0002,Indomethacin,validated,data/user_drugs\drg-0002.json,Redundant user drug profile: superseded by authoritative config/drugs/indomethacin.json (IND-001-2026)
+DRG-0003,Carbamazepine,validated,data/user_drugs\drg-0003.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0004,Felodipine,validated,data/user_drugs\drg-0004.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0005,Ketoconazole,validated,data/user_drugs\drg-0005.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0006,Naproxen,validated,data/user_drugs\drg-0006.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0007,Fenofibrate,validated,data/user_drugs\drg-0007.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0008,Griseofulvin,validated,data/user_drugs\drg-0008.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0009,Celecoxib,validated,data/user_drugs\drg-0009.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0010,Nifedipine,validated,data/user_drugs\drg-0010.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0011,Ritonavir,validated,data/user_drugs\drg-0011.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0012,Apalutamide,validated,data/user_drugs\drg-0012.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0013,Grazoprevir,validated,data/user_drugs\drg-0013.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0014,Regorafenib,validated,data/user_drugs\drg-0014.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0015,Ripretinib,validated,data/user_drugs\drg-0015.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0016,Enzalutamide,validated,data/user_drugs\drg-0016.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0017,Suvorexant,validated,data/user_drugs\drg-0017.json,Missing required physical descriptors: density_amorphous_g_cm3
+DRG-0018,Tucatinib,validated,data/user_drugs\drg-0018.json,Missing required physical descriptors: density_amorphous_g_cm3
+ITR-001-2026,Itraconazole,draft,data/user_drugs\itr-001-2026.json,Draft status: unvalidated parameters and chemically unparseable SMILES

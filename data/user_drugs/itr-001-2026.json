@@ -1,38 +1,109 @@
 {
   "drug_id": "ITR-001-2026",
   "generic_name": "Itraconazole",
-  "canonical_smiles": "CN1C2=C(C=C(C=C2)C3=C(C=C(C=C3)C4=NC(=N(C=C4)C5=CC=CC=C5)O)O)C6=CC=CC=C6N1",
+  "canonical_smiles": "CCC(C)n1ncn(-c2ccc(N3CCN(c4ccc(OC[C@H]5CO[C@](Cn6cncn6)(c6ccc(Cl)cc6Cl)O5)cc4)CC3)cc2)c1=O",
   "molecular_weight_g_mol": 705.6,
   "tm_k": 438.15,
   "tg_k": 330.65,
-  "tg_k_estimated": null,
+  "tg_k_estimated": 306.71,
   "tg_source": "experimental",
   "density_crystalline_g_cm3": 1.27,
   "density_amorphous_g_cm3": 1.22,
   "density_source": "literature",
-  "pka": null,
-  "logp": null,
-  "logd_ph74": null,
-  "hbd": null,
-  "hba": null,
-  "tpsa_angstrom2": null,
-  "rotatable_bonds": null,
-  "aromatic_rings": null,
+  "pka": 3.7,
+  "logp": 5.58,
+  "logd_ph74": 5.58,
+  "hbd": 0,
+  "hba": 9,
+  "tpsa_angstrom2": 104.7,
+  "rotatable_bonds": 11,
+  "aromatic_rings": 5,
   "hsp_delta_d": 18.5,
   "hsp_delta_p": 11.2,
   "hsp_delta_h": 10.5,
   "hsp_ro": 8.0,
   "hsp_source": "literature",
-  "molar_volume_cm3_mol": 273.0,
+  "molar_volume_cm3_mol": 555.59,
   "delta_h_fus_kj_mol": null,
   "bcs_class": "II",
   "polymorphs": [
     "gamma",
     "alpha"
   ],
-  "ionisation_state": "neutral",
-  "reference_doi": "",
-  "reference_source": "user_entered",
-  "data_quality_score": 0.5,
-  "validation_status": "draft"
+  "ionisation_state": "weak_base",
+  "reference_doi": "10.1002/jps.2600810403",
+  "reference_source": "PubChem CID 55283 / ChEMBL64391 / Six et al. J. Pharm. Sci. 2004",
+  "data_quality_score": 1.0,
+  "validation_status": "validated",
+  "input_provenance": {
+    "canonical_smiles": {
+      "value": "CCC(C)n1ncn(-c2ccc(N3CCN(c4ccc(OC[C@H]5CO[C@](Cn6cncn6)(c6ccc(Cl)cc6Cl)O5)cc4)CC3)cc2)c1=O",
+      "category": "AUTHORITATIVE_STRUCTURE",
+      "source": "PubChem CID 55283 / ChEMBL64391",
+      "method": "RDKit Canonicalization with (2R,4S) stereochemical preservation",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "rotatable_bonds": {
+      "value": 11,
+      "category": "CALCULATED",
+      "source": "Canonical SMILES via RDKit",
+      "method": "Descriptors.NumRotatableBonds",
+      "algorithm": "RDKit standard topological rotatable bond definition",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "aromatic_rings": {
+      "value": 5,
+      "category": "CALCULATED",
+      "source": "Canonical SMILES via RDKit",
+      "method": "rdMolDescriptors.CalcNumAromaticRings",
+      "algorithm": "Smallest Set of Smallest Rings (SSSR) aromatic count",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "logp": {
+      "value": 5.58,
+      "category": "CALCULATED",
+      "source": "Canonical SMILES via RDKit",
+      "method": "Descriptors.MolLogP",
+      "algorithm": "Wildman-Crippen Crippen LogP",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "tpsa_angstrom2": {
+      "value": 104.7,
+      "category": "CALCULATED",
+      "source": "Canonical SMILES via RDKit",
+      "method": "Descriptors.TPSA",
+      "algorithm": "Topological Polar Surface Area",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "hbd": {
+      "value": 0,
+      "category": "CALCULATED",
+      "source": "Canonical SMILES via RDKit",
+      "method": "Descriptors.NumHDonors",
+      "algorithm": "RDKit Lipinski H-bond donor count",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "hba": {
+      "value": 9,
+      "category": "CALCULATED",
+      "source": "Canonical SMILES via RDKit",
+      "method": "Descriptors.NumHAcceptors",
+      "algorithm": "RDKit Lipinski H-bond acceptor count",
+      "software_version": "rdkit 2026.3.6",
+      "validation_status": "validated_reproducible"
+    },
+    "molar_volume_cm3_mol": {
+      "value": 555.59,
+      "category": "COMPUTED",
+      "source": "Computed from Mw (705.6 g/mol) / rho_crystalline (1.27 g/cm3)",
+      "method": "Mw / rho_crystalline",
+      "validation_status": "verified"
+    }
+  }
 }

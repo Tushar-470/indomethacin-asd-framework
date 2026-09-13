@@ -1,0 +1,13 @@
+{
+  "drug_id": "ITR-001-2026",
+  "generic_name": "Itraconazole",
+  "file_path": "data/user_drugs/itr-001-2026.json",
+  "file_hash_sha256": "edcb86ef130ffb38d3f805f84df88fc1b947215b68e302e37f72ff54e135ff66",
+  "polymer_csv_hash": "5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2",
+  "analysis_fingerprint": "e60e0ee014c35daa399d7cc1e73547083e0d085606ed436224ceaf70c20845bf",
+  "mc_simulation_id": "mc-sim-d515d8681562",
+  "morris_analysis_id": "morris-18b47f14abc1",
+  "python_version": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "timestamp_utc": "2026-09-12T05:10:27Z"
+}

@@ -1,0 +1,116 @@
+{
+  "simulation_id": "mc-sim-3a1e6f4de9b1",
+  "num_generated": 10000,
+  "num_valid": 8594,
+  "num_blocked": 1406,
+  "block_reasons": {
+    "INVALID_INPUT_SCORE": 0,
+    "ZERO_VARIANCE": 0,
+    "EIGENGAP_BLOCKED": 11,
+    "AHP_CR_BLOCKED": 1395,
+    "NON_PD_METRIC": 0,
+    "REFERENCE_COINCIDENCE": 0
+  },
+  "k_distribution": {
+    "1": 0.00011636025133814289,
+    "2": 0.3659529904584594,
+    "3": 0.6339306492902025,
+    "4": 0.0
+  },
+  "stability_distribution": {
+    "STABLE": 0.8414,
+    "WARNING": 0.018,
+    "BLOCKED": 0.0011
+  },
+  "governance_distribution": {
+    "VALID": 0.8594,
+    "BLOCKED": 0.1406
+  },
+  "candidates": [
+    {
+      "polymer_id": "POL-001-2026",
+      "abbreviation": "PVP_K30",
+      "deterministic_rank": 3,
+      "p_top1": 0.0,
+      "p_top2": 0.0058180125669071445,
+      "p_top3": 0.5536420758668839,
+      "p_top4": 0.9986036769839423,
+      "p_top5": 1.0,
+      "expected_rank": 3.4419362345822666,
+      "median_rank": 3.0,
+      "rank_freq_1": 0.0,
+      "rank_freq_2": 0.0058180125669071445,
+      "rank_freq_3": 0.5478240632999767,
+      "rank_freq_4": 0.4449616011170584,
+      "rank_freq_5": 0.0013963230160577147
+    },
+    {
+      "polymer_id": "POL-002-2026",
+      "abbreviation": "PVP_VA_64",
+      "deterministic_rank": 2,
+      "p_top1": 0.0023272050267628577,
+      "p_top2": 0.9572957877589016,
+      "p_top3": 0.9958110309518269,
+      "p_top4": 1.0,
+      "p_top5": 1.0,
+      "expected_rank": 2.0445659762625086,
+      "median_rank": 2.0,
+      "rank_freq_1": 0.0023272050267628577,
+      "rank_freq_2": 0.9549685827321387,
+      "rank_freq_3": 0.0385152431929253,
+      "rank_freq_4": 0.004188969048173144,
+      "rank_freq_5": 0.0
+    },
+    {
+      "polymer_id": "POL-007-2026",
+      "abbreviation": "EDR_EPO",
+      "deterministic_rank": 1,
+      "p_top1": 0.9976727949732371,
+      "p_top2": 1.0,
+      "p_top3": 1.0,
+      "p_top4": 1.0,
+      "p_top5": 1.0,
+      "expected_rank": 1.0023272050267629,
+      "median_rank": 1.0,
+      "rank_freq_1": 0.9976727949732371,
+      "rank_freq_2": 0.0023272050267628577,
+      "rank_freq_3": 0.0,
+      "rank_freq_4": 0.0,
+      "rank_freq_5": 0.0
+    },
+    {
+      "polymer_id": "POL-005-2026",
+      "abbreviation": "SOLUPLUS",
+      "deterministic_rank": 4,
+      "p_top1": 0.0,
+      "p_top2": 0.036886199674191295,
+      "p_top3": 0.45054689318128927,
+      "p_top4": 0.9960437514545032,
+      "p_top5": 1.0,
+      "expected_rank": 3.5165231556900163,
+      "median_rank": 4.0,
+      "rank_freq_1": 0.0,
+      "rank_freq_2": 0.036886199674191295,
+      "rank_freq_3": 0.413660693507098,
+      "rank_freq_4": 0.5454968582732139,
+      "rank_freq_5": 0.0039562485454968585
+    },
+    {
+      "polymer_id": "POL-006-2026",
+      "abbreviation": "HPMC_E5",
+      "deterministic_rank": 5,
+      "p_top1": 0.0,
+      "p_top2": 0.0,
+      "p_top3": 0.0,
+      "p_top4": 0.005352571561554573,
+      "p_top5": 1.0,
+      "expected_rank": 4.994647428438445,
+      "median_rank": 5.0,
+      "rank_freq_1": 0.0,
+      "rank_freq_2": 0.0,
+      "rank_freq_3": 0.0,
+      "rank_freq_4": 0.005352571561554573,
+      "rank_freq_5": 0.9946474284384454
+    }
+  ]
+}

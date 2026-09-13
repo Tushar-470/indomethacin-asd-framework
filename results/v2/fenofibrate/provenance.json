@@ -1,0 +1,12 @@
+{
+  "drug_id": "DRG-0007",
+  "generic_name": "Fenofibrate",
+  "file_path": "data/user_drugs/drg-0007.json",
+  "file_hash_sha256": "9a54b457de02c1af7d574f4b613256ae14e26ae95c059d09d94bad4d4b814e4c",
+  "polymer_csv_hash": "5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2",
+  "analysis_fingerprint": "472fede3ccb6ba12820d4d0290e4d99fe4203b8896c48e516c4cbf57c8295f56",
+  "mc_simulation_id": "mc-sim-3a1e6f4de9b1",
+  "morris_analysis_id": "morris-5435bb0c76c1",
+  "timestamp_epoch": 1789283205.1197042,
+  "timestamp_iso": "2026-09-13T07:06:45Z"
+}

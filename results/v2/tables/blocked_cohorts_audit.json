@@ -1,0 +1,128 @@
+[
+  {
+    "file": "data/user_drugs\\drg-0002.json",
+    "drug_id": "DRG-0002",
+    "generic_name": "Indomethacin",
+    "status": "validated",
+    "block_reason": "Redundant user drug profile: superseded by authoritative config/drugs/indomethacin.json (IND-001-2026)"
+  },
+  {
+    "file": "data/user_drugs\\drg-0003.json",
+    "drug_id": "DRG-0003",
+    "generic_name": "Carbamazepine",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0004.json",
+    "drug_id": "DRG-0004",
+    "generic_name": "Felodipine",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0005.json",
+    "drug_id": "DRG-0005",
+    "generic_name": "Ketoconazole",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0006.json",
+    "drug_id": "DRG-0006",
+    "generic_name": "Naproxen",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0007.json",
+    "drug_id": "DRG-0007",
+    "generic_name": "Fenofibrate",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0008.json",
+    "drug_id": "DRG-0008",
+    "generic_name": "Griseofulvin",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0009.json",
+    "drug_id": "DRG-0009",
+    "generic_name": "Celecoxib",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0010.json",
+    "drug_id": "DRG-0010",
+    "generic_name": "Nifedipine",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0011.json",
+    "drug_id": "DRG-0011",
+    "generic_name": "Ritonavir",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0012.json",
+    "drug_id": "DRG-0012",
+    "generic_name": "Apalutamide",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0013.json",
+    "drug_id": "DRG-0013",
+    "generic_name": "Grazoprevir",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0014.json",
+    "drug_id": "DRG-0014",
+    "generic_name": "Regorafenib",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0015.json",
+    "drug_id": "DRG-0015",
+    "generic_name": "Ripretinib",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0016.json",
+    "drug_id": "DRG-0016",
+    "generic_name": "Enzalutamide",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0017.json",
+    "drug_id": "DRG-0017",
+    "generic_name": "Suvorexant",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\drg-0018.json",
+    "drug_id": "DRG-0018",
+    "generic_name": "Tucatinib",
+    "status": "validated",
+    "block_reason": "Missing required physical descriptors: density_amorphous_g_cm3"
+  },
+  {
+    "file": "data/user_drugs\\itr-001-2026.json",
+    "drug_id": "ITR-001-2026",
+    "generic_name": "Itraconazole",
+    "status": "draft",
+    "block_reason": "Draft status: unvalidated parameters and chemically unparseable SMILES"
+  }
+]

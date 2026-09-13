@@ -27,6 +27,7 @@ env/
 ENV/
 env.bak/
 venv.bak/
+.venv/
 
 # Logs and outputs (Tracked for permanent research backup)
 # data/external/
@@ -47,3 +48,13 @@ frontend/dist/
 data/analyses/
 data/analysis_history.db
 logs/*.log
+
+# Local environment & secrets
+.env
+.env.*
+
+# Agent workspace state
+.gemini/
+
+# User research data (untracked local benchmark sweeps)
+data/user_drugs/drg-*.json

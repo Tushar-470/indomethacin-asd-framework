@@ -1,0 +1,85 @@
+{
+  "phase": "PHASE_6_EXECUTION",
+  "timestamp_utc": "2026-09-11T22:31:56Z",
+  "specifications": {
+    "deterministic_specification": "2.0.0-SPEC-PHASE0-PATCH2",
+    "stochastic_specification": "2.0.0-SPEC-PHASE5.2-FINAL",
+    "v15_frozen_baseline_commit": "31eee4d"
+  },
+  "runtime_dependencies": {
+    "python_version": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy_version": "2.4.6",
+    "scipy_version": "1.18.0",
+    "sklearn_version": "1.9.0",
+    "git_head_commit": "31eee4d9bb1cc57b9185f9f958e225d51634c871"
+  },
+  "input_hashes": {
+    "polymer_library_csv": {
+      "path": "config/polymers/polymer_library_v3_five_polymers.csv",
+      "sha256": "5497d606b64e081cac0274e4f5db8343c012fd84191b5ec413990614717c3ac2"
+    },
+    "indomethacin_json": {
+      "path": "config/drugs/indomethacin.json",
+      "sha256": "96056555f828842116962913ff8ec86cc2ab13dab4111499fd5dfdc9f96837f4"
+    },
+    "ibuprofen_json": {
+      "path": "data/user_drugs/drg-0001.json",
+      "sha256": "1b0dfb54fbcd742f3e2c43d970d8dbee42034f3dc698069829835b207bd4d9b5"
+    }
+  },
+  "active_cohorts": {
+    "indomethacin": {
+      "drug_id": "IND-001-2026",
+      "generic_name": "Indomethacin",
+      "analysis_id": "v2-analysis-694937d05446",
+      "analysis_fingerprint": "4ec0fd76db6a3a8799bed19af1a13168597ab9147a322da733a2d252914b6781",
+      "mc_simulation_id": "mc-sim-a460c0195cd1",
+      "morris_analysis_id": "morris-116154329578",
+      "retained_k": 3,
+      "cumulative_variance": 0.99963393063776,
+      "boundary_eigengap": 0.7383104290964133,
+      "stability_status": "STABLE",
+      "mc_valid": 8604,
+      "mc_blocked": 1396,
+      "morris_valid": 10,
+      "morris_discarded": 21
+    },
+    "ibuprofen": {
+      "drug_id": "DRG-0001",
+      "generic_name": "Ibuprofen",
+      "analysis_id": "v2-analysis-b4a27f55fc1d",
+      "analysis_fingerprint": "79f53a93f1838d57a5afbc1ed16712fb922e1c9eb47b29faacf6c1a3c04ee3eb",
+      "mc_simulation_id": "mc-sim-1943e68d799d",
+      "morris_analysis_id": "morris-53763b90b956",
+      "retained_k": 2,
+      "cumulative_variance": 0.9610075036096546,
+      "boundary_eigengap": 0.8168775754148415,
+      "stability_status": "STABLE",
+      "mc_valid": 8579,
+      "mc_blocked": 1421,
+      "morris_valid": 10,
+      "morris_discarded": 21
+    }
+  },
+  "blocked_cohorts_count": 18,
+  "output_file_hashes": {
+    "results/v2/tables/blocked_cohorts_audit.csv": "adb7b22a94b663c532899667ed8f41fd733fbf9d6eb0c9664da11b87221f14cd",
+    "results/v2/tables/blocked_cohorts_audit.json": "778e9caea5d3e4d196ae0cb50d1246d40d97051211733d92bd3d970b3001c8dc",
+    "results/v2/tables/ibuprofen_candidate_uncertainty.csv": "329be22edc6532a2a2dd8ba7e71f45e88b9e793b356c573158ed171e64ce953a",
+    "results/v2/tables/ibuprofen_conditional_cl.csv": "921ab105cbea50d8b4050d037cbf5d70a44907fed9cd932023778d301bf90d3e",
+    "results/v2/tables/ibuprofen_deterministic_baseline.csv": "34b35b72f0df4fa447c33c285dee825616637f332771a371b1bde36447adf184",
+    "results/v2/tables/ibuprofen_deterministic_baseline.json": "5e4a1277e9f45acc2c33449075154e6246f51db8e8b502538ec36dd81c56e275",
+    "results/v2/tables/ibuprofen_monte_carlo_summary.json": "5b94cd1696fe810d6da5515ed71fff91ac4cb6eb597e869bd4608c3297011c73",
+    "results/v2/tables/ibuprofen_morris_screening.csv": "59d9b958bff8747a3e6551e2c9f0bcbd800b81077e4081081d22916fd4b8c3de",
+    "results/v2/tables/ibuprofen_morris_screening.json": "9a8d3c27e06c5b551cff6d010f51b0ed6e7c1be97e8750a313adf39515c16c13",
+    "results/v2/tables/indomethacin_candidate_uncertainty.csv": "109d8f41401ff90523f14a31926d06b383a478d3bc27e3a16f6e9b9302063553",
+    "results/v2/tables/indomethacin_conditional_cl.csv": "0a7a4d8da00d5f3edb0cc5c0e385a909663930d380e7a9433bf3d37d405362b5",
+    "results/v2/tables/indomethacin_deterministic_baseline.csv": "1359d3adbfd99d1465c5e02a8a284ba5c300d0dc4ecc80f9746762511d59dbf0",
+    "results/v2/tables/indomethacin_deterministic_baseline.json": "de50fc21361c80ae5a43ec2a52ebc54ecfa0a960aa84d91ff3fa70504b07d4cd",
+    "results/v2/tables/indomethacin_monte_carlo_summary.json": "bba799783c628ab26ebdeea4011ea7ccee6823be275e3142ff629326b3882a2a",
+    "results/v2/tables/indomethacin_morris_screening.csv": "56c00039755b7911e2c74f483b40bc0514e339985f389b51b8d0e8528706657a",
+    "results/v2/tables/indomethacin_morris_screening.json": "c5acd7da891198c6d5d211d94e8964abc0fdfeef787db27429cab9080c169d25"
+  },
+  "full_manifest_sha256": "7e83c0563359a20d7b31347dc947f92a24944e3edb5b09b566988eefcd8c465a"
+}

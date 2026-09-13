@@ -1,0 +1,62 @@
+[
+  {
+    "polymer_id": "POL-007-2026",
+    "abbreviation": "EDR_EPO",
+    "rank": 1,
+    "closeness_c_l": 0.7413086582536481,
+    "distance_ideal_d_plus": 1.446233891882156,
+    "distance_anti_ideal_d_minus": 4.1443432110044,
+    "s_HSP": 0.8960662604241422,
+    "s_chi": 0.9590518851114768,
+    "s_desc": 0.66282,
+    "s_GT": 0.42016790313784896
+  },
+  {
+    "polymer_id": "POL-002-2026",
+    "abbreviation": "PVP_VA_64",
+    "rank": 2,
+    "closeness_c_l": 0.6271311604516737,
+    "distance_ideal_d_plus": 1.9928391260384304,
+    "distance_anti_ideal_d_minus": 3.3517724764018566,
+    "s_HSP": 0.6446941849304713,
+    "s_chi": 0.521452075971587,
+    "s_desc": 0.575106,
+    "s_GT": 1.0
+  },
+  {
+    "polymer_id": "POL-001-2026",
+    "abbreviation": "PVP_K30",
+    "rank": 3,
+    "closeness_c_l": 0.5211911104264249,
+    "distance_ideal_d_plus": 2.6186222351221944,
+    "distance_anti_ideal_d_minus": 2.8504120542251203,
+    "s_HSP": 0.541895208494825,
+    "s_chi": 0.20448115084808383,
+    "s_desc": 0.54271,
+    "s_GT": 1.0
+  },
+  {
+    "polymer_id": "POL-005-2026",
+    "abbreviation": "SOLUPLUS",
+    "rank": 4,
+    "closeness_c_l": 0.5123524423755772,
+    "distance_ideal_d_plus": 2.556869578769043,
+    "distance_anti_ideal_d_minus": 2.6864040494735435,
+    "s_HSP": 0.5472822807385012,
+    "s_chi": 0.22308091173552613,
+    "s_desc": 0.599403,
+    "s_GT": 0.6812057968775628
+  },
+  {
+    "polymer_id": "POL-006-2026",
+    "abbreviation": "HPMC_E5",
+    "rank": 5,
+    "closeness_c_l": 0.4039485843760467,
+    "distance_ideal_d_plus": 3.367107932720226,
+    "distance_anti_ideal_d_minus": 2.281914692610677,
+    "s_HSP": 0.4400456367802026,
+    "s_chi": 0.0,
+    "s_desc": 0.35322000000000003,
+    "s_GT": 1.0
+  }
+]

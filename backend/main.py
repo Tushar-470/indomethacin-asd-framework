@@ -26,16 +26,22 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from backend.api import drugs, polymers, screening, history
-from backend.services.engine_adapter import get_engine_version
+from backend.services.engine_adapter import (
+    get_engine_version,
+    get_package_version,
+    get_methodology_version,
+)
 
 app = FastAPI(
     title="PharmaPolySCOPE API",
     description=(
         "Pharmaceutical Polymer Screening and Computational Optimization Platform API. "
         "A Four-Criterion Computational Framework for Rational Polymer Selection in Amorphous Solid Dispersions. "
-        "Computational engine powered by asd_mcda v" + get_engine_version()
+        "Active computational engine: v" + get_engine_version() + " (" + get_methodology_version() + "). "
+        "Package/API anchor: v" + get_package_version() + ". "
+        "Scientific baseline: v1.5.0-FOUR-CRITERION-FREEZE."
     ),
-    version="1.5.0",
+    version="2.0.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
 )
@@ -65,7 +71,9 @@ app.include_router(history.router)
 async def version():
     """Return engine and web app version information."""
     return {
+        "package_version": get_package_version(),
         "engine_version": get_engine_version(),
+        "methodology_version": get_methodology_version(),
         "web_version": "1.0.0",
         "framework": "ASD Computational Polymer Screening Framework",
         "status": "Computational Phase Complete — Experimental Phase Pending",
@@ -75,7 +83,11 @@ async def version():
 @app.get("/api/health")
 async def health():
     """Health check endpoint."""
-    return {"status": "ok", "engine": get_engine_version()}
+    return {
+        "status": "ok",
+        "engine": get_engine_version(),
+        "methodology": get_methodology_version(),
+    }
 
 
 # Serve frontend static files in production mode

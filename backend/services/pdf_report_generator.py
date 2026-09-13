@@ -739,6 +739,14 @@ class FullScreeningPDFReportGenerator:
                 Paragraph("Full Pipeline (HSP + χ + Gordon–Taylor + PCA + AHP + TOPSIS + Monte Carlo UQ)", self.styles["TableCell"]),
             ],
             [
+                Paragraph("Computational Engine", self.styles["TableCellBold"]),
+                Paragraph("2.0.0 (PharmaPolySCOPE Variable-K active engine)", self.styles["TableCell"]),
+            ],
+            [
+                Paragraph("Methodology", self.styles["TableCellBold"]),
+                Paragraph("2.0.0-SP-PRP-TOPSIS", self.styles["TableCell"]),
+            ],
+            [
                 Paragraph("Scientific Baseline Engine", self.styles["TableCellBold"]),
                 Paragraph(self.baseline_label, self.styles["TableCell"]),
             ],
@@ -747,8 +755,8 @@ class FullScreeningPDFReportGenerator:
                 Paragraph("1.0.0 (Configuration schema definition)", self.styles["TableCell"]),
             ],
             [
-                Paragraph("Framework Software Version", self.styles["TableCellBold"]),
-                Paragraph("1.5.0 (PharmaPolySCOPE scientific computational release)", self.styles["TableCell"]),
+                Paragraph("Framework Package", self.styles["TableCellBold"]),
+                Paragraph("1.5.0 (Base package distribution anchor)", self.styles["TableCell"]),
             ],
             [
                 Paragraph("Random Seed (Monte Carlo)", self.styles["TableCellBold"]),

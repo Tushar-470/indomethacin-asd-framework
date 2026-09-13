@@ -60,7 +60,8 @@ import pandas as pd
 import yaml
 
 # Direct imports from the scientific engine
-from asd_mcda.__version__ import __version__ as ENGINE_VERSION
+from asd_mcda.__version__ import __version__ as PACKAGE_VERSION
+from asd_mcda.v2.provenance import METHODOLOGY_VERSION
 from asd_mcda.configuration.loader import ConfigManager
 from asd_mcda.drug.drug_profile import Drug
 from asd_mcda.polymer.polymer_library import Polymer, PolymerLibrary
@@ -103,9 +104,23 @@ AUTHORITATIVE_V2_AHP_MATRIX = np.array([
 ], dtype=np.float64)
 
 
+# Active PharmaPolySCOPE computational engine version (Variable-K Architecture)
+ENGINE_VERSION = "2.0.0"
+
+
 def get_engine_version() -> str:
-    """Return the frozen engine version string."""
+    """Return the active computational engine version string."""
     return ENGINE_VERSION
+
+
+def get_package_version() -> str:
+    """Return the package/API anchor distribution version string."""
+    return PACKAGE_VERSION
+
+
+def get_methodology_version() -> str:
+    """Return the active mathematical methodology version string."""
+    return METHODOLOGY_VERSION
 
 
 # ── Plot Adapters ─────────────────────────────────────────────────────────────
@@ -301,7 +316,10 @@ def _write_decision_report_md(
         f"**Execution Tier**: `{execution_tier}`  ",
         f"**Classification**: `{'AUTHORITATIVE COMPUTATIONAL RESEARCH (PRE-EXPERIMENTAL PREDICTION)' if execution_tier == 'AUTHORITATIVE_RESEARCH' else 'EXPLORATORY SCREENING — NOT EXPERIMENTALLY VALIDATED'}`  ",
         f"**Timestamp**: `{datetime.now(timezone.utc).isoformat()}`  ",
-        f"**Methodology**: `PharmaPolySCOPE v2 Variable-K Architecture (SP-PRP-TOPSIS)`  ",
+        f"**Computational Engine**: `PharmaPolySCOPE v{ENGINE_VERSION} (Variable-K Architecture)`  ",
+        f"**Methodology**: `{METHODOLOGY_VERSION}`  ",
+        f"**Package/API Anchor**: `v{PACKAGE_VERSION}`  ",
+        f"**Scientific Baseline**: `v1.5.0-FOUR-CRITERION-FREEZE`  ",
         "",
         "---",
         "",
@@ -700,7 +718,9 @@ def run_screening(
         "mode": mode,
         "execution_tier": execution_tier,
         "software_version": ENGINE_VERSION,
-        "methodology_version": "2.0.0-VARIABLE-K-SP-PRP-TOPSIS",
+        "engine_version": ENGINE_VERSION,
+        "package_version": PACKAGE_VERSION,
+        "methodology_version": METHODOLOGY_VERSION,
         "drug_id": drug_id,
         "drug_name": drug.generic_name,
         "selected_polymer": winner_name,

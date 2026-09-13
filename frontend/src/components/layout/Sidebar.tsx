@@ -7,7 +7,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ version }) => {
-  const engineBaseline = version?.engine_version || 'v1.5.0-FOUR-CRITERION-FREEZE';
+  const activeEngine = version?.engine_version ? `v${version.engine_version}` : 'v2.0.0-VARIABLE-K';
+  const scientificBaseline = 'v1.5.0-FOUR-CRITERION-FREEZE';
 
   return (
     <aside className='sidebar'>
@@ -52,12 +53,18 @@ const Sidebar: React.FC<SidebarProps> = ({ version }) => {
       
       <div className='sidebar-footer'>
         <div style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--color-muted-text)', fontWeight: 600 }}>
-          Scientific Baseline
+          Active Engine
         </div>
         <div className="mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-primary-action)', marginTop: '2px' }}>
-          {engineBaseline}
+          PharmaPolySCOPE {activeEngine}
         </div>
-        <div style={{ fontSize: '11px', color: 'var(--color-secondary-text)', marginTop: '2px' }}>
+        <div style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--color-muted-text)', fontWeight: 600, marginTop: '6px' }}>
+          Scientific Baseline
+        </div>
+        <div className="mono" style={{ fontSize: '11px', color: 'var(--color-secondary-text)', marginTop: '2px' }}>
+          {scientificBaseline}
+        </div>
+        <div style={{ fontSize: '11px', color: 'var(--color-secondary-text)', marginTop: '4px' }}>
           Decision Engine Online
         </div>
         <div style={{ fontSize: '10px', color: 'var(--color-muted-text)', marginTop: '6px', borderTop: '1px solid var(--color-border)', paddingTop: '4px' }}>

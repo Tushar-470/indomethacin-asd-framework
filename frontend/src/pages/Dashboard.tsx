@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent, Button, Badge, EmptyState, Lo
 
 const Dashboard: React.FC<{ version?: any }> = ({ version: propVersion }) => {
   const [recentAnalyses, setRecentAnalyses] = useState<any[]>([]);
-  const [engineVersion, setEngineVersion] = useState<string>(propVersion?.engine_version || 'v1.5.0-FOUR-CRITERION-FREEZE');
+  const [engineVersion, setEngineVersion] = useState<string>(propVersion?.engine_version || '2.0.0');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -60,10 +60,19 @@ const Dashboard: React.FC<{ version?: any }> = ({ version: propVersion }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             <div>
               <span style={{ fontSize: '11px', textTransform: 'uppercase', color: 'var(--color-muted-text)', fontWeight: 600, display: 'block' }}>
-                Scientific Baseline Freeze
+                Active Engine
               </span>
               <div className="text-mono" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-primary-action)' }}>
-                {engineVersion || 'v1.5.0-FOUR-CRITERION-FREEZE'}
+                PharmaPolySCOPE {engineVersion ? (engineVersion.startsWith('v') ? engineVersion : `v${engineVersion}`) : 'v2.0.0-VARIABLE-K'}
+              </div>
+            </div>
+            <div style={{ width: '1px', height: '28px', backgroundColor: 'var(--color-border)' }}></div>
+            <div>
+              <span style={{ fontSize: '11px', textTransform: 'uppercase', color: 'var(--color-muted-text)', fontWeight: 600, display: 'block' }}>
+                Scientific Baseline
+              </span>
+              <div className="text-mono" style={{ fontSize: '13px', color: 'var(--color-secondary-text)', fontWeight: 500 }}>
+                v1.5.0 FOUR-CRITERION FREEZE
               </div>
             </div>
             <div style={{ width: '1px', height: '28px', backgroundColor: 'var(--color-border)' }}></div>
@@ -81,7 +90,7 @@ const Dashboard: React.FC<{ version?: any }> = ({ version: propVersion }) => {
               Methodology
             </span>
             <div style={{ fontSize: '13px', color: 'var(--color-secondary-text)' }}>
-              HSP + Flory-Huggins + Gordon-Taylor + PCA-AHP-TOPSIS + Monte Carlo UQ
+              2.0.0-SP-PRP-TOPSIS (Variable-K)
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ Maps to the existing asd_mcda domain objects without duplicating scientific logi
 """
 
 from pydantic import BaseModel, Field
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union
 from datetime import datetime
 
 
@@ -161,13 +161,19 @@ class ScreeningRequest(BaseModel):
 class RankingRow(BaseModel):
     """Single row in the TOPSIS ranking table."""
     rank: int
+    topsis_rank: Optional[int] = None
     polymer_id: str
     polymer_name: str
     abbreviation: str
     topsis_cl: float
     topsis_ideal_distance: float
     topsis_anti_ideal_distance: float
+    p_top1_percent: Optional[float] = None
     confidence_p_top1: Optional[float] = None
+    mode: Optional[str] = None
+    execution_tier: Optional[str] = None
+    analysis_id: Optional[str] = None
+    analysis_fingerprint: Optional[str] = None
 
 
 
@@ -175,8 +181,10 @@ class RankingRow(BaseModel):
 class ScreeningResponse(BaseModel):
     """Full screening results response."""
     analysis_id: str
+    analysis_fingerprint: str = ""
     timestamp: str
     mode: str
+    execution_tier: str = "EXPLORATORY_SCREENING"
     drug_id: str
     drug_name: str
     polymer_ids: List[str]
@@ -195,25 +203,32 @@ class ScreeningResponse(BaseModel):
     gate1_passed: bool
     gate2_passed: bool
     pca_retained_k: int
+    pca_cumulative_variance: float = 0.0
     pca_variance_explained: List[float]
-    pca_interpretation: List[str]
+    pca_interpretation: Union[str, List[str]]
+    boundary_eigengap: float = 0.0
+    subspace_stability_status: str = "STABLE"
+    weight_semantic_mode: str = "standardized_space"
+    truncation_max_relative: Optional[float] = None
+    mc_dimension_distribution: Optional[Dict[str, float]] = None
+    ahp_weights: Optional[Dict[str, float]] = None
+    ahp_cr: Optional[float] = None
     uq_p_top1: Dict[str, float]
-    uq_gelman_rubin: float
-    uq_converged: bool
-    oat_top1_stable: bool
-    oat_stability_fraction: float
+    uq_gelman_rubin: Optional[float] = None
+    uq_converged: bool = True
+    oat_top1_stable: Optional[bool] = None
+    oat_stability_fraction: Optional[float] = None
     morris_feature_names: List[str]
     morris_mu: List[float]
     morris_sigma: List[float]
-    validation_spearman: float
-    validation_classification: str
-    baseline_outperforms: bool
-    fbm_auc: float
-    fbm_actionable: bool
+    validation_spearman: Optional[float] = None
+    validation_classification: Optional[str] = None
+    baseline_outperforms: Optional[bool] = None
     figures: List[str]
     reports: Dict[str, str]
     software_version: str
     warnings: List[str]
+
 
 
 # ── History Schemas ───────────────────────────────────────────────────────────

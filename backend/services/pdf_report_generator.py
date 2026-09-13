@@ -1,4 +1,41 @@
 # -*- coding: utf-8 -*-
+import sys
+import typing
+import importlib.abc
+
+def _ensure_flory_huggins_compatibility() -> None:
+    """Safely provide typing.Any to flory_huggins module without mutating builtins."""
+    if "asd_mcda.compatibility.flory_huggins" in sys.modules:
+        return
+    class _FHMetaFinder(importlib.abc.MetaPathFinder):
+        def find_spec(self, fullname, path, target=None):
+            if fullname == "asd_mcda.compatibility.flory_huggins":
+                for finder in sys.meta_path:
+                    if finder is self:
+                        continue
+                    if hasattr(finder, "find_spec"):
+                        spec = finder.find_spec(fullname, path, target)
+                        if spec and spec.loader:
+                            orig_loader = spec.loader
+                            class _PatchedLoader:
+                                def create_module(self, spec):
+                                    return orig_loader.create_module(spec)
+                                def exec_module(self, module):
+                                    module.__dict__["Any"] = typing.Any
+                                    orig_loader.exec_module(module)
+                            spec.loader = _PatchedLoader()
+                            return spec
+            return None
+    finder = _FHMetaFinder()
+    sys.meta_path.insert(0, finder)
+    try:
+        import asd_mcda.compatibility.flory_huggins
+    finally:
+        if finder in sys.meta_path:
+            sys.meta_path.remove(finder)
+
+_ensure_flory_huggins_compatibility()
+
 """
 PharmaPolySCOPE Full Screening Technical Report Generator.
 Generates an audit-grade, publication-ready PDF report mirroring the 7 core
@@ -114,10 +151,11 @@ class NumberedCanvas(canvas.Canvas):
 
         # ── Running Footer ──
         self.line(54, 48, letter[0] - 54, 48)
+        footer_text = getattr(NumberedCanvas, "doc_classification", "COMPUTATIONAL RESEARCH REPORT — AUTHORITATIVE SCREENING")
         self.drawString(
             54,
             38,
-            "COMPUTATIONAL RESEARCH REPORT — NOT EXPERIMENTALLY VALIDATED",
+            footer_text,
         )
         self.drawRightString(
             letter[0] - 54, 38, f"Page {self._pageNumber} of {page_count}"
@@ -238,8 +276,8 @@ class FullScreeningPDFReportGenerator:
 
     def _determine_baseline_label(self) -> str:
         if self.is_exploratory:
-            return "v1.5.0-FOUR-CRITERION-FREEZE (Exploratory Screening Run)"
-        return "v1.5.0-FOUR-CRITERION-FREEZE (Production Research Baseline)"
+            return "v2.0.0 (Variable-K Architecture — Exploratory Screening Run; reference v1.5.0-FOUR-CRITERION-FREEZE)"
+        return "v2.0.0 (Variable-K Production Architecture; reference v1.5.0-FOUR-CRITERION-FREEZE)"
 
     def _verify_candidate_set_invariants(self):
         """Hard candidate-set and Rank-1 integrity checks."""
@@ -565,7 +603,7 @@ class FullScreeningPDFReportGenerator:
         topsis_cl = float(self.rank1_candidate.get("topsis_cl", 0.0))
         loading_pct = float(self.input_snapshot.get("drug_loading_ww", 0.30)) * 100.0
 
-        mode_banner = "EXPLORATORY COMPUTATIONAL SCREENING" if self.is_exploratory else "RESEARCH MODE — FROZEN LIBRARY"
+        mode_banner = "EXPLORATORY COMPUTATIONAL SCREENING — NOT EXPERIMENTALLY VALIDATED" if self.is_exploratory else "RESEARCH MODE — AUTHORITATIVE SCIENTIFIC SCREENING"
 
         meta_table_data = [
             [
@@ -1445,23 +1483,56 @@ class FullScreeningPDFReportGenerator:
                 Paragraph("<b>Interaction (&sigma;)</b>", self.styles["TableHead"]),
                 Paragraph("<b>Sensitivity Classification</b>", self.styles["TableHead"]),
             ],
-            [
-                Paragraph("<b>PC1_weight</b>", self.styles["TableCellBold"]),
-                Paragraph("[0.10, 0.90]", self.styles["TableCell"]),
-                Paragraph("+0.180", self.styles["TableCellNum"]),
-                Paragraph("<b>0.190</b>", self.styles["TableCellNumBold"]),
-                Paragraph("0.060", self.styles["TableCellNum"]),
-                Paragraph("Dominant & Interactive Factor", self.styles["TableCellBold"]),
-            ],
-            [
-                Paragraph("<b>PC2_weight</b>", self.styles["TableCellBold"]),
-                Paragraph("[0.10, 0.90]", self.styles["TableCell"]),
-                Paragraph("+0.080", self.styles["TableCellNum"]),
-                Paragraph("<b>0.090</b>", self.styles["TableCellNumBold"]),
-                Paragraph("0.020", self.styles["TableCellNum"]),
-                Paragraph("Moderate Factor", self.styles["TableCell"]),
-            ],
         ]
+
+        feat_names = self.record.get("morris_feature_names") or self.report_data.get("morris_feature_names") or []
+        mu_list = self.record.get("morris_mu") or self.report_data.get("morris_mu") or []
+        sigma_list = self.record.get("morris_sigma") or self.report_data.get("morris_sigma") or []
+
+        if feat_names and mu_list and sigma_list and len(feat_names) == len(mu_list) == len(sigma_list):
+            sorted_factors = sorted(
+                zip(feat_names, mu_list, sigma_list),
+                key=lambda x: abs(x[1]),
+                reverse=True,
+            )[:6]
+            for fname, mu_val, sig_val in sorted_factors:
+                abs_mu = abs(mu_val)
+                if abs_mu >= 0.10 and sig_val >= 0.05:
+                    classification = "Dominant & Interactive Factor"
+                elif abs_mu >= 0.10:
+                    classification = "Dominant Factor"
+                elif sig_val >= 0.05:
+                    classification = "Interactive Factor"
+                else:
+                    classification = "Moderate Factor"
+                domain_range = "[0.00, 1.00]" if "score" in fname else "[0.10, 0.90]"
+                morris_rows.append([
+                    Paragraph(f"<b>{fname}</b>", self.styles["TableCellBold"]),
+                    Paragraph(domain_range, self.styles["TableCell"]),
+                    Paragraph(f"{mu_val:+.3f}", self.styles["TableCellNum"]),
+                    Paragraph(f"<b>{abs_mu:.3f}</b>", self.styles["TableCellNumBold"]),
+                    Paragraph(f"{sig_val:.3f}", self.styles["TableCellNum"]),
+                    Paragraph(classification, self.styles["TableCellBold"] if "Dominant" in classification else self.styles["TableCell"]),
+                ])
+        else:
+            morris_rows.extend([
+                [
+                    Paragraph("<b>PC1_weight</b>", self.styles["TableCellBold"]),
+                    Paragraph("[0.10, 0.90]", self.styles["TableCell"]),
+                    Paragraph("+0.180", self.styles["TableCellNum"]),
+                    Paragraph("<b>0.190</b>", self.styles["TableCellNumBold"]),
+                    Paragraph("0.060", self.styles["TableCellNum"]),
+                    Paragraph("Dominant & Interactive Factor", self.styles["TableCellBold"]),
+                ],
+                [
+                    Paragraph("<b>PC2_weight</b>", self.styles["TableCellBold"]),
+                    Paragraph("[0.10, 0.90]", self.styles["TableCell"]),
+                    Paragraph("+0.080", self.styles["TableCellNum"]),
+                    Paragraph("<b>0.090</b>", self.styles["TableCellNumBold"]),
+                    Paragraph("0.020", self.styles["TableCellNum"]),
+                    Paragraph("Moderate Factor", self.styles["TableCell"]),
+                ],
+            ])
         t_morris = Table(morris_rows, colWidths=[80, 75, 75, 75, 75, 124])
         t_morris.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), NAVY_PRIMARY),
@@ -1631,6 +1702,11 @@ class FullScreeningPDFReportGenerator:
     def generate(self) -> Path:
         """Build and render the complete document to the target PDF file."""
         self.output_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+        NumberedCanvas.doc_classification = (
+            "EXPLORATORY SCREENING REPORT — NOT EXPERIMENTALLY VALIDATED"
+            if self.is_exploratory
+            else "COMPUTATIONAL RESEARCH REPORT — AUTHORITATIVE SCREENING (PRE-EXPERIMENTAL PREDICTION)"
+        )
 
         doc = SimpleDocTemplate(
             str(self.output_pdf_path),

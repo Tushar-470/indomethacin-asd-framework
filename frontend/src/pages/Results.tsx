@@ -741,8 +741,7 @@ export default function Results() {
                 { file: 'fig06_ahp_topsis_ranking.png', title: 'TOPSIS Ranking & Scores' },
                 { file: 'fig07_morris_sensitivity.png', title: 'Morris Sensitivity Analysis' },
                 { file: 'fig08_uncertainty_propagation.png', title: 'Uncertainty Propagation' },
-                { file: 'fig11_pca_scree_plot.png', title: 'PCA Scree Plot' },
-                { file: 'fig12_fbm_contour.png', title: 'Flory-Huggins Phase Contour' }
+                { file: 'fig11_pca_scree_plot.png', title: 'PCA Scree Plot' }
               ].map(fig => (
                 <div key={fig.file} className="card" style={{ margin: 0, padding: '0.75rem', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ backgroundColor: '#F1F5F9', minHeight: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px', overflow: 'hidden', marginBottom: '0.5rem' }}>
